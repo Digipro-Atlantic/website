@@ -24,6 +24,8 @@
     --font-display: 'Fraunces', Georgia, serif;
     --font-body: 'IBM Plex Sans', system-ui, sans-serif;
     --font-mono: 'IBM Plex Mono', monospace;
+
+    --max-width-wrap: 1180px;
 }
 
 :root {
@@ -97,4 +99,133 @@ code {
     border-radius: 4px;
     color: var(--ink);
     background: var(--teal-100);
+}
+
+@layer components {
+    .wrap {
+        max-width: var(--maxw);
+        margin-inline: auto;
+        padding-inline: 28px;
+    }
+
+    .btn {
+        font-family: var(--body);
+        font-weight: 600;
+        font-size: 14.5px;
+        padding: 11px 22px;
+        border-radius: 7px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+    }
+
+    .btn-gold {
+        background: var(--gold);
+        color: var(--teal-950);
+    }
+
+    .btn-gold:hover {
+        background: var(--gold-soft);
+        transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+        background: transparent;
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.28);
+    }
+
+    .btn-ghost:hover {
+        border-color: var(--gold-soft);
+        color: var(--gold-soft);
+    }
+
+    .btn-dark {
+        background: var(--teal-800);
+        color: #fff;
+    }
+
+    .btn-dark:hover {
+        background: var(--teal-600);
+    }
+
+    .btn-outline {
+        background: transparent;
+        color: var(--teal-800);
+        border-color: var(--line);
+    }
+
+    .btn-outline:hover {
+        border-color: var(--teal-600);
+        color: var(--teal-600);
+    }
+
+    .hero {
+        position: relative;
+        background:
+            radial-gradient(
+                1100px 600px at 78% -10%,
+                rgba(180, 134, 43, 0.16),
+                transparent 60%
+            ),
+            radial-gradient(
+                900px 700px at 8% 110%,
+                rgba(28, 107, 84, 0.42),
+                transparent 55%
+            ),
+            linear-gradient(
+                165deg,
+                var(--teal-950) 0%,
+                var(--teal-900) 48%,
+                var(--teal-800) 100%
+            );
+        color: #fff;
+        overflow: hidden;
+    }
+
+    .hero-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+            linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.04) 1px,
+                transparent 1px
+            );
+        background-size: 56px 56px;
+        -webkit-mask-image: radial-gradient(
+            900px 500px at 70% 30%,
+            #000,
+            transparent 75%
+        );
+        mask-image: radial-gradient(
+            900px 500px at 70% 30%,
+            #000,
+            transparent 75%
+        );
+        pointer-events: none;
+    }
+
+    .hero-gradient-dark {
+        background: linear-gradient(165deg, var(--teal-900), var(--teal-800));
+    }
+
+    .hero-gradient-mid {
+        background: linear-gradient(160deg, var(--teal-800), var(--teal-600));
+    }
+
+    .hero-gradient-deep {
+        background:
+            radial-gradient(
+                800px 500px at 80% 0%,
+                rgba(180, 134, 43, 0.12),
+                transparent 60%
+            ),
+            linear-gradient(160deg, var(--teal-950), var(--teal-800));
+    }
 }
