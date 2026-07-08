@@ -228,4 +228,21 @@ code {
             ),
             linear-gradient(160deg, var(--teal-950), var(--teal-800));
     }
+
+    .logo-img {
+        height: 40px;
+        width: auto;
+        display: block;
+    }
+
+    footer .logo-img,
+    .logo-img--footer {
+        height: 44px;
+    }
+
+    .ui-logo {
+        height: 22px;
+        width: auto;
+        display: block;
+    }
 }
