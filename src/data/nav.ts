@@ -15,6 +15,17 @@ export const navCtas = {
     bookDemo: { label: 'Book a demo', to: '/demo' },
 } as const
 
+export const headerNav = {
+    product: [
+        { label: 'Platform', to: '/platform' },
+        { label: 'Rent financing', to: '/financing' },
+        { label: 'Estates', to: '/estates' },
+        { label: 'Institutions', to: '/institutions' },
+    ],
+    pricing: { label: 'Pricing', to: '/pricing' },
+    faq: { label: 'FAQ', to: '/faq' },
+} as const satisfies Record<string, NavLink | NavLink[]>
+
 export const footerNav = {
     platform: [
         { label: 'Capabilities', to: '/platform' },
