@@ -4,6 +4,44 @@ export type NavLink = {
     external?: boolean
 }
 
+export type ProductMenuIconId =
+    | 'property-management'
+    | 'financing'
+    | 'estates'
+    | 'institutions'
+    | 'security'
+    | 'tour'
+
+export type ProductMenuSolution = {
+    id: string
+    label: string
+    description: string
+    to: string
+    external?: boolean
+}
+
+export type ProductMenuItem = {
+    id: string
+    label: string
+    description: string
+    to: string
+    icon: ProductMenuIconId
+    solutions: ProductMenuSolution[]
+}
+
+export type ProductMenuFooterLink = {
+    id: string
+    label: string
+    to: string
+    icon: ProductMenuIconId
+    external?: boolean
+}
+
+export type ProductMenu = {
+    products: ProductMenuItem[]
+    footerLinks: ProductMenuFooterLink[]
+}
+
 export type EcoCard = {
     title: string
     description: string

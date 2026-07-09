@@ -1,4 +1,5 @@
 import type { NavLink } from './types'
+import { productNavLinks } from './product-menu'
 
 export const primaryNav: NavLink[] = [
     { label: 'Home', to: '/' },
@@ -14,6 +15,12 @@ export const navCtas = {
     signIn: { label: 'Sign in', to: '/signin' },
     bookDemo: { label: 'Book a demo', to: '/demo' },
 } as const
+
+export const headerNav = {
+    product: productNavLinks,
+    pricing: { label: 'Pricing', to: '/pricing' },
+    faq: { label: 'FAQ', to: '/faq' },
+} as const satisfies Record<string, NavLink | NavLink[]>
 
 export const footerNav = {
     platform: [
