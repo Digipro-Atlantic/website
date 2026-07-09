@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from '@tanstack/react-router'
 import { productMenu, type ProductMenuProductId } from '@/data/product-menu'
-import type { ProductMenuSolution } from '@/data/types'
+import type { ProductMenuFooterLink, ProductMenuSolution } from '@/data/types'
 import { ProductMenuIcon } from './ProductMenuIcon'
 
 const ChevronDown = ({ open }: { open: boolean }) => {
@@ -142,26 +142,27 @@ export const ProductMobileMenu = ({
 
                     {productMenu.footerLinks.length > 0 && (
                         <div className="flex flex-col gap-2 border-t border-white/10 pt-3">
-                            {productMenu.footerLinks.map((link) =>
-                                link?.external ? (
-                                    <a
-                                        key={link.id}
-                                        href={link.to}
-                                        className="text-sm text-white/70 hover:text-gold-soft"
-                                        onClick={onNavigate}
-                                    >
-                                        {link.label}
-                                    </a>
-                                ) : (
-                                    <Link
-                                        key={link.id}
-                                        to={link.to}
-                                        className="text-sm text-white/70 hover:text-gold-soft"
-                                        onClick={onNavigate}
-                                    >
-                                        {link.label}
-                                    </Link>
-                                ),
+                            {productMenu.footerLinks.map(
+                                (link: ProductMenuFooterLink) =>
+                                    link.external ? (
+                                        <a
+                                            key={link.id}
+                                            href={link.to}
+                                            className="text-sm text-white/70 hover:text-gold-soft"
+                                            onClick={onNavigate}
+                                        >
+                                            {link.label}
+                                        </a>
+                                    ) : (
+                                        <Link
+                                            key={link.id}
+                                            to={link.to}
+                                            className="text-sm text-white/70 hover:text-gold-soft"
+                                            onClick={onNavigate}
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    ),
                             )}
                         </div>
                     )}

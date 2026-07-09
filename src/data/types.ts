@@ -26,7 +26,7 @@ export type ProductMenuItem = {
     description: string
     to: string
     icon: ProductMenuIconId
-    solutions: ProductMenuSolution[]
+    solutions: readonly ProductMenuSolution[]
 }
 
 export type ProductMenuFooterLink = {
@@ -38,8 +38,8 @@ export type ProductMenuFooterLink = {
 }
 
 export type ProductMenu = {
-    products: ProductMenuItem[]
-    footerLinks: ProductMenuFooterLink[]
+    products: readonly ProductMenuItem[]
+    footerLinks: readonly ProductMenuFooterLink[]
 }
 
 export type EcoCard = {
