@@ -1,6 +1,7 @@
 export * from './types'
 export * from './nav'
 export * from './site'
+export * from './home'
 export * from './eco-cards'
 export * from './pricing'
 export * from './faq'

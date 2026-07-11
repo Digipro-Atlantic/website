@@ -2,6 +2,7 @@ export type NavLink = {
     label: string
     to: string
     external?: boolean
+    hash?: string
 }
 
 export type ProductMenuIconId =

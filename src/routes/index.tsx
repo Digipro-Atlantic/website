@@ -1,4 +1,5 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
+import { Hero } from '@/containers/Home'
 import { ecoCards } from '@/data/eco-cards'
 
 export const Route = createFileRoute('/')({
@@ -8,18 +9,7 @@ export const Route = createFileRoute('/')({
 function IndexComponent() {
     return (
         <main>
-            <section className="hero-gradient-dark py-16 text-white">
-                <div className="wrap">
-                    <h1 className="font-display text-4xl md:text-5xl">
-                        Welcome Home!
-                    </h1>
-                    <p className="mt-4 max-w-2xl text-white/80">
-                        The property platform for Nigeria — rent, leases,
-                        maintenance, estate governance and tenant rent financing
-                        in one place.
-                    </p>
-                </div>
-            </section>
+            <Hero />
 
             <section className="py-16">
                 <div className="wrap">

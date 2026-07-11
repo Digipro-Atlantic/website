@@ -35,6 +35,7 @@ export const SiteLink = ({
     return (
         <Link
             to={link.to}
+            hash={link.hash}
             className={className}
             onClick={onClick}
             activeProps={

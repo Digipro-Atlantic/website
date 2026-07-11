@@ -78,14 +78,14 @@ img {
     display: block;
 }
 
-h1,
+/* h1,
 h2,
 h3,
 h4 {
     font-family: var(--display);
     font-weight: 600;
     color: var(--ink);
-}
+} */
 
 code {
     font-family: var(--mono);
@@ -180,6 +180,25 @@ code {
             );
         color: #fff;
         overflow: hidden;
+    }
+
+    .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--mono);
+        font-size: 12.5px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .chip::before {
+        content: '';
+        width: 7px;
+        height: 7px;
+        border-radius: 2px;
+        background: var(--gold);
     }
 
     .hero-grid {
@@ -310,6 +329,9 @@ code {
         background: var(--teal-950);
         color: rgba(255, 255, 255, 0.66);
         padding: 72px 0 36px;
+        /* position: fixed;
+        bottom: 0;
+        width: 100%; */
     }
 
     .foot-top {
