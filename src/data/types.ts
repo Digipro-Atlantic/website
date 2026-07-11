@@ -50,6 +50,20 @@ export type EcoCard = {
     to: string
 }
 
+export type StatementPoint = {
+    number: string
+    title: string
+    description: string
+}
+
+export type ModelCard = {
+    tag: string
+    title: string
+    description: string
+    features: readonly string[]
+    wide?: boolean
+}
+
 export type BillingPeriod = 'monthly' | 'annual'
 
 export type TierPricing = {

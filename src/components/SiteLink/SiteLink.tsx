@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { Link } from '@tanstack/react-router'
 import type { NavLink } from '@/data/types'
 
@@ -6,6 +7,7 @@ type SiteLinkProps = {
     className?: string
     activeClassName?: string
     onClick?: () => void
+    children?: ReactNode
 }
 
 export const SiteLink = ({
@@ -13,7 +15,10 @@ export const SiteLink = ({
     className = '',
     activeClassName = '',
     onClick,
+    children,
 }: SiteLinkProps) => {
+    const label = children ?? link.label
+
     if (link.external) {
         return (
             <a
@@ -27,7 +32,7 @@ export const SiteLink = ({
                         : undefined
                 }
             >
-                {link.label}
+                {label}
             </a>
         )
     }
@@ -43,7 +48,7 @@ export const SiteLink = ({
             }
             activeOptions={{ exact: link.to === '/' }}
         >
-            {link.label}
+            {label}
         </Link>
     )
 }

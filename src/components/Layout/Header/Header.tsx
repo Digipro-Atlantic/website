@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Button } from '@/components/Button'
 import { Logo } from '@/components/Logo'
 import { SiteLink } from '@/components/SiteLink'
 import { headerNav, navCtas } from '@/data/nav'
@@ -28,13 +29,15 @@ export const Header = () => {
                 </nav>
 
                 <div className="nav-cta">
-                    <SiteLink
+                    <Button
+                        variant="ghost"
                         link={navCtas.signIn}
-                        className="btn btn-ghost hidden min-[981px]:inline-flex"
+                        className="hidden min-[981px]:inline-flex"
                     />
-                    <SiteLink
+                    <Button
+                        variant="gold"
                         link={navCtas.bookDemo}
-                        className="btn btn-gold hidden min-[981px]:inline-flex"
+                        className="hidden min-[981px]:inline-flex"
                     />
 
                     <button
@@ -108,14 +111,16 @@ export const Header = () => {
                     />
 
                     <div className="mt-2 flex flex-col gap-3 border-t border-white/10 pt-4">
-                        <SiteLink
+                        <Button
+                            variant="ghost"
                             link={navCtas.signIn}
-                            className="btn btn-ghost justify-center"
+                            className="justify-center"
                             onClick={closeMobile}
                         />
-                        <SiteLink
+                        <Button
+                            variant="gold"
                             link={navCtas.bookDemo}
-                            className="btn btn-gold justify-center"
+                            className="justify-center"
                             onClick={closeMobile}
                         />
                     </div>

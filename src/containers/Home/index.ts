@@ -1,1 +1,5 @@
 export * from './Hero'
+export * from './Statement'
+export * from './Models'
+export * from './EcoSection'
+export * from './Cta'

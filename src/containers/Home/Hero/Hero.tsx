@@ -1,4 +1,4 @@
-import { SiteLink } from '@/components/SiteLink'
+import { Button } from '@/components/Button'
 import { hero, trustChips } from '@/data/home'
 import { EstateArt } from './EstateArt'
 
@@ -22,14 +22,8 @@ export const Hero = () => (
                         {hero.lead}
                     </p>
                     <div className="flex flex-wrap gap-3.5">
-                        <SiteLink
-                            link={hero.ctas.primary}
-                            className="btn btn-gold"
-                        />
-                        <SiteLink
-                            link={hero.ctas.secondary}
-                            className="btn btn-ghost"
-                        />
+                        <Button variant="gold" link={hero.ctas.primary} />
+                        <Button variant="ghost" link={hero.ctas.secondary} />
                     </div>
                 </div>
 

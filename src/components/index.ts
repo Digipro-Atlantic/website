@@ -1,3 +1,6 @@
 export * from './Logo'
 export * from './SiteLink'
+export * from './Button'
+export * from './EcoCard'
+export * from './SectionHeader'
 export * from './Layout'

@@ -446,6 +446,81 @@ code {
         color: var(--gold);
     }
 
+    .model-card {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--paper);
+        padding: 30px;
+        transition:
+            transform 0.25s,
+            box-shadow 0.25s,
+            border-color 0.25s;
+    }
+
+    .model-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--teal-400);
+        box-shadow: 0 18px 40px -24px rgba(15, 70, 54, 0.4);
+    }
+
+    .model-card--wide {
+        border-color: transparent;
+        background: linear-gradient(160deg, var(--teal-800), var(--teal-600));
+        color: #fff;
+    }
+
+    .model-card__tag {
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--teal-600);
+    }
+
+    .model-card__roof {
+        position: absolute;
+        top: 18px;
+        right: 20px;
+        width: 40px;
+        height: 34px;
+        color: var(--teal-800);
+        opacity: 0.16;
+    }
+
+    .marked-li {
+        position: relative;
+        padding-left: 20px;
+        font-size: 14.5px;
+    }
+
+    .marked-li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 9px;
+        width: 9px;
+        height: 9px;
+        border: 1.5px solid var(--gold);
+        border-radius: 2px;
+    }
+
+    .marked-li--light::before {
+        border-color: var(--gold-soft);
+    }
+
+    .cta {
+        background:
+            radial-gradient(
+                800px 500px at 80% 0%,
+                rgba(180, 134, 43, 0.18),
+                transparent 60%
+            ),
+            linear-gradient(160deg, var(--teal-950), var(--teal-800));
+    }
+
     .price-toggle {
         display: inline-flex;
         background: var(--teal-100);
