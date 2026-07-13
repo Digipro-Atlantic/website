@@ -1,3 +1,6 @@
 export * from './Home'
 export * from './Platform'
 export * from './Tour'
+export * from './Financing'
+export * from './Estates'
+export * from './Institutions'

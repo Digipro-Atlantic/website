@@ -128,3 +128,31 @@ export type TourStep = {
     flip?: boolean
     screen: TourScreenId
 }
+
+export type FinancingStep = {
+    number: number
+    title: string
+    description: string
+}
+
+export type FinancingCard = {
+    id: string
+    title: string
+    titlePill?: string
+    score?: { value: string; label: string }
+    paragraphs: readonly string[]
+    disclaimer?: string
+}
+
+export type EstateFeature = {
+    id: string
+    title: string
+    description: string
+}
+
+export type SecGridItem = {
+    id: string
+    tag: string
+    title: string
+    description: string
+}
