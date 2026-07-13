@@ -17,8 +17,7 @@ export const navCtas = {
 
 /** Header links (legacy flat nav minus Home). Set `hide: true` to omit from the header. */
 export const headerNav = [
-    { label: 'Platform', to: '/platform', hide: true },
-    { label: 'Rent financing', to: '/financing', hide: false },
+    { label: 'Rent financing', to: '/financing', hide: true },
     { label: 'Estates', to: '/estates', hide: false },
     { label: 'Institutions', to: '/institutions', hide: false },
     { label: 'Pricing', to: '/pricing' },

@@ -82,3 +82,27 @@ export type FaqGroup = {
     category: string
     items: FaqItem[]
 }
+
+export type CapabilityIconId =
+    | 'rent-collection'
+    | 'lease-management'
+    | 'maintenance'
+    | 'document-vault'
+    | 'financial-reporting'
+    | 'communications'
+
+export type EcosystemIconId = 'marketplace' | 'integrations' | 'mobile'
+
+export type PlatformCapability = {
+    id: string
+    title: string
+    description: string
+    icon: CapabilityIconId
+}
+
+export type PlatformEcosystemCard = {
+    id: string
+    title: string
+    description: string
+    icon: EcosystemIconId
+}
