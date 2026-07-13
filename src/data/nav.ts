@@ -1,5 +1,4 @@
 import type { NavLink } from './types'
-import { productNavLinks } from './product-menu'
 
 export const primaryNav: NavLink[] = [
     { label: 'Home', to: '/' },
@@ -16,11 +15,14 @@ export const navCtas = {
     bookDemo: { label: 'Book a demo', to: '/demo' },
 } as const
 
-export const headerNav = {
-    product: productNavLinks,
-    pricing: { label: 'Pricing', to: '/pricing' },
-    faq: { label: 'FAQ', to: '/faq' },
-} as const satisfies Record<string, NavLink | NavLink[]>
+/** Header links (legacy flat nav minus Home). Set `hide: true` to omit from the header. */
+export const headerNav = [
+    { label: 'Rent financing', to: '/financing', hide: true },
+    { label: 'Estates', to: '/estates', hide: false },
+    { label: 'Institutions', to: '/institutions', hide: false },
+    { label: 'Pricing', to: '/pricing' },
+    { label: 'FAQ', to: '/faq' },
+] as const satisfies readonly NavLink[]
 
 export const footerNav = {
     platform: [

@@ -1,8 +1,5 @@
-import { useState } from 'react'
 import { Link } from '@tanstack/react-router'
-import { productMenu, type ProductMenuProductId } from '@/data/product-menu'
-import type { ProductMenuFooterLink, ProductMenuSolution } from '@/data/types'
-import { ProductMenuIcon } from './ProductMenuIcon'
+import { productMenuLinks } from '@/data/product-menu'
 
 const ChevronDown = ({ open }: { open: boolean }) => {
     return (
@@ -23,151 +20,41 @@ const ChevronDown = ({ open }: { open: boolean }) => {
     )
 }
 
-const MobileSolutionLink = ({
-    solution,
-    onNavigate,
-}: {
-    solution: ProductMenuSolution
-    onNavigate?: () => void
-}) => {
-    const className =
-        'block py-2 text-sm text-white/70 transition-colors hover:text-gold-soft'
-
-    if (solution.external) {
-        return (
-            <a
-                href={solution.to}
-                className={className}
-                onClick={onNavigate}
-                target={solution.to.startsWith('http') ? '_blank' : undefined}
-                rel={
-                    solution.to.startsWith('http')
-                        ? 'noopener noreferrer'
-                        : undefined
-                }
-            >
-                {solution.label}
-            </a>
-        )
-    }
-
-    return (
-        <Link to={solution.to} className={className} onClick={onNavigate}>
-            {solution.label}
-        </Link>
-    )
-}
-
-type ProductMobileMenuProps = React.PropsWithChildren<{
+type ProductMobileMenuProps = {
     open: boolean
     onToggle: () => void
     onNavigate?: () => void
-}>
+}
 
 export const ProductMobileMenu = ({
     open,
     onToggle,
     onNavigate,
-}: ProductMobileMenuProps) => {
-    const [expandedProductId, setExpandedProductId] =
-        useState<ProductMenuProductId | null>(null)
+}: ProductMobileMenuProps) => (
+    <div>
+        <button
+            type="button"
+            className="flex w-full items-center justify-between bg-transparent p-0 text-[14.5px] font-medium text-white/86"
+            aria-expanded={open}
+            onClick={onToggle}
+        >
+            Product
+            <ChevronDown open={open} />
+        </button>
 
-    const toggleProduct = (id: ProductMenuProductId) => {
-        setExpandedProductId((current) => (current === id ? null : id))
-    }
-
-    return (
-        <div>
-            <button
-                type="button"
-                className="flex w-full items-center justify-between bg-transparent p-0 text-[14.5px] font-medium text-white/86"
-                aria-expanded={open}
-                onClick={onToggle}
-            >
-                Product
-                <ChevronDown open={open} />
-            </button>
-
-            {open && (
-                <div className="mt-2 flex flex-col gap-3 border-l border-white/10 pl-4">
-                    {productMenu.products.map((product) => {
-                        const expanded = expandedProductId === product.id
-
-                        return (
-                            <div key={product.id}>
-                                <button
-                                    type="button"
-                                    className="flex w-full items-center gap-3 bg-transparent p-0 text-left"
-                                    aria-expanded={expanded}
-                                    onClick={() => toggleProduct(product.id)}
-                                >
-                                    <ProductMenuIcon
-                                        icon={product.icon}
-                                        className="size-8 rounded-md"
-                                    />
-                                    <span className="min-w-0 flex-1">
-                                        <span className="flex items-center justify-between gap-2">
-                                            <span className="text-sm font-medium text-white/86">
-                                                {product.label}
-                                            </span>
-                                            <ChevronDown open={expanded} />
-                                        </span>
-                                        <span className="mt-0.5 block text-xs leading-snug text-white/55">
-                                            {product.description}
-                                        </span>
-                                    </span>
-                                </button>
-
-                                {expanded && (
-                                    <div className="mt-2 flex flex-col gap-1 border-l border-white/10 pl-4">
-                                        {product.solutions.map((solution) => (
-                                            <MobileSolutionLink
-                                                key={solution.id}
-                                                solution={solution}
-                                                onNavigate={onNavigate}
-                                            />
-                                        ))}
-                                        <Link
-                                            to={product.to}
-                                            className="pt-1 text-sm font-medium text-gold-soft"
-                                            onClick={onNavigate}
-                                        >
-                                            More about {product.label}
-                                        </Link>
-                                    </div>
-                                )}
-                            </div>
-                        )
-                    })}
-
-                    {productMenu.footerLinks.length > 0 && (
-                        <div className="flex flex-col gap-2 border-t border-white/10 pt-3">
-                            {productMenu.footerLinks.map(
-                                (link: ProductMenuFooterLink) =>
-                                    link.external ? (
-                                        <a
-                                            key={link.id}
-                                            href={link.to}
-                                            className="text-sm text-white/70 hover:text-gold-soft"
-                                            onClick={onNavigate}
-                                        >
-                                            {link.label}
-                                        </a>
-                                    ) : (
-                                        <Link
-                                            key={link.id}
-                                            to={link.to}
-                                            className="text-sm text-white/70 hover:text-gold-soft"
-                                            onClick={onNavigate}
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    ),
-                            )}
-                        </div>
-                    )}
-                </div>
-            )}
-        </div>
-    )
-}
+        {open && (
+            <div className="mt-2 flex flex-col gap-2 border-l border-white/10 pl-4">
+                {productMenuLinks.map((link) => (
+                    <Link
+                        key={link.id}
+                        to={link.to}
+                        className="text-sm font-medium text-white/86 hover:text-gold-soft"
+                        onClick={onNavigate}
+                    >
+                        {link.label}
+                    </Link>
+                ))}
+            </div>
+        )}
+    </div>
+)

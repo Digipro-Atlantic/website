@@ -1,19 +1,30 @@
+import type { ReactNode } from 'react'
 import { Link } from '@tanstack/react-router'
 import type { NavLink } from '@/data/types'
 
 type SiteLinkProps = {
     link: NavLink
+    hide?: boolean
     className?: string
     activeClassName?: string
     onClick?: () => void
+    children?: ReactNode
 }
 
 export const SiteLink = ({
     link,
+    hide,
     className = '',
     activeClassName = '',
     onClick,
+    children,
 }: SiteLinkProps) => {
+    if (hide ?? link.hide) {
+        return null
+    }
+
+    const label = children ?? link.label
+
     if (link.external) {
         return (
             <a
@@ -27,7 +38,7 @@ export const SiteLink = ({
                         : undefined
                 }
             >
-                {link.label}
+                {label}
             </a>
         )
     }
@@ -35,6 +46,7 @@ export const SiteLink = ({
     return (
         <Link
             to={link.to}
+            hash={link.hash}
             className={className}
             onClick={onClick}
             activeProps={
@@ -42,7 +54,7 @@ export const SiteLink = ({
             }
             activeOptions={{ exact: link.to === '/' }}
         >
-            {link.label}
+            {label}
         </Link>
     )
 }
