@@ -9,6 +9,8 @@ import { ProductMobileMenu } from './ProductMobileMenu'
 const menuToggleClass =
     'inline-flex min-[981px]:hidden items-center justify-center rounded-md border-2 border-white/20 bg-white p-2 text-teal-950 transition hover:bg-teal-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-soft focus-visible:ring-offset-2 focus-visible:ring-offset-teal-950'
 
+const mobileLinkClass = 'text-sm font-medium text-white/86 hover:text-gold-soft'
+
 export const Header = () => {
     const [mobileOpen, setMobileOpen] = useState(false)
     const [productOpen, setProductOpen] = useState(false)
@@ -21,11 +23,13 @@ export const Header = () => {
 
                 <nav className="nav-links" aria-label="Main">
                     <ProductDropdown />
-                    <SiteLink
-                        link={headerNav.pricing}
-                        activeClassName="active"
-                    />
-                    <SiteLink link={headerNav.faq} activeClassName="active" />
+                    {headerNav.map((link) => (
+                        <SiteLink
+                            key={link.to}
+                            link={link}
+                            activeClassName="active"
+                        />
+                    ))}
                 </nav>
 
                 <div className="nav-cta">
@@ -99,16 +103,14 @@ export const Header = () => {
                         onNavigate={closeMobile}
                     />
 
-                    <SiteLink
-                        link={headerNav.pricing}
-                        className="text-sm font-medium text-white/86 hover:text-gold-soft"
-                        onClick={closeMobile}
-                    />
-                    <SiteLink
-                        link={headerNav.faq}
-                        className="text-sm font-medium text-white/86 hover:text-gold-soft"
-                        onClick={closeMobile}
-                    />
+                    {headerNav.map((link) => (
+                        <SiteLink
+                            key={link.to}
+                            link={link}
+                            className={mobileLinkClass}
+                            onClick={closeMobile}
+                        />
+                    ))}
 
                     <div className="mt-2 flex flex-col gap-3 border-t border-white/10 pt-4">
                         <Button

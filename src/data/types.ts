@@ -3,44 +3,17 @@ export type NavLink = {
     to: string
     external?: boolean
     hash?: string
+    hide?: boolean
 }
 
-export type ProductMenuIconId =
-    | 'property-management'
-    | 'financing'
-    | 'estates'
-    | 'institutions'
-    | 'security'
-    | 'tour'
+export type ProductMenuIconId = 'property-management' | 'tour'
 
-export type ProductMenuSolution = {
-    id: string
-    label: string
-    description: string
-    to: string
-    external?: boolean
-}
-
-export type ProductMenuItem = {
+export type ProductMenuLink = {
     id: string
     label: string
     description: string
     to: string
     icon: ProductMenuIconId
-    solutions: readonly ProductMenuSolution[]
-}
-
-export type ProductMenuFooterLink = {
-    id: string
-    label: string
-    to: string
-    icon: ProductMenuIconId
-    external?: boolean
-}
-
-export type ProductMenu = {
-    products: readonly ProductMenuItem[]
-    footerLinks: readonly ProductMenuFooterLink[]
 }
 
 export type EcoCard = {

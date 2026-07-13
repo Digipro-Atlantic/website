@@ -4,6 +4,7 @@ import type { NavLink } from '@/data/types'
 
 type SiteLinkProps = {
     link: NavLink
+    hide?: boolean
     className?: string
     activeClassName?: string
     onClick?: () => void
@@ -12,11 +13,16 @@ type SiteLinkProps = {
 
 export const SiteLink = ({
     link,
+    hide,
     className = '',
     activeClassName = '',
     onClick,
     children,
 }: SiteLinkProps) => {
+    if (hide ?? link.hide) {
+        return null
+    }
+
     const label = children ?? link.label
 
     if (link.external) {
