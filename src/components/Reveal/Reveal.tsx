@@ -27,7 +27,11 @@ export const Reveal = ({
     as = 'div',
 }: RevealProps) => {
     const prefersReducedMotion = useReducedMotion()
-    const { ref, inView } = useInView({ threshold: 0.12, triggerOnce: true })
+    const { ref, inView } = useInView({
+        threshold: 0.1,
+        triggerOnce: true,
+        delay: 100,
+    })
     const shouldShow = immediate || prefersReducedMotion || inView
 
     if (prefersReducedMotion || immediate) {

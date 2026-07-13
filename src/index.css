@@ -60,6 +60,20 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* style scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-teal-700);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-gold-soft);
+    border-radius: 8px;
+}
+
 html {
     scroll-behavior: smooth;
 }

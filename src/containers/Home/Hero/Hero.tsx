@@ -1,6 +1,6 @@
 import { Button } from '@/components/Button'
 import { Reveal } from '@/components/Reveal'
-import { hero, trustChips } from '@/data/home'
+import { hero } from '@/data/home'
 import { EstateArt } from './EstateArt'
 
 export const Hero = () => (
@@ -31,7 +31,7 @@ export const Hero = () => (
             </div>
         </div>
 
-        <div className="border-t border-white/10 bg-black/18">
+        {/* <div className="border-t border-white/10 bg-black/18">
             <div className="wrap flex flex-wrap items-center gap-x-[34px] gap-y-3.5 px-7 py-5 text-[13px] text-white/72">
                 {trustChips.map((chip) => (
                     <span key={chip} className="chip">
@@ -39,6 +39,6 @@ export const Hero = () => (
                     </span>
                 ))}
             </div>
-        </div>
+        </div> */}
     </section>
 )
