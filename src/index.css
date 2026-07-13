@@ -329,7 +329,6 @@ code {
         transition: color 0.2s;
     }
 
-    .nav-links button:hover,
     .nav-links button.is-open {
         color: var(--gold-soft);
     }

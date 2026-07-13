@@ -1,8 +1,11 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { Link } from '@tanstack/react-router'
-import { Menu, MenuButton, MenuItems, Transition } from '@headlessui/react'
+import { Transition } from '@headlessui/react'
 import { productMenuLinks } from '@/data/product-menu'
 import { ProductMenuIcon } from './ProductMenuIcon'
+
+const OPEN_DELAY_MS = 180
+const CLOSE_DELAY_MS = 180
 
 const ChevronDown = ({ open }: { open: boolean }) => {
     return (
@@ -27,53 +30,156 @@ type ProductDropdownProps = {
     onNavigate?: () => void
 }
 
-export const ProductDropdown = ({ onNavigate }: ProductDropdownProps) => (
-    <Menu as="span" className="relative">
-        {({ open }) => (
-            <>
-                <MenuButton
-                    className={
-                        open ? 'is-open flex items-center' : 'flex items-center'
-                    }
-                >
-                    Product
-                    <ChevronDown open={open} />
-                </MenuButton>
+export const ProductDropdown = ({ onNavigate }: ProductDropdownProps) => {
+    const [open, setOpen] = useState(false)
+    const rootRef = useRef<HTMLDivElement>(null)
+    const openTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+    const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-                <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-150"
-                    enterFrom="opacity-0 scale-95"
-                    enterTo="opacity-100 scale-100"
-                    leave="transition ease-in duration-100"
-                    leaveFrom="opacity-100 scale-100"
-                    leaveTo="opacity-0 scale-95"
+    const clearOpenTimer = () => {
+        if (openTimerRef.current !== null) {
+            clearTimeout(openTimerRef.current)
+            openTimerRef.current = null
+        }
+    }
+
+    const clearCloseTimer = () => {
+        if (closeTimerRef.current !== null) {
+            clearTimeout(closeTimerRef.current)
+            closeTimerRef.current = null
+        }
+    }
+
+    const clearTimers = () => {
+        clearOpenTimer()
+        clearCloseTimer()
+    }
+
+    const openMenuNow = () => {
+        clearTimers()
+        setOpen(true)
+    }
+
+    const scheduleOpen = () => {
+        clearCloseTimer()
+        if (open || openTimerRef.current !== null) return
+
+        openTimerRef.current = setTimeout(() => {
+            setOpen(true)
+            openTimerRef.current = null
+        }, OPEN_DELAY_MS)
+    }
+
+    const scheduleClose = () => {
+        clearOpenTimer()
+        clearCloseTimer()
+        closeTimerRef.current = setTimeout(() => {
+            setOpen(false)
+            closeTimerRef.current = null
+        }, CLOSE_DELAY_MS)
+    }
+
+    const closeMenu = () => {
+        clearTimers()
+        setOpen(false)
+    }
+
+    useEffect(() => {
+        if (!open) return
+
+        const onKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                clearTimers()
+                setOpen(false)
+            }
+        }
+
+        const onPointerDown = (event: PointerEvent) => {
+            if (
+                rootRef.current &&
+                !rootRef.current.contains(event.target as Node)
+            ) {
+                clearTimers()
+                setOpen(false)
+            }
+        }
+
+        document.addEventListener('keydown', onKeyDown)
+        document.addEventListener('pointerdown', onPointerDown)
+
+        return () => {
+            document.removeEventListener('keydown', onKeyDown)
+            document.removeEventListener('pointerdown', onPointerDown)
+        }
+    }, [open])
+
+    useEffect(() => () => clearTimers(), [])
+
+    return (
+        <div
+            ref={rootRef}
+            className="relative"
+            onMouseEnter={scheduleOpen}
+            onMouseLeave={scheduleClose}
+        >
+            <button
+                type="button"
+                className={
+                    open ? 'is-open flex items-center' : 'flex items-center'
+                }
+                aria-expanded={open}
+                aria-haspopup="true"
+                onClick={() => {
+                    if (open) {
+                        closeMenu()
+                    } else {
+                        openMenuNow()
+                    }
+                }}
+                onFocus={openMenuNow}
+            >
+                Product
+                <ChevronDown open={open} />
+            </button>
+
+            <Transition
+                as={Fragment}
+                show={open}
+                enter="transition ease-out duration-150"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="transition ease-in duration-100"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+            >
+                <div
+                    role="menu"
+                    className="absolute top-full left-0 z-50 mt-3 w-[min(340px,calc(100vw-3.5rem))] origin-top-left overflow-hidden rounded-2xl border border-line bg-paper p-2 shadow-2xl focus:outline-none"
                 >
-                    <MenuItems
-                        modal={false}
-                        className="absolute top-full left-0 z-50 mt-3 w-[min(340px,calc(100vw-3.5rem))] origin-top-left overflow-hidden rounded-2xl border border-line bg-paper p-2 shadow-2xl focus:outline-none"
-                    >
-                        {productMenuLinks.map((link) => (
-                            <Link
-                                key={link.id}
-                                to={link.to}
-                                className="flex items-start gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-teal-100/60"
-                                onClick={onNavigate}
-                            >
-                                <ProductMenuIcon icon={link.icon} />
-                                <span className="min-w-0">
-                                    <span className="block text-[15px] font-semibold text-ink">
-                                        {link.label}
-                                    </span>
-                                    <span className="mt-1 block text-sm leading-snug text-ink-soft">
-                                        {link.description}
-                                    </span>
+                    {productMenuLinks.map((link) => (
+                        <Link
+                            key={link.id}
+                            to={link.to}
+                            role="menuitem"
+                            className="flex items-start gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-teal-100/60"
+                            onClick={() => {
+                                closeMenu()
+                                onNavigate?.()
+                            }}
+                        >
+                            <ProductMenuIcon icon={link.icon} />
+                            <span className="min-w-0">
+                                <span className="block text-[15px] font-semibold text-ink">
+                                    {link.label}
                                 </span>
-                            </Link>
-                        ))}
-                    </MenuItems>
-                </Transition>
-            </>
-        )}
-    </Menu>
-)
+                                <span className="mt-1 block text-sm leading-snug text-ink-soft">
+                                    {link.description}
+                                </span>
+                            </span>
+                        </Link>
+                    ))}
+                </div>
+            </Transition>
+        </div>
+    )
+}

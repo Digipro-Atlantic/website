@@ -4,16 +4,14 @@ export const productMenuLinks = [
     {
         id: 'platform',
         label: 'Platform',
-        description:
-            'Rent, leases, maintenance, documents, reporting, and the marketplace and apps around them.',
+        description: 'Property operations',
         to: '/platform',
         icon: 'property-management',
     },
     {
         id: 'tour',
         label: 'Tour',
-        description:
-            'A visual tour of the dashboards, the tenant app and the estate ledger.',
+        description: 'See it live',
         to: '/tour',
         icon: 'tour',
     },

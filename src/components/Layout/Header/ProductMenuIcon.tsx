@@ -2,8 +2,8 @@ import { Building2, PlayCircle, type LucideIcon } from 'lucide-react'
 import type { ProductMenuIconId } from '@/data/types'
 
 const iconStyles: Record<ProductMenuIconId, string> = {
-    'property-management': 'bg-teal-600 text-white',
-    tour: 'bg-teal-400 text-teal-950',
+    'property-management': 'bg-teal-100 text-teal-700',
+    tour: 'bg-teal-100 text-teal-700',
 }
 
 const icons: Record<ProductMenuIconId, LucideIcon> = {
