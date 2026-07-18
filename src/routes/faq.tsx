@@ -16,8 +16,7 @@ function FaqPage() {
                     Frequently asked questions
                 </h1>
                 <p className="mt-3 text-ink-soft">
-                    Answers for owners, tenants, agencies, estates, and
-                    institutions.
+                    Answers for owners, tenants, agencies, and institutions.
                 </p>
 
                 <div className="mt-10 space-y-10">

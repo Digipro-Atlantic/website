@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, createFileRoute } from '@tanstack/react-router'
+import { Link, createFileRoute, notFound } from '@tanstack/react-router'
 import type { BillingPeriod } from '@/data/types'
 import {
     feeRows,
@@ -11,6 +11,10 @@ import {
 } from '@/data/pricing'
 
 export const Route = createFileRoute('/pricing')({
+    // Soft-launch: blocked until product is ready
+    beforeLoad: () => {
+        throw notFound()
+    },
     component: PricingPage,
 })
 

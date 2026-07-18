@@ -56,7 +56,8 @@ export const ecosystemSection = {
     eyebrow: 'Ecosystem and reach',
     title: 'Connected to the people and tools around a property.',
     description:
-        'Beyond the people who manage a property day to day, Zebul links to the contractors who service it, the partners who list and fund it, and the devices everyone actually uses.',
+        'Beyond the people who manage a property day to day, Zebul links to the contractors who service it, the partners who list it, and the devices everyone actually uses.',
+    // Soft-launch (previous): '... partners who list and fund it...'
 } as const
 
 export const ecosystemCards: readonly PlatformEcosystemCard[] = [
@@ -71,14 +72,18 @@ export const ecosystemCards: readonly PlatformEcosystemCard[] = [
         id: 'integrations',
         title: 'Partner integrations',
         description:
-            "Financial institutions, property listing platforms, data partners and accounting tools connect through Zebul's API, published at zebul.ng/integrations.",
+            "Property listing platforms, data partners and accounting tools connect through Zebul's API, published at zebul.ng/integrations.",
+        // Soft-launch (previous):
+        // "Financial institutions, property listing platforms, data partners..."
         icon: 'integrations',
     },
     {
         id: 'mobile',
         title: 'Mobile and offline',
         description:
-            'Apps for iOS and Android, a progressive web app with offline reading for estate committees, and WhatsApp and SMS for everyone else.',
+            'Apps for iOS and Android, a progressive web app with offline reading, and WhatsApp and SMS for everyone else.',
+        // Soft-launch (previous):
+        // '... offline reading for estate committees, and WhatsApp and SMS...'
         icon: 'mobile',
     },
 ]

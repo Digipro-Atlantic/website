@@ -6,19 +6,27 @@ export const faqGroups: FaqGroup[] = [
         items: [
             {
                 question: 'What is Zebul?',
-                answer: 'Zebul is a property management platform built for Nigeria and used online at zebul.ng. It keeps the everyday work of running property in one place: registering properties, managing tenants and leases, collecting rent, handling maintenance, storing documents, and tracking the money. Owners, agencies, tenants, estate committees, and lenders each sign in to their own secure area and see only what concerns them.',
+                answer: 'Zebul is a property management platform built for Nigeria and used online at zebul.ng. It keeps the everyday work of running property in one place: registering properties, managing tenants and leases, collecting rent, handling maintenance, storing documents, and tracking the money. Owners, agencies and tenants each sign in to their own secure area and see only what concerns them.',
+                // Soft-launch (previous):
+                // '... Owners, agencies, tenants, estate committees, and lenders each sign in...'
             },
             {
                 question: 'Who is Zebul for?',
-                answer: "It is for everyone involved in a tenancy. That includes owners who manage their own properties, agencies managing on behalf of several owners, and tenants paying rent or raising requests. It covers higher institutions and private hostel operators running student accommodation, with billing that follows each institution's academic calendar. It also covers the elected committees that run gated and planned estates, the individual owners of units inside those estates, and financial institutions, licensed by the Central Bank of Nigeria, that offer rental financing. The tools each person sees are matched to the job they do.",
+                answer: "It is for everyone involved in a tenancy. That includes owners who manage their own properties, agencies managing on behalf of several owners, and tenants paying rent or raising requests. It covers higher institutions and private hostel operators running student accommodation, with billing that follows each institution's academic calendar. The tools each person sees are matched to the job they do.",
+                // Soft-launch (previous):
+                // '... It also covers the elected committees that run gated and planned estates... and financial institutions... that offer rental financing.'
             },
             {
                 question: 'What types of property can I manage on Zebul?',
-                answer: 'Multi-unit residential buildings, student hostels billed by semester or session, commercial buildings, office complexes, market stalls and shopping plazas, and gated or planned residential estates run by committees. Rent can be set on a daily, weekly, monthly, or per-session cycle, depending on the property.',
+                answer: 'Multi-unit residential buildings, student hostels billed by semester or session, commercial buildings, office complexes, market stalls and shopping plazas. Rent can be set on a daily, weekly, monthly, or per-session cycle, depending on the property.',
+                // Soft-launch (previous):
+                // '... and gated or planned residential estates run by committees.'
             },
             {
                 question: 'Which management models does Zebul support?',
-                answer: "Five of them. An owner can run everything directly. A professional agency can manage on the owner's behalf. An operator who both owns and manages can switch between the two, which we call hybrid management. A gated estate can be run by an elected committee, with communal and private finances kept apart. And government or institutional bodies, such as university hostels, staff quarters and markets, can allocate housing in bulk on a fixed annual licence.",
+                answer: "Four of them. An owner can run everything directly. A professional agency can manage on the owner's behalf. An operator who both owns and manages can switch between the two, which we call hybrid management. And government or institutional bodies, such as university hostels, staff quarters and markets, can allocate housing in bulk on a fixed annual licence.",
+                // Soft-launch (previous):
+                // "Five of them. ... A gated estate can be run by an elected committee..."
             },
             {
                 question: 'Is Zebul available outside Nigeria?',
@@ -31,15 +39,20 @@ export const faqGroups: FaqGroup[] = [
         items: [
             {
                 question: 'How much does Zebul cost?',
-                answer: 'Owners and managers can start for free. The core tools, including rent collection and maintenance, cost nothing on the free plan. Paid tiers exist for those who want advanced reporting, lending tools, or higher unit limits, and the current prices are listed at zebul.ng/subscriptions.',
+                answer: 'Owners and managers can start for free. The core tools, including rent collection and maintenance, cost nothing on the free plan. Paid tiers exist for those who want advanced reporting or higher unit limits, and the current prices are listed at zebul.ng/subscriptions.',
+                // Soft-launch (previous): '... advanced reporting, lending tools, or higher unit limits...'
             },
             {
                 question: 'If owners pay nothing, how does Zebul earn money?',
-                answer: 'Mostly from activity on the platform rather than upfront charges. There is a small fee on transactions, shown to you before you confirm a payment. There are optional paid subscriptions. A fee applies when a tenant submits a rental financing application. And in estates, a digital management fee sits inside the existing service charge. The full breakdown is at zebul.ng/fees.',
+                answer: 'Mostly from activity on the platform rather than upfront charges. There is a small fee on transactions, shown to you before you confirm a payment. There are optional paid subscriptions. The full breakdown is at zebul.ng/fees.',
+                // Soft-launch (previous):
+                // '... A fee applies when a tenant submits a rental financing application. And in estates, a digital management fee...'
             },
             {
                 question: 'Do I need to install an app?',
-                answer: 'No. Zebul runs in a web browser on a phone, tablet, or computer. Committee members can add the estate portal to their home screen if they prefer quicker access. Dedicated mobile apps for owners, tenants, agencies, and field staff are coming in a later release.',
+                answer: 'No. Zebul runs in a web browser on a phone, tablet, or computer. Dedicated mobile apps for owners, tenants, agencies, and field staff are coming in a later release.',
+                // Soft-launch (previous):
+                // '... Committee members can add the estate portal to their home screen...'
             },
             {
                 question: 'Will Zebul work on a slow or unreliable connection?',
@@ -82,48 +95,52 @@ export const faqGroups: FaqGroup[] = [
         items: [
             {
                 question: 'What can I do as a tenant on Zebul?',
-                answer: 'Pay your rent, view your lease and documents, collect automatic receipts, raise maintenance requests and follow their progress, and get reminders before payments fall due. Where it is offered, you can also apply for rental financing. Your payment history stays with you in one place.',
+                answer: 'Pay your rent, view your lease and documents, collect automatic receipts, raise maintenance requests and follow their progress, and get reminders before payments fall due. Your payment history stays with you in one place.',
+                // Soft-launch (previous):
+                // '... Where it is offered, you can also apply for rental financing.'
             },
             {
                 question: 'How do I pay my rent?',
                 answer: 'Sign in, pick the payment, choose how you want to pay (card, bank transfer, or USSD through the supported processors), and confirm. Any fee is shown before you pay. Once the payment clears, you get a receipt.',
             },
-            {
-                question: 'What is the rental financing feature?',
-                answer: 'It connects tenants who need help with advance or yearly rent to financial institutions that offer short-term rental loans. You apply through Zebul. The lender makes its own decision. If it approves, the money goes straight to your landlord, and you repay the lender in monthly instalments under a separate loan agreement.',
-            },
-            {
-                question: 'Is Zebul a lender?',
-                answer: 'No. Zebul does not lend money, hold a lending licence, or pay out funds. It acts as a facilitator: it introduces you to a financial institution licensed by the Central Bank of Nigeria and passes on your application, and nothing more. That lender, and only that lender, decides whether to approve a loan and carries the risk if it does.',
-            },
-            {
-                question: 'What is the Zebul Payment Score?',
-                answer: 'It is a number between 0 and 100 that reflects how you have paid your rent on Zebul. With your permission, it can also draw on other information, such as analysis of your bank statements through external data services, to give a fuller picture of how you manage money. If you ask us to, we share the score with a lender as one input into its assessment. The score is advisory and indicative only. It is not a credit rating, not a credit bureau score, and it is not issued under the Credit Reporting Act 2017. The lender always makes its own independent decision.',
-            },
-            {
-                question: 'Does a high score guarantee a loan?',
-                answer: 'No. A high score is not a promise of approval, and a low score does not rule you out. The lender decides on its own terms. Borrow only what you can comfortably repay: a loan is a real obligation to the lender, and missing payments carry consequences. A default may be reported to a credit bureau, and it also stays on your permanent rental history on Zebul, which is taken into account when your score is worked out for future rental activity on the platform.',
-            },
+            // Soft-launch: hidden until rent financing is ready
+            // {
+            //     question: 'What is the rental financing feature?',
+            //     answer: 'It connects tenants who need help with advance or yearly rent to financial institutions that offer short-term rental loans...',
+            // },
+            // {
+            //     question: 'Is Zebul a lender?',
+            //     answer: 'No. Zebul does not lend money...',
+            // },
+            // {
+            //     question: 'What is the Zebul Payment Score?',
+            //     answer: 'It is a number between 0 and 100...',
+            // },
+            // {
+            //     question: 'Does a high score guarantee a loan?',
+            //     answer: 'No. A high score is not a promise of approval...',
+            // },
         ],
     },
-    {
-        category: 'For estates and unit owners',
-        items: [
-            {
-                question: 'What does Zebul offer Estate Management Committees?',
-                answer: 'The tools an elected committee needs to run an estate: a unit roster; levies you can configure for security, water, generator, and maintenance; automated dues invoices and reminders; a communal ledger that can be added to but never altered; vendor and contract tracking; generator cost management; storage for AGM minutes and resolutions; and clearance certificates for units that have paid in full.',
-            },
-            {
-                question:
-                    "Does the committee see individual owners' private finances?",
-                answer: "No, and this matters. Communal estate finances and each owner's private rent records are kept entirely separate, with no crossover between them. The committee can see communal matters, such as whether a unit's dues are paid, but never an owner's private rental income.",
-            },
-            {
-                question: 'What does the estate portal cost?',
-                answer: "Nothing directly. Neither the committee nor the unit owners pay a platform fee. Zebul's income comes from activity on the platform, through a digital management fee built into the existing service charge, so taking up Zebul does not add a separate bill.",
-            },
-        ],
-    },
+    // Soft-launch: hidden until Community-Governed Estate Module is ready
+    // {
+    //     category: 'For estates and unit owners',
+    //     items: [
+    //         {
+    //             question: 'What does Zebul offer Estate Management Committees?',
+    //             answer: 'The tools an elected committee needs to run an estate...',
+    //         },
+    //         {
+    //             question:
+    //                 "Does the committee see individual owners' private finances?",
+    //             answer: 'No, and this matters...',
+    //         },
+    //         {
+    //             question: 'What does the estate portal cost?',
+    //             answer: 'Nothing directly...',
+    //         },
+    //     ],
+    // },
     {
         category: 'Security, data and compliance',
         items: [
@@ -143,10 +160,11 @@ export const faqGroups: FaqGroup[] = [
                 question: 'Does Zebul sell my data or show advertisements?',
                 answer: 'No. There is no advertising on Zebul, and no outside advertisers tracking you across it. Your information is used to run and improve the service, not sold to anyone.',
             },
-            {
-                question: 'Is rental financing regulated?',
-                answer: 'The institutions that lend through Zebul are licensed by the Central Bank of Nigeria and lend under their own authority and rules. Zebul is not a financial institution and does not provide credit itself.',
-            },
+            // Soft-launch: hidden until rent financing is ready
+            // {
+            //     question: 'Is rental financing regulated?',
+            //     answer: 'The institutions that lend through Zebul are licensed by the Central Bank of Nigeria...',
+            // },
             {
                 question: 'Who can use Zebul?',
                 answer: 'Zebul is for people aged 18 and over. It is not meant for anyone under 18, and we do not knowingly collect their data.',

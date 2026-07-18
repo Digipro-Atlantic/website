@@ -7,10 +7,14 @@ export const site = {
     url: 'https://zebul.ng',
 
     description:
-        'Rent, leases, maintenance, estate governance and tenant rent financing on one platform, built for the Nigerian property market.',
+        'Rent, leases, maintenance and institutional housing on one platform, built for the Nigerian property market.',
+    // Soft-launch (previous):
+    // 'Rent, leases, maintenance, estate governance and tenant rent financing on one platform, built for the Nigerian property market.',
 
     footerBlurb:
-        'The property platform for Nigeria. Rent, leases, maintenance, estate governance and tenant rent financing, in one place.',
+        'The property platform for Nigeria. Rent, leases, maintenance and institutional housing, in one place.',
+    // Soft-launch (previous):
+    // 'The property platform for Nigeria. Rent, leases, maintenance, estate governance and tenant rent financing, in one place.',
 
     contact: {
         address:

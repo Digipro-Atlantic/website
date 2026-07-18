@@ -2,12 +2,15 @@ import type { TourStep } from './types'
 
 export const tourHero = {
     eyebrow: 'A look inside Zebul',
-    title: 'See the platform in action.',
+    title: 'Where the platform is headed.',
     description:
-        'A guided tour of the screens your owners, tenants, agencies and estate committees would use every day.',
-    note: 'Interface shown is representative of the Zebul platform.',
+        'A walkthrough of representative screens for owners, tenants and agencies. This is the direction of travel, not a finished product tour.',
+    // Soft-launch (previous):
+    // title: 'See the platform in action.'
+    // 'A guided tour of the screens your owners, tenants and agencies would use every day.',
+    note: 'Interface shown is representative of the direction of the Zebul platform. The product is still in development.',
     ctas: {
-        primary: { label: 'Book a demo', to: '/demo' },
+        primary: { label: 'Talk to us', to: '/demo' },
         secondary: { label: 'See all capabilities', to: '/platform' },
     },
 } as const
@@ -60,41 +63,43 @@ export const tourSteps = [
         flip: false,
         screen: 'tenant-portal',
     },
-    {
-        id: 'estate-ledger',
-        stepLabel: '04 / Estate module',
-        title: 'An estate ledger residents can trust.',
-        description:
-            "For elected committees: bill dues across separate funds, record every credit and debit on a ledger that cannot be edited, and issue clearance certificates for units paid in full. Communal money never touches anyone's private finances.",
-        bullets: [
-            'Separate funds for security, generator and projects',
-            'An append-only record, ready for the AGM',
-            'Zero direct cost to the committee or owners',
-        ],
-        mockType: 'browser',
-        url: 'app.zebul.ng/estate/ledger',
-        flip: true,
-        screen: 'estate-ledger',
-    },
-    {
-        id: 'financing',
-        stepLabel: '05 / Rent financing',
-        title: 'An advisory assessment, the lender decides.',
-        description:
-            'When a tenant applies, Zebul builds an assessment from their rent record and, with consent, third-party checks such as bank statement analysis. It is advisory and indicative only, not a credit rating. The financial institution runs its own credit decision and, on approval, pays the landlord directly.',
-        bullets: [
-            'Combines on-platform records with third-party data',
-            'Advisory and non-binding, the institution decides',
-            'Funds go straight to the landlord',
-        ],
-        mockType: 'browser',
-        url: 'app.zebul.ng/financing',
-        flip: false,
-        screen: 'financing',
-    },
+    // Soft-launch: hidden until Community-Governed Estate Module is ready
+    // {
+    //     id: 'estate-ledger',
+    //     stepLabel: '04 / Estate module',
+    //     title: 'An estate ledger residents can trust.',
+    //     description:
+    //         "For elected committees: bill dues across separate funds, record every credit and debit on a ledger that cannot be edited, and issue clearance certificates for units paid in full. Communal money never touches anyone's private finances.",
+    //     bullets: [
+    //         'Separate funds for security, generator and projects',
+    //         'An append-only record, ready for the AGM',
+    //         'Zero direct cost to the committee or owners',
+    //     ],
+    //     mockType: 'browser',
+    //     url: 'app.zebul.ng/estate/ledger',
+    //     flip: true,
+    //     screen: 'estate-ledger',
+    // },
+    // Soft-launch: hidden until rent financing is ready
+    // {
+    //     id: 'financing',
+    //     stepLabel: '05 / Rent financing',
+    //     title: 'An advisory assessment, the lender decides.',
+    //     description:
+    //         'When a tenant applies, Zebul builds an assessment from their rent record and, with consent, third-party checks such as bank statement analysis. It is advisory and indicative only, not a credit rating. The financial institution runs its own credit decision and, on approval, pays the landlord directly.',
+    //     bullets: [
+    //         'Combines on-platform records with third-party data',
+    //         'Advisory and non-binding, the institution decides',
+    //         'Funds go straight to the landlord',
+    //     ],
+    //     mockType: 'browser',
+    //     url: 'app.zebul.ng/financing',
+    //     flip: false,
+    //     screen: 'financing',
+    // },
     {
         id: 'reporting',
-        stepLabel: '06 / Reporting',
+        stepLabel: '04 / Reporting',
         title: 'The numbers, ready to share.',
         description:
             'Income against expenditure, occupancy and owner disbursements, by property or across the whole portfolio. Compare periods and export a clean statement for an owner, a board or an auditor.',

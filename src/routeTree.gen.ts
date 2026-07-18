@@ -12,199 +12,241 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TourRouteImport } from './routes/tour'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PlatformRouteImport } from './routes/platform'
+import { Route as PartnersRouteImport } from './routes/partners'
 import { Route as InstitutionsRouteImport } from './routes/institutions'
 import { Route as FinancingRouteImport } from './routes/financing'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as EstatesRouteImport } from './routes/estates'
+import { Route as DemoRouteImport } from './routes/demo'
 import { Route as IndexRouteImport } from './routes/index'
 
 const TourRoute = TourRouteImport.update({
-    id: '/tour',
-    path: '/tour',
-    getParentRoute: () => rootRouteImport,
+  id: '/tour',
+  path: '/tour',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const PricingRoute = PricingRouteImport.update({
-    id: '/pricing',
-    path: '/pricing',
-    getParentRoute: () => rootRouteImport,
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const PlatformRoute = PlatformRouteImport.update({
-    id: '/platform',
-    path: '/platform',
-    getParentRoute: () => rootRouteImport,
+  id: '/platform',
+  path: '/platform',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnersRoute = PartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const InstitutionsRoute = InstitutionsRouteImport.update({
-    id: '/institutions',
-    path: '/institutions',
-    getParentRoute: () => rootRouteImport,
+  id: '/institutions',
+  path: '/institutions',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const FinancingRoute = FinancingRouteImport.update({
-    id: '/financing',
-    path: '/financing',
-    getParentRoute: () => rootRouteImport,
+  id: '/financing',
+  path: '/financing',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const FaqRoute = FaqRouteImport.update({
-    id: '/faq',
-    path: '/faq',
-    getParentRoute: () => rootRouteImport,
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const EstatesRoute = EstatesRouteImport.update({
-    id: '/estates',
-    path: '/estates',
-    getParentRoute: () => rootRouteImport,
+  id: '/estates',
+  path: '/estates',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoRoute = DemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
-    id: '/',
-    path: '/',
-    getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
-    '/': typeof IndexRoute
-    '/estates': typeof EstatesRoute
-    '/faq': typeof FaqRoute
-    '/financing': typeof FinancingRoute
-    '/institutions': typeof InstitutionsRoute
-    '/platform': typeof PlatformRoute
-    '/pricing': typeof PricingRoute
-    '/tour': typeof TourRoute
+  '/': typeof IndexRoute
+  '/demo': typeof DemoRoute
+  '/estates': typeof EstatesRoute
+  '/faq': typeof FaqRoute
+  '/financing': typeof FinancingRoute
+  '/institutions': typeof InstitutionsRoute
+  '/partners': typeof PartnersRoute
+  '/platform': typeof PlatformRoute
+  '/pricing': typeof PricingRoute
+  '/tour': typeof TourRoute
 }
 export interface FileRoutesByTo {
-    '/': typeof IndexRoute
-    '/estates': typeof EstatesRoute
-    '/faq': typeof FaqRoute
-    '/financing': typeof FinancingRoute
-    '/institutions': typeof InstitutionsRoute
-    '/platform': typeof PlatformRoute
-    '/pricing': typeof PricingRoute
-    '/tour': typeof TourRoute
+  '/': typeof IndexRoute
+  '/demo': typeof DemoRoute
+  '/estates': typeof EstatesRoute
+  '/faq': typeof FaqRoute
+  '/financing': typeof FinancingRoute
+  '/institutions': typeof InstitutionsRoute
+  '/partners': typeof PartnersRoute
+  '/platform': typeof PlatformRoute
+  '/pricing': typeof PricingRoute
+  '/tour': typeof TourRoute
 }
 export interface FileRoutesById {
-    __root__: typeof rootRouteImport
-    '/': typeof IndexRoute
-    '/estates': typeof EstatesRoute
-    '/faq': typeof FaqRoute
-    '/financing': typeof FinancingRoute
-    '/institutions': typeof InstitutionsRoute
-    '/platform': typeof PlatformRoute
-    '/pricing': typeof PricingRoute
-    '/tour': typeof TourRoute
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/demo': typeof DemoRoute
+  '/estates': typeof EstatesRoute
+  '/faq': typeof FaqRoute
+  '/financing': typeof FinancingRoute
+  '/institutions': typeof InstitutionsRoute
+  '/partners': typeof PartnersRoute
+  '/platform': typeof PlatformRoute
+  '/pricing': typeof PricingRoute
+  '/tour': typeof TourRoute
 }
 export interface FileRouteTypes {
-    fileRoutesByFullPath: FileRoutesByFullPath
-    fullPaths:
-        | '/'
-        | '/estates'
-        | '/faq'
-        | '/financing'
-        | '/institutions'
-        | '/platform'
-        | '/pricing'
-        | '/tour'
-    fileRoutesByTo: FileRoutesByTo
-    to:
-        | '/'
-        | '/estates'
-        | '/faq'
-        | '/financing'
-        | '/institutions'
-        | '/platform'
-        | '/pricing'
-        | '/tour'
-    id:
-        | '__root__'
-        | '/'
-        | '/estates'
-        | '/faq'
-        | '/financing'
-        | '/institutions'
-        | '/platform'
-        | '/pricing'
-        | '/tour'
-    fileRoutesById: FileRoutesById
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths:
+    | '/'
+    | '/demo'
+    | '/estates'
+    | '/faq'
+    | '/financing'
+    | '/institutions'
+    | '/partners'
+    | '/platform'
+    | '/pricing'
+    | '/tour'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/demo'
+    | '/estates'
+    | '/faq'
+    | '/financing'
+    | '/institutions'
+    | '/partners'
+    | '/platform'
+    | '/pricing'
+    | '/tour'
+  id:
+    | '__root__'
+    | '/'
+    | '/demo'
+    | '/estates'
+    | '/faq'
+    | '/financing'
+    | '/institutions'
+    | '/partners'
+    | '/platform'
+    | '/pricing'
+    | '/tour'
+  fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-    IndexRoute: typeof IndexRoute
-    EstatesRoute: typeof EstatesRoute
-    FaqRoute: typeof FaqRoute
-    FinancingRoute: typeof FinancingRoute
-    InstitutionsRoute: typeof InstitutionsRoute
-    PlatformRoute: typeof PlatformRoute
-    PricingRoute: typeof PricingRoute
-    TourRoute: typeof TourRoute
+  IndexRoute: typeof IndexRoute
+  DemoRoute: typeof DemoRoute
+  EstatesRoute: typeof EstatesRoute
+  FaqRoute: typeof FaqRoute
+  FinancingRoute: typeof FinancingRoute
+  InstitutionsRoute: typeof InstitutionsRoute
+  PartnersRoute: typeof PartnersRoute
+  PlatformRoute: typeof PlatformRoute
+  PricingRoute: typeof PricingRoute
+  TourRoute: typeof TourRoute
 }
 
 declare module '@tanstack/react-router' {
-    interface FileRoutesByPath {
-        '/tour': {
-            id: '/tour'
-            path: '/tour'
-            fullPath: '/tour'
-            preLoaderRoute: typeof TourRouteImport
-            parentRoute: typeof rootRouteImport
-        }
-        '/pricing': {
-            id: '/pricing'
-            path: '/pricing'
-            fullPath: '/pricing'
-            preLoaderRoute: typeof PricingRouteImport
-            parentRoute: typeof rootRouteImport
-        }
-        '/platform': {
-            id: '/platform'
-            path: '/platform'
-            fullPath: '/platform'
-            preLoaderRoute: typeof PlatformRouteImport
-            parentRoute: typeof rootRouteImport
-        }
-        '/institutions': {
-            id: '/institutions'
-            path: '/institutions'
-            fullPath: '/institutions'
-            preLoaderRoute: typeof InstitutionsRouteImport
-            parentRoute: typeof rootRouteImport
-        }
-        '/financing': {
-            id: '/financing'
-            path: '/financing'
-            fullPath: '/financing'
-            preLoaderRoute: typeof FinancingRouteImport
-            parentRoute: typeof rootRouteImport
-        }
-        '/faq': {
-            id: '/faq'
-            path: '/faq'
-            fullPath: '/faq'
-            preLoaderRoute: typeof FaqRouteImport
-            parentRoute: typeof rootRouteImport
-        }
-        '/estates': {
-            id: '/estates'
-            path: '/estates'
-            fullPath: '/estates'
-            preLoaderRoute: typeof EstatesRouteImport
-            parentRoute: typeof rootRouteImport
-        }
-        '/': {
-            id: '/'
-            path: '/'
-            fullPath: '/'
-            preLoaderRoute: typeof IndexRouteImport
-            parentRoute: typeof rootRouteImport
-        }
+  interface FileRoutesByPath {
+    '/tour': {
+      id: '/tour'
+      path: '/tour'
+      fullPath: '/tour'
+      preLoaderRoute: typeof TourRouteImport
+      parentRoute: typeof rootRouteImport
     }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/platform': {
+      id: '/platform'
+      path: '/platform'
+      fullPath: '/platform'
+      preLoaderRoute: typeof PlatformRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partners': {
+      id: '/partners'
+      path: '/partners'
+      fullPath: '/partners'
+      preLoaderRoute: typeof PartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/institutions': {
+      id: '/institutions'
+      path: '/institutions'
+      fullPath: '/institutions'
+      preLoaderRoute: typeof InstitutionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/financing': {
+      id: '/financing'
+      path: '/financing'
+      fullPath: '/financing'
+      preLoaderRoute: typeof FinancingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/estates': {
+      id: '/estates'
+      path: '/estates'
+      fullPath: '/estates'
+      preLoaderRoute: typeof EstatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo': {
+      id: '/demo'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof DemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+  }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-    IndexRoute: IndexRoute,
-    EstatesRoute: EstatesRoute,
-    FaqRoute: FaqRoute,
-    FinancingRoute: FinancingRoute,
-    InstitutionsRoute: InstitutionsRoute,
-    PlatformRoute: PlatformRoute,
-    PricingRoute: PricingRoute,
-    TourRoute: TourRoute,
+  IndexRoute: IndexRoute,
+  DemoRoute: DemoRoute,
+  EstatesRoute: EstatesRoute,
+  FaqRoute: FaqRoute,
+  FinancingRoute: FinancingRoute,
+  InstitutionsRoute: InstitutionsRoute,
+  PartnersRoute: PartnersRoute,
+  PlatformRoute: PlatformRoute,
+  PricingRoute: PricingRoute,
+  TourRoute: TourRoute,
 }
 export const routeTree = rootRouteImport
-    ._addFileChildren(rootRouteChildren)
-    ._addFileTypes<FileRouteTypes>()
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()

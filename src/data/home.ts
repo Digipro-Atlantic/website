@@ -2,15 +2,18 @@ import type { NavLink, StatementPoint, ModelCard } from './types'
 
 export const hero = {
     eyebrow: 'Property management, built for Nigeria, built for you',
-    headline: 'Run every property, estate and rent payment from',
+    headline: 'Run every property and rent payment from',
+    // Soft-launch (previous): 'Run every property, estate and rent payment from',
     headlineEmphasis: 'one platform.',
-    lead: 'Rent, leases, maintenance, estate dues and tenant rent financing, on one platform. It works the same whether you own a single flat, run an agency with hundreds of units, sit on an estate committee, or manage a plaza, a market, a student hostel or a block of government quarters. And it is optimised to run on an ordinary phone, even where the network is slow.',
+    lead: 'Rent, leases and maintenance on one platform. It works the same whether you own a single flat, run an agency with hundreds of units, or manage a plaza, a market, a student hostel or a block of government quarters. And it is optimised to run on an ordinary phone, even where the network is slow.',
+    // Soft-launch (previous):
+    // 'Rent, leases, maintenance, estate dues and tenant rent financing, on one platform. It works the same whether you own a single flat, run an agency with hundreds of units, sit on an estate committee, or manage a plaza, a market, a student hostel or a block of government quarters. And it is optimised to run on an ordinary phone, even where the network is slow.',
     ctas: {
         primary: {
             label: 'Get started',
-            to: '/signin',
-            hash: 'create',
+            to: '/demo',
         },
+        // Soft-launch (previous): Get started → /signin#create; Book a demo
         secondary: {
             label: 'See the platform',
             to: '/tour',
@@ -31,7 +34,7 @@ export const trustChips = [
     'NDPR aligned',
     'CBN and BOFIA 2020 framework',
     'NIBSS NIN and BVN verification',
-    'Row-level data isolation',
+    'Role-level data isolation',
     'Mandatory MFA',
 ] as const
 
@@ -39,34 +42,44 @@ export const statement = {
     eyebrow: 'What Zebul is',
     headline: 'One record for the whole property.',
     description:
-        'Most Nigerian landlords, agencies and estates still run on spreadsheets, paper receipts and a busy WhatsApp group. Zebul puts all of it in one place: every property, tenancy, payment and document, reachable on any phone, even on a slow connection.',
+        'Most Nigerian landlords and agencies still run on spreadsheets, paper receipts and a busy WhatsApp group. Zebul puts all of it in one place: every property, tenancy, payment and document, reachable on any phone, even on a slow connection.',
+    // Soft-launch (previous):
+    // 'Most Nigerian landlords, agencies and estates still run on spreadsheets...',
     points: [
         {
             number: '01',
             title: 'One record, every role',
             description:
-                'Owners, agents, tenants, estate committees and finance partners each work in their own portal against the same underlying data, with strict access boundaries between them.',
+                'Owners, agents and tenants each work in their own portal against the same underlying data, with strict access boundaries between them.',
+            // Soft-launch (previous):
+            // 'Owners, agents, tenants, estate committees and finance partners each work...'
         },
         {
             number: '02',
             title: 'Money moves to the right account',
             description:
-                'Rent is processed through licensed payment providers. Agency funds and client funds stay separated at the database layer. Communal estate funds never mix with private finances.',
+                'Rent is processed through licensed payment providers. Agency funds and client funds stay separated at the database layer.',
+            // Soft-launch (previous):
+            // '... Communal estate funds never mix with private finances.'
         },
-        {
-            number: '03',
-            title: 'A facilitator, never a lender',
-            description:
-                'For rent financing, Zebul presents partner loan products and routes applications. The financial institution makes every credit decision and disburses funds directly to the landlord.',
-        },
+        // Soft-launch: hidden until rent financing is ready
+        // {
+        //     number: '03',
+        //     title: 'A facilitator, never a lender',
+        //     description:
+        //         'For rent financing, Zebul presents partner loan products and routes applications. The financial institution makes every credit decision and disburses funds directly to the landlord.',
+        // },
     ] as const satisfies readonly StatementPoint[],
 }
 
 export const models = {
     eyebrow: 'Who it serves',
-    headline: 'Five ways to manage property, one platform.',
+    headline: 'Four ways to manage property, one platform.',
+    // Soft-launch (previous): 'Five ways to manage property, one platform.',
     description:
-        'Zebul supports the full range of property arrangements found in Nigeria, from a single landlord to an agency running hundreds of units, the community-governed estate, and government or institutional bodies that house people at scale.',
+        'Zebul supports the full range of property arrangements found in Nigeria, from a single landlord to an agency running hundreds of units, and government or institutional bodies that house people at scale.',
+    // Soft-launch (previous):
+    // '... the community-governed estate, and government or institutional bodies...'
     cards: [
         {
             tag: 'Property owners',
@@ -92,18 +105,19 @@ export const models = {
                 'Agency funds kept fully separate from client funds',
             ],
         },
-        {
-            tag: 'Estates · flagship',
-            title: 'Community-governed estates',
-            description:
-                'Elected Estate Management Committees bill communal dues, track vendors and run governance on an append-only ledger.',
-            features: [
-                'Multi-fund levy billing and automated invoicing',
-                'Immutable communal ledger residents can audit',
-                'Dues clearance certificates and arrears escalation',
-                'Unit owners keep private finances fully isolated',
-            ],
-        },
+        // Soft-launch: hidden until Community-Governed Estate Module is ready
+        // {
+        //     tag: 'Estates · flagship',
+        //     title: 'Community-governed estates',
+        //     description:
+        //         'Elected Estate Management Committees bill communal dues, track vendors and run governance on an append-only ledger.',
+        //     features: [
+        //         'Multi-fund levy billing and automated invoicing',
+        //         'Immutable communal ledger residents can audit',
+        //         'Dues clearance certificates and arrears escalation',
+        //         'Unit owners keep private finances fully isolated',
+        //     ],
+        // },
         {
             tag: 'Hybrid operators',
             title: 'Owner and manager in one',
@@ -154,12 +168,14 @@ export const ecoSection = {
 } as const
 
 export const cta = {
-    eyebrow: 'Get started with Zebul',
-    headline: 'Put your properties, tenants and rent on one platform.',
+    eyebrow: 'Get in touch',
+    headline: 'We are building Zebul with operators like you.',
     description:
-        'Book a demo to see Zebul against your own portfolio, or start free as an owner today. Partner enquiries from financial institutions and estate associations are welcome.',
+        'The product is still in development. Tell us about your portfolio, ask questions, or register interest for when we launch. Partner enquiries welcome through the same form.',
+    // Soft-launch (previous):
+    // 'Book a demo to see Zebul against your own portfolio, or start free as an owner today...'
     actions: {
-        primary: { label: 'Book a demo', to: '/demo' },
+        primary: { label: 'Talk to us', to: '/demo' },
         secondary: { label: 'Become a partner', to: '/partners' },
     },
 } as const satisfies {

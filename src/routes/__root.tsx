@@ -2,9 +2,11 @@ import { Outlet, createRootRoute, useRouterState } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { Footer, Header } from '@/components'
+import { NotFoundPage } from '@/containers/NotFound'
 
 export const Route = createRootRoute({
     component: RootComponent,
+    notFoundComponent: NotFoundPage,
 })
 
 function RootComponent() {
