@@ -2,9 +2,10 @@ import type { NavLink, StatementPoint, ModelCard } from './types'
 
 export const hero = {
     eyebrow: 'Property management, built for Nigeria, built for you',
-    headline: 'Run every property and rent payment from',
+    // headline: 'Run every property and rent payment from',
+    headline: 'Run every property, estate and rent payment from',
     // Soft-launch (previous): 'Run every property, estate and rent payment from',
-    headlineEmphasis: 'one platform.',
+    headlineEmphasis: 'one place.',
     lead: 'Rent, leases and maintenance on one platform. It works the same whether you own a single flat, run an agency with hundreds of units, or manage a plaza, a market, a student hostel or a block of government quarters. And it is optimised to run on an ordinary phone, even where the network is slow.',
     // Soft-launch (previous):
     // 'Rent, leases, maintenance, estate dues and tenant rent financing, on one platform. It works the same whether you own a single flat, run an agency with hundreds of units, sit on an estate committee, or manage a plaza, a market, a student hostel or a block of government quarters. And it is optimised to run on an ordinary phone, even where the network is slow.',
@@ -74,7 +75,7 @@ export const statement = {
 
 export const models = {
     eyebrow: 'Who it serves',
-    headline: 'Four ways to manage property, one platform.',
+    headline: 'Three ways to manage property, one platform.',
     // Soft-launch (previous): 'Five ways to manage property, one platform.',
     description:
         'Zebul supports the full range of property arrangements found in Nigeria, from a single landlord to an agency running hundreds of units, and government or institutional bodies that house people at scale.',
