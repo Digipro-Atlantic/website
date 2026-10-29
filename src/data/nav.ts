@@ -18,21 +18,19 @@ export const footerNav = {
     platform: [
         { label: 'Capabilities', to: '/platform' },
         { label: 'Product Tour', to: '/tour' },
-        // Soft-launch: hidden until product is ready
-        { label: 'Rent Financing', to: '/financing', hide: true },
-        { label: 'Estate Module', to: '/estates', hide: true },
+        { label: 'Rent Financing', to: '/financing' },
+        { label: 'Estate Module', to: '/estates' },
         { label: 'Institutional Housing', to: '/institutions' },
         { label: 'Marketplace & API', to: '/platform' },
-        { label: 'Trust and Compliance', to: '/security', hide: true },
-        { label: 'Pricing', to: '/pricing', hide: true },
+        { label: 'Trust and Compliance', to: '/security' },
+        { label: 'Pricing', to: '/pricing' },
     ],
     company: [
         { label: 'About Zebul', to: '/' },
         { label: 'FAQ', to: '/faq' },
         { label: 'Book a Demo', to: '/demo' },
-        // Soft-launch: partners redirect to the enquiry form
         { label: 'Partnerships', to: '/partners' },
-        { label: 'Contact', to: 'mailto:info@zebul.ng', external: true },
+        { label: 'Contact', to: '/contact' },
         {
             label: 'Report a security issue',
             to: 'mailto:info@zebul.ng',
@@ -40,16 +38,8 @@ export const footerNav = {
         },
     ],
     legal: [
-        {
-            label: 'Terms of Service',
-            to: 'https://zebul.ng/terms',
-            external: true,
-        },
-        {
-            label: 'Privacy Policy',
-            to: 'https://zebul.ng/privacy',
-            external: true,
-        },
+        { label: 'Terms of Service', to: '/terms' },
+        { label: 'Privacy Policy', to: '/privacy' },
         { label: 'Fees', to: 'https://zebul.ng/fees', external: true },
         {
             label: 'Payments',
