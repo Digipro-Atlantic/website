@@ -1,32 +1,59 @@
-import type { FaqGroup } from './types'
+// Copy for the FAQ page, matched to the Figma frames (questions and group titles as designed).
+// Answers come from the previous site copy; "Answer coming soon." marks questions the Figma has but the
+// previous copy never answered.
 
-export const faqGroups: FaqGroup[] = [
+export type FaqEntry = {
+    question: string
+    answer: string
+}
+
+export type FaqSection = {
+    /** Anchor id used by the contents list. */
+    id: string
+    /** Heading shown above the questions. */
+    title: string
+    /** Label used in the contents list (Figma uses different casing from the heading). */
+    contentsLabel: string
+    items: FaqEntry[]
+}
+
+export const faqIntro = {
+    label: 'Frequently asked questions',
+    title: 'Common questions from owners, tenants, agencies and estates.',
+    description:
+        'Zebul is a property management platform built for the Nigerian market. Below are the questions we are asked most often, grouped by topic. If yours is not here, you can reach us through the support option in your portal.',
+    contentsTitle: 'Contents',
+} as const
+
+export const faqHelp = {
+    title: 'Still have questions?',
+    description:
+        "Can't find what you're looking for? Our support team is here to help.",
+    // TODO: point at the real portal sign-in once its URL is decided.
+    action: { label: 'Zebul Portal', to: '/contact' },
+} as const
+
+export const faqSections: FaqSection[] = [
     {
-        category: 'About Zebul',
+        id: 'about',
+        title: 'About Zebul',
+        contentsLabel: 'About Zebul',
         items: [
             {
-                question: 'What is Zebul?',
-                answer: 'Zebul is a property management platform built for Nigeria and used online at zebul.ng. It keeps the everyday work of running property in one place: registering properties, managing tenants and leases, collecting rent, handling maintenance, storing documents, and tracking the money. Owners, agencies and tenants each sign in to their own secure area and see only what concerns them.',
-                // Soft-launch (previous):
-                // '... Owners, agencies, tenants, estate committees, and lenders each sign in...'
+                question: 'What is Zebul',
+                answer: 'Zebul is a property management platform built for Nigeria and used online at zebul.ng. It keeps the everyday work of running property in one place: registering properties, managing tenants and leases, collecting rent, handling maintenance, storing documents, and tracking the money. Owners, agencies, tenants, estate committees, and lenders each sign in to their own secure area and see only what concerns them.',
             },
             {
                 question: 'Who is Zebul for?',
                 answer: "It is for everyone involved in a tenancy. That includes owners who manage their own properties, agencies managing on behalf of several owners, and tenants paying rent or raising requests. It covers higher institutions and private hostel operators running student accommodation, with billing that follows each institution's academic calendar. The tools each person sees are matched to the job they do.",
-                // Soft-launch (previous):
-                // '... It also covers the elected committees that run gated and planned estates... and financial institutions... that offer rental financing.'
             },
             {
                 question: 'What types of property can I manage on Zebul?',
                 answer: 'Multi-unit residential buildings, student hostels billed by semester or session, commercial buildings, office complexes, market stalls and shopping plazas. Rent can be set on a daily, weekly, monthly, or per-session cycle, depending on the property.',
-                // Soft-launch (previous):
-                // '... and gated or planned residential estates run by committees.'
             },
             {
                 question: 'Which management models does Zebul support?',
                 answer: "Four of them. An owner can run everything directly. A professional agency can manage on the owner's behalf. An operator who both owns and manages can switch between the two, which we call hybrid management. And government or institutional bodies, such as university hostels, staff quarters and markets, can allocate housing in bulk on a fixed annual licence.",
-                // Soft-launch (previous):
-                // "Five of them. ... A gated estate can be run by an elected committee..."
             },
             {
                 question: 'Is Zebul available outside Nigeria?',
@@ -35,24 +62,21 @@ export const faqGroups: FaqGroup[] = [
         ],
     },
     {
-        category: 'Plans, pricing and access',
+        id: 'plans',
+        title: 'Plans, Pricing and Access',
+        contentsLabel: 'Plans, pricing and access',
         items: [
             {
                 question: 'How much does Zebul cost?',
                 answer: 'Owners and managers can start for free. The core tools, including rent collection and maintenance, cost nothing on the free plan. Paid tiers exist for those who want advanced reporting or higher unit limits, and the current prices are listed at zebul.ng/subscriptions.',
-                // Soft-launch (previous): '... advanced reporting, lending tools, or higher unit limits...'
             },
             {
                 question: 'If owners pay nothing, how does Zebul earn money?',
                 answer: 'Mostly from activity on the platform rather than upfront charges. There is a small fee on transactions, shown to you before you confirm a payment. There are optional paid subscriptions. The full breakdown is at zebul.ng/fees.',
-                // Soft-launch (previous):
-                // '... A fee applies when a tenant submits a rental financing application. And in estates, a digital management fee...'
             },
             {
                 question: 'Do I need to install an app?',
                 answer: 'No. Zebul runs in a web browser on a phone, tablet, or computer. Dedicated mobile apps for owners, tenants, agencies, and field staff are coming in a later release.',
-                // Soft-launch (previous):
-                // '... Committee members can add the estate portal to their home screen...'
             },
             {
                 question: 'Will Zebul work on a slow or unreliable connection?',
@@ -65,7 +89,9 @@ export const faqGroups: FaqGroup[] = [
         ],
     },
     {
-        category: 'For owners, agencies and managers',
+        id: 'owners',
+        title: 'For owners, agencies and managers',
+        contentsLabel: 'For owners, agencies and managers',
         items: [
             {
                 question: 'How does rent collection work?',
@@ -91,58 +117,64 @@ export const faqGroups: FaqGroup[] = [
         ],
     },
     {
-        category: 'For tenants',
+        id: 'tenants',
+        title: 'For Tenants',
+        contentsLabel: 'For tenants',
         items: [
             {
                 question: 'What can I do as a tenant on Zebul?',
                 answer: 'Pay your rent, view your lease and documents, collect automatic receipts, raise maintenance requests and follow their progress, and get reminders before payments fall due. Your payment history stays with you in one place.',
-                // Soft-launch (previous):
-                // '... Where it is offered, you can also apply for rental financing.'
             },
             {
                 question: 'How do I pay my rent?',
                 answer: 'Sign in, pick the payment, choose how you want to pay (card, bank transfer, or USSD through the supported processors), and confirm. Any fee is shown before you pay. Once the payment clears, you get a receipt.',
             },
-            // Soft-launch: hidden until rent financing is ready
-            // {
-            //     question: 'What is the rental financing feature?',
-            //     answer: 'It connects tenants who need help with advance or yearly rent to financial institutions that offer short-term rental loans...',
-            // },
-            // {
-            //     question: 'Is Zebul a lender?',
-            //     answer: 'No. Zebul does not lend money...',
-            // },
-            // {
-            //     question: 'What is the Zebul Payment Score?',
-            //     answer: 'It is a number between 0 and 100...',
-            // },
-            // {
-            //     question: 'Does a high score guarantee a loan?',
-            //     answer: 'No. A high score is not a promise of approval...',
-            // },
+            // TODO(content): no answer exists yet for this question.
+            {
+                question: 'What is the rental financing feature?',
+                answer: 'Answer coming soon.',
+            },
+            // TODO(content): no answer exists yet for this question.
+            { question: 'Is Zebul a lender?', answer: 'Answer coming soon.' },
+            // TODO(content): no answer exists yet for this question.
+            {
+                question: 'What is the Zebul Payment Score?',
+                answer: 'Answer coming soon.',
+            },
+            // TODO(content): no answer exists yet for this question.
+            {
+                question: 'Does a high score guarantee a loan?',
+                answer: 'Answer coming soon.',
+            },
         ],
     },
-    // Soft-launch: hidden until Community-Governed Estate Module is ready
-    // {
-    //     category: 'For estates and unit owners',
-    //     items: [
-    //         {
-    //             question: 'What does Zebul offer Estate Management Committees?',
-    //             answer: 'The tools an elected committee needs to run an estate...',
-    //         },
-    //         {
-    //             question:
-    //                 "Does the committee see individual owners' private finances?",
-    //             answer: 'No, and this matters...',
-    //         },
-    //         {
-    //             question: 'What does the estate portal cost?',
-    //             answer: 'Nothing directly...',
-    //         },
-    //     ],
-    // },
     {
-        category: 'Security, data and compliance',
+        id: 'estates',
+        title: 'For estates and unit owners',
+        contentsLabel: 'For estates and unit owners',
+        items: [
+            // TODO(content): no answer exists yet for this question.
+            {
+                question: 'What does Zebul offer Estate Management Committees?',
+                answer: 'Answer coming soon.',
+            },
+            // TODO(content): no answer exists yet for this question.
+            {
+                question:
+                    "Does the committee see individual owners' private finances?",
+                answer: 'Answer coming soon.',
+            },
+            // TODO(content): no answer exists yet for this question.
+            {
+                question: 'What does the estate portal cost?',
+                answer: 'Answer coming soon.',
+            },
+        ],
+    },
+    {
+        id: 'security',
+        title: 'Security, data and compliance',
+        contentsLabel: 'Security, data and compliance',
         items: [
             {
                 question: 'Is my data safe on Zebul?',
@@ -160,11 +192,11 @@ export const faqGroups: FaqGroup[] = [
                 question: 'Does Zebul sell my data or show advertisements?',
                 answer: 'No. There is no advertising on Zebul, and no outside advertisers tracking you across it. Your information is used to run and improve the service, not sold to anyone.',
             },
-            // Soft-launch: hidden until rent financing is ready
-            // {
-            //     question: 'Is rental financing regulated?',
-            //     answer: 'The institutions that lend through Zebul are licensed by the Central Bank of Nigeria...',
-            // },
+            // TODO(content): no answer exists yet for this question.
+            {
+                question: 'Is rental financing regulated?',
+                answer: 'Answer coming soon.',
+            },
             {
                 question: 'Who can use Zebul?',
                 answer: 'Zebul is for people aged 18 and over. It is not meant for anyone under 18, and we do not knowingly collect their data.',
@@ -172,7 +204,9 @@ export const faqGroups: FaqGroup[] = [
         ],
     },
     {
-        category: 'Getting help',
+        id: 'help',
+        title: 'Getting Help',
+        contentsLabel: 'Getting help',
         items: [
             {
                 question: 'How do I get support?',
