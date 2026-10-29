@@ -5,9 +5,10 @@ import { DemoForm } from './DemoForm'
 
 type DemoPageProps = {
     intent?: 'partner'
+    email?: string
 }
 
-export const DemoPage = ({ intent }: DemoPageProps) => (
+export const DemoPage = ({ intent, email }: DemoPageProps) => (
     <main className="demo-hero">
         <div className="wrap">
             <div className="demo-grid">
@@ -38,7 +39,7 @@ export const DemoPage = ({ intent }: DemoPageProps) => (
                 </Reveal>
 
                 <Reveal immediate className="demo-form-wrap">
-                    <DemoForm intent={intent} />
+                    <DemoForm intent={intent} email={email} />
                 </Reveal>
             </div>
         </div>

@@ -8,7 +8,7 @@ type AppSidebarProps = {
 export const AppSidebar = ({ links, active }: AppSidebarProps) => (
     <aside className="flex w-[146px] shrink-0 flex-col gap-0.5 bg-teal-900 p-3 px-3 pt-4">
         <div className="mb-3">
-            <Logo variant="white" size="ui" to={false} />
+            <Logo variant="white" className="h-[22px]" to={false} />
         </div>
         {links.map((link) => (
             <span

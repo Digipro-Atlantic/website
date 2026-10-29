@@ -4,6 +4,8 @@ import { site } from '@/data/site'
 
 type DemoFormProps = {
     intent?: 'partner'
+    /** Prefilled from the homepage hero's email field. */
+    email?: string
 }
 
 type FormState = {
@@ -19,9 +21,9 @@ type FormState = {
     consent: boolean
 }
 
-const initialState = (intent?: 'partner'): FormState => ({
+const initialState = (intent?: 'partner', email = ''): FormState => ({
     name: '',
-    email: '',
+    email,
     phone: '',
     organisation: '',
     role: intent === 'partner' ? partnerRole : demo.roles[0],
@@ -35,8 +37,8 @@ const initialState = (intent?: 'partner'): FormState => ({
 const isFormspreeConfigured = () =>
     !site.subscribe.formspreeAction.includes('REPLACE_WITH_YOUR_FORM_ID')
 
-export const DemoForm = ({ intent }: DemoFormProps) => {
-    const [values, setValues] = useState(() => initialState(intent))
+export const DemoForm = ({ intent, email }: DemoFormProps) => {
+    const [values, setValues] = useState(() => initialState(intent, email))
     const [submittedName, setSubmittedName] = useState<string | null>(null)
     const [submitting, setSubmitting] = useState(false)
     const [error, setError] = useState<string | null>(null)

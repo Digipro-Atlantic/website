@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Cta } from '@/containers/Home'
+import { CtaBanner } from '@/components/CtaBanner'
 import { TourBody, TourHero } from '@/containers/Tour'
 import { tourSteps } from '@/data/tour'
 
@@ -12,7 +12,7 @@ function TourPage() {
         <main>
             <TourHero />
             <TourBody steps={tourSteps} />
-            <Cta />
+            <CtaBanner />
         </main>
     )
 }

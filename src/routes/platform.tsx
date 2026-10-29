@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Cta } from '@/containers/Home'
+import { CtaBanner } from '@/components/CtaBanner'
 import { Capabilities, Ecosystem } from '@/containers/Platform'
 
 export const Route = createFileRoute('/platform')({
@@ -11,7 +11,7 @@ function PlatformPage() {
         <main>
             <Capabilities />
             <Ecosystem />
-            <Cta />
+            <CtaBanner />
         </main>
     )
 }

@@ -1,133 +1,74 @@
 import { useState } from 'react'
-import { Button } from '@/components/Button'
+import menuIcon from '@/assets/icons/menu.svg'
+import { Container } from '@/components/Container'
 import { Logo } from '@/components/Logo'
 import { SiteLink } from '@/components/SiteLink'
 import { headerNav, navCtas } from '@/data/nav'
-import { ProductDropdown } from './ProductDropdown'
-import { ProductMobileMenu } from './ProductMobileMenu'
+import { MobileMenu } from './MobileMenu'
+import { ctaClass } from './styles'
 
-const menuToggleClass =
-    'inline-flex min-[981px]:hidden items-center justify-center rounded-md border-2 border-white/20 bg-white p-2 text-teal-950 transition hover:bg-teal-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-soft focus-visible:ring-offset-2 focus-visible:ring-offset-teal-950'
+const navLinkClass =
+    'text-body text-grey-900 transition-colors duration-150 ease-[ease] hover:text-primary-400 data-[status=active]:text-primary-400 xl:text-body-lg'
 
-const mobileLinkClass = 'text-sm font-medium text-white/86 hover:text-gold-soft'
+const signInClass =
+    'text-body text-primary-900 transition-colors duration-150 ease-[ease] hover:text-primary-400 xl:text-body-lg'
 
 export const Header = () => {
-    const [mobileOpen, setMobileOpen] = useState(false)
-    const [productOpen, setProductOpen] = useState(false)
-    const closeMobile = () => setMobileOpen(false)
+    const [menuOpen, setMenuOpen] = useState(false)
 
     return (
-        <header>
-            <div className="wrap nav">
-                <Logo variant="ongreen" />
+        <>
+            <header className="sticky top-0 z-40 bg-white">
+                <Container className="flex h-24 items-center justify-between md:h-37.5">
+                    <Logo className="h-10 md:h-12" />
 
-                <nav className="nav-links" aria-label="Main">
-                    <ProductDropdown />
-                    {headerNav.map((link) => (
+                    {/* Spacers reproduce Figma's uneven gaps around the links (tablet 48/94, desktop 96/255) and shrink in proportion. */}
+                    <span
+                        aria-hidden="true"
+                        className="hidden min-w-6 md:block md:flex-48 xl:flex-96"
+                    />
+                    <nav
+                        aria-label="Main"
+                        className="hidden shrink-0 items-center gap-6 md:flex"
+                    >
+                        {headerNav.map((link) => (
+                            <SiteLink
+                                key={link.to}
+                                link={link}
+                                className={navLinkClass}
+                            />
+                        ))}
+                    </nav>
+                    <span
+                        aria-hidden="true"
+                        className="hidden min-w-6 md:block md:flex-94 xl:flex-255"
+                    />
+
+                    <div className="hidden shrink-0 items-center gap-4 md:flex xl:gap-7.5">
                         <SiteLink
-                            key={link.to}
-                            link={link}
-                            activeClassName="active"
+                            link={navCtas.signIn}
+                            className={signInClass}
                         />
-                    ))}
-                </nav>
-
-                <div className="nav-cta">
-                    <Button
-                        variant="ghost"
-                        link={navCtas.signIn}
-                        className="hidden min-[981px]:inline-flex"
-                    />
-                    <Button
-                        variant="gold"
-                        link={navCtas.bookDemo}
-                        className="hidden min-[981px]:inline-flex"
-                    />
+                        <SiteLink
+                            link={navCtas.bookDemo}
+                            className={`${ctaClass} h-12 w-32 text-body xl:h-14 xl:w-45 xl:text-body-lg`}
+                        />
+                    </div>
 
                     <button
                         type="button"
-                        className={menuToggleClass}
-                        aria-controls="mobile-menu"
-                        aria-expanded={mobileOpen}
-                        onClick={() => setMobileOpen((open) => !open)}
+                        className="-m-2 inline-flex p-2 md:hidden"
+                        aria-label="Open menu"
+                        aria-haspopup="dialog"
+                        aria-expanded={menuOpen}
+                        onClick={() => setMenuOpen(true)}
                     >
-                        <span className="sr-only">
-                            {mobileOpen ? 'Close main menu' : 'Open main menu'}
-                        </span>
-                        {!mobileOpen ? (
-                            <svg
-                                className="block size-6"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                aria-hidden="true"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M4 6h16M4 12h16M4 18h16"
-                                />
-                            </svg>
-                        ) : (
-                            <svg
-                                className="block size-6"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                aria-hidden="true"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M6 18L18 6M6 6l12 12"
-                                />
-                            </svg>
-                        )}
+                        <img src={menuIcon} alt="" width={32} height={32} />
                     </button>
-                </div>
-            </div>
+                </Container>
+            </header>
 
-            {mobileOpen && (
-                <nav
-                    id="mobile-menu"
-                    className="flex flex-col gap-3.5 border-t border-white/8 bg-teal-950 px-7 pt-4 pb-5 min-[981px]:hidden"
-                    aria-label="Mobile"
-                >
-                    <ProductMobileMenu
-                        open={productOpen}
-                        onToggle={() => setProductOpen((open) => !open)}
-                        onNavigate={closeMobile}
-                    />
-
-                    {headerNav.map((link) => (
-                        <SiteLink
-                            key={link.to}
-                            link={link}
-                            className={mobileLinkClass}
-                            onClick={closeMobile}
-                        />
-                    ))}
-
-                    <div className="mt-2 flex flex-col gap-3 border-t border-white/10 pt-4">
-                        <Button
-                            variant="ghost"
-                            link={navCtas.signIn}
-                            className="justify-center"
-                            onClick={closeMobile}
-                        />
-                        <Button
-                            variant="gold"
-                            link={navCtas.bookDemo}
-                            className="justify-center"
-                            onClick={closeMobile}
-                        />
-                    </div>
-                </nav>
-            )}
-        </header>
+            <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
+        </>
     )
 }

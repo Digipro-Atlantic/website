@@ -1,5 +1,5 @@
 import { createFileRoute, notFound } from '@tanstack/react-router'
-import { Cta } from '@/containers/Home'
+import { CtaBanner } from '@/components/CtaBanner'
 import { FinancingSection } from '@/containers/Financing'
 
 export const Route = createFileRoute('/financing')({
@@ -14,7 +14,7 @@ function FinancingPage() {
     return (
         <main>
             <FinancingSection />
-            <Cta />
+            <CtaBanner />
         </main>
     )
 }
