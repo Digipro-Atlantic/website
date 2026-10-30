@@ -16,6 +16,8 @@ type StepPlacement = {
 export type FinancingFlowStep = {
     title: string
     description: string
+    /** Text column width from Figma, the same on tablet and desktop. */
+    width: number
     tablet: StepPlacement
     desktop: StepPlacement
 }
@@ -23,6 +25,7 @@ export type FinancingFlowStep = {
 export const financingFlow: readonly FinancingFlowStep[] = [
     {
         title: 'Tenant applies',
+        width: 214,
         description:
             'The tenant chooses a financial institution partner and submits an application through Zebul.',
         tablet: { x: 621, y: 471.5, cx: 588, cy: 550 },
@@ -30,6 +33,7 @@ export const financingFlow: readonly FinancingFlowStep[] = [
     },
     {
         title: 'Assessment built',
+        width: 201,
         description:
             "Zebul builds an advisory assessment from the tenant's rent record on the platform",
         tablet: { x: 394, y: 623.5, cx: 495, cy: 734 },
@@ -37,6 +41,7 @@ export const financingFlow: readonly FinancingFlowStep[] = [
     },
     {
         title: 'FI decides',
+        width: 185,
         description:
             'The institution runs its own independent credit assessment and approves, declines or counter-offers.',
         tablet: { x: 72, y: 724.5, cx: 255, cy: 828 },
@@ -44,6 +49,7 @@ export const financingFlow: readonly FinancingFlowStep[] = [
     },
     {
         title: 'Landlord paid',
+        width: 241,
         description:
             "On approval, the institution sends the funds directly to the landlord's bank account. Never to the tenant.",
         tablet: { x: 425, y: 887.5, cx: 400, cy: 990 },
@@ -51,6 +57,7 @@ export const financingFlow: readonly FinancingFlowStep[] = [
     },
     {
         title: 'Tenant repays',
+        width: 241,
         description:
             'The tenant repays the institution each month under a separate loan agreement they sign with the FI.',
         tablet: { x: 674, y: 986.5, cx: 667, cy: 1089 },
