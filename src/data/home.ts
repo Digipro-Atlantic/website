@@ -86,8 +86,12 @@ export const trustedBy = {
 export const whatZebulIs = {
     label: 'What Zebul is',
     title: 'One record for the whole property.',
-    description:
-        'Most Nigerian landlords and agencies still run on spreadsheets, paper receipts and a busy WhatsApp group. Zebul puts all of it in one place: every property, tenancy, payment and document, reachable on any phone, even on a slow connection.',
+    // Lines as broken in Figma (desktop and tablet).
+    description: [
+        'Most Nigerian landlords and agencies still run on spreadsheets, paper receipts and a busy WhatsApp group.',
+        'Zebul puts all of it in one place: every property, tenancy, payment and document, reachable on any',
+        'phone, even on a slow connection.',
+    ],
     points: [
         {
             title: 'One record, every role',

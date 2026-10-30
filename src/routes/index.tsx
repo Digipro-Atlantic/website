@@ -3,7 +3,7 @@ import { CtaBanner } from '@/components/CtaBanner'
 import {
     Explore,
     Hero,
-    TrustedBy,
+    // TrustedBy,
     WhatZebulIs,
     WhoItServes,
 } from '@/containers/Home'
@@ -16,7 +16,7 @@ const HomePage = () => {
     return (
         <main>
             <Hero />
-            <TrustedBy />
+            {/* <TrustedBy /> */}
             <WhatZebulIs />
             <WhoItServes />
             <Explore />
