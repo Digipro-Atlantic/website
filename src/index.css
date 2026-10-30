@@ -168,6 +168,18 @@
         }
     }
 
+    /* Who it serves: the active tab's underline fills while it waits to auto-advance. */
+    --animate-tab-progress: tab-progress 6s linear both;
+
+    @keyframes tab-progress {
+        from {
+            transform: scaleX(0);
+        }
+        to {
+            transform: scaleX(1);
+        }
+    }
+
     --max-width-onboarding: 43.5rem; /* 696px — Figma Property Owner forms 153:653 / 154:546 / 174:392 */
     --max-width-search: 30.9375rem; /* 495px — Figma Dashboard search 7430:16822, cap not lock */
     --max-width-modal-dialog: 35rem; /* 560px — Figma centered dialog 7772:66399 (MCP rate-limited; inferred) */
