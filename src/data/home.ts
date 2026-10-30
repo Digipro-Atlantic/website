@@ -114,8 +114,11 @@ export const whatZebulIs = {
 export const whoItServes = {
     label: 'Who it serves',
     title: 'Five ways to manage property, one platform.',
-    description:
-        'Zebul supports the full range of property arrangements found in Nigeria, from a single landlord to an agency running hundreds of units, the community-governed estate, and government or institutional bodies that house people at scale.',
+    description: [
+        'Zebul supports the full range of property arrangements found in Nigeria, from a single landlord to an agency',
+        'running hundreds of units, the community-governed estate, and government or institutional',
+        'bodies that house people at scale.',
+    ],
     segments: [
         {
             id: 'owners',
@@ -130,6 +133,8 @@ export const whoItServes = {
                 'Free forever for owners on the starter tier',
             ],
             image: servesOwners,
+            metricsClassName: 'top-[21.92%]',
+            metricsImageClassName: 'top-[-100.2%]',
             imageAlt:
                 'Zebul tenants screen showing active tenants, arrears and pending applications',
         },
@@ -146,6 +151,8 @@ export const whoItServes = {
                 'Agency funds kept fully separate from client funds',
             ],
             image: servesAgencies,
+            metricsClassName: 'top-[30.82%]',
+            metricsImageClassName: 'top-[-139.5%]',
             imageAlt: 'Zebul units screen for an agency portfolio',
         },
         {
@@ -161,6 +168,8 @@ export const whoItServes = {
                 'Unit owners keep private finances fully isolated',
             ],
             image: servesEstates,
+            metricsClassName: 'top-[21.92%]',
+            metricsImageClassName: 'top-[-100.2%]',
             imageAlt:
                 'Zebul properties screen showing total properties and units',
         },
@@ -177,6 +186,8 @@ export const whoItServes = {
                 'Cross-context reporting for the full picture',
             ],
             image: servesHybrid,
+            metricsClassName: 'top-[30.82%]',
+            metricsImageClassName: 'top-[-139.5%]',
             imageAlt:
                 'Zebul lease screen listing agreements from draft to ended',
         },
@@ -194,6 +205,8 @@ export const whoItServes = {
                 'Compliance and audit-ready reporting',
             ],
             image: servesInstitutional,
+            metricsClassName: 'top-[21.92%]',
+            metricsImageClassName: 'top-[-100.2%]',
             imageAlt: 'Zebul properties screen for institutional housing',
         },
     ],
