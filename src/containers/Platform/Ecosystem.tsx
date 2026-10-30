@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import ecosystemImage from '@/assets/platform/ecosystem.webp'
 import { Container } from '@/components/Container'
 import { ecosystem } from '@/data/platform'
@@ -5,23 +6,35 @@ import { ecosystem } from '@/data/platform'
 export const Ecosystem = () => (
     <Container className="mt-20 md:mt-24 xl:mt-36">
         <section aria-labelledby="ecosystem-title">
-            <div className="mx-auto flex max-w-250 flex-col items-center gap-2 text-center md:gap-4">
-                <p className="text-body-lg font-medium text-grey-800 md:text-h6 xl:text-h5">
+            <div className="mx-auto flex max-w-250 flex-col items-center gap-4 text-center">
+                <p className="text-body-lg font-medium text-[#0c1017] md:text-h6 xl:text-h5">
                     {ecosystem.label}
                 </p>
                 <h2
                     id="ecosystem-title"
                     className="text-h5 font-semibold text-primary-900 md:text-h1 xl:text-display-sm"
                 >
-                    {ecosystem.title}
+                    {ecosystem.title.map((line, index) => (
+                        <Fragment key={line}>
+                            {index > 0 && <br className="hidden md:inline" />}
+                            {index > 0 && ' '}
+                            {line}
+                        </Fragment>
+                    ))}
                 </h2>
-                <p className="max-w-235 text-body text-grey-700 xl:text-body-lg">
-                    {ecosystem.description}
+                <p className="text-body text-grey-700 md:max-w-[789px] xl:max-w-none xl:text-body-lg">
+                    {ecosystem.description.map((line, index) => (
+                        <Fragment key={line}>
+                            {index > 0 && <br className="hidden xl:inline" />}
+                            {index > 0 && ' '}
+                            {line}
+                        </Fragment>
+                    ))}
                 </p>
             </div>
 
             {/* The orbit line, padlock and nodes are baked into the photo asset. */}
-            <div className="mt-11 grid gap-8 md:mt-16 md:grid-cols-2 md:items-center md:gap-4 xl:mt-32 xl:grid-cols-[1.037fr_1fr] xl:gap-14">
+            <div className="mt-12 grid gap-8 md:mt-18 md:grid-cols-2 md:items-start md:gap-4 xl:mt-34 xl:grid-cols-[1.037fr_1fr] xl:gap-14">
                 <img
                     src={ecosystemImage}
                     alt=""
@@ -31,13 +44,17 @@ export const Ecosystem = () => (
                     loading="lazy"
                     className="h-auto w-full"
                 />
-                <ul className="divide-y divide-grey-200">
+                {/* Figma starts the list ~20px below the photo's top edge. */}
+                <ul className="divide-y divide-grey-300 md:mt-5">
                     {ecosystem.items.map((item) => (
-                        <li key={item.id} className="px-6 py-6 xl:py-8">
+                        <li
+                            key={item.id}
+                            className="p-6 md:py-5 xl:pt-6 xl:pb-10"
+                        >
                             <h3 className="text-body-lg font-semibold text-grey-900 xl:text-h6">
                                 {item.title}
                             </h3>
-                            <p className="mt-6 text-body text-grey-700 md:mt-4 md:text-body-sm xl:mt-5 xl:text-body-lg">
+                            <p className="mt-6 text-body text-grey-700 md:mt-4 md:text-body-sm xl:mt-6 xl:text-body-lg">
                                 {item.description}
                             </p>
                         </li>

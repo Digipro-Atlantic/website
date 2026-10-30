@@ -48,9 +48,13 @@ export type CapabilityId = (typeof capabilities)[number]['id']
 
 export const ecosystem = {
     label: 'Ecosystem and reach',
-    title: 'Connected to the people and tools around a property.',
-    description:
-        'Beyond the people who manage a property day to day, Zebul links to the contractors who service it, the partners who list and fund it, and the devices everyone actually uses.',
+    // Figma breaks the heading after "around a" from tablet up.
+    title: ['Connected to the people and tools around a', 'property.'],
+    // Figma's desktop line break.
+    description: [
+        'Beyond the people who manage a property day to day, Zebul links to the contractors who service it, the',
+        'partners who list and fund it, and the devices everyone actually uses.',
+    ],
     items: [
         {
             id: 'marketplace',
