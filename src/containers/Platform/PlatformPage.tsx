@@ -10,12 +10,9 @@ export const PlatformPage = () => (
         <PageHero
             label={platformHero.label}
             title={platformHero.title}
-            // Figma's lead runs wider than the hero's 940px cap on desktop.
-            description={
-                <span className="block xl:-mx-6">
-                    {platformHero.description}
-                </span>
-            }
+            description={platformHero.description}
+            // Figma: 788px wide on tablet (three lines), 970px on desktop (two).
+            descriptionClassName="mt-4 max-w-235 md:max-w-197 xl:max-w-[970px]"
         />
         <Capabilities />
         <Ecosystem />

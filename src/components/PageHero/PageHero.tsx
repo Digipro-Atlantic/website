@@ -7,6 +7,8 @@ type PageHeroProps = {
     description?: ReactNode
     /** Width cap for the heading, e.g. to force the Figma line break. */
     titleClassName?: string
+    /** Replaces the lead's default top margin, width cap and line balancing. */
+    descriptionClassName?: string
     className?: string
     children?: ReactNode
 }
@@ -20,6 +22,7 @@ export const PageHero = ({
     title,
     description,
     titleClassName = '',
+    descriptionClassName = 'mt-4 max-w-235 text-balance xl:mt-2',
     className = '',
     children,
 }: PageHeroProps) => (
@@ -36,7 +39,9 @@ export const PageHero = ({
                 {title}
             </h1>
             {description && (
-                <p className="mt-4 max-w-235 text-body text-balance text-grey-700 xl:mt-2 xl:text-body-lg">
+                <p
+                    className={`text-body text-grey-700 xl:text-body-lg ${descriptionClassName}`}
+                >
                     {description}
                 </p>
             )}
