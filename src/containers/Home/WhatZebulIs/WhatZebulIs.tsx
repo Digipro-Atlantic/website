@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { useReducedMotion } from 'motion/react'
 import { useInView } from 'react-intersection-observer'
-import illustration from '@/assets/home/what-zebul-is.webp'
 import { Container } from '@/components/Container'
 import { SectionIntro } from '@/components/SectionIntro'
 import { whatZebulIs } from '@/data/home'
+import { PaperPlaneIllustration } from './PaperPlaneIllustration'
 
 // Fires once, when the element's top is 15% above the bottom of the viewport.
 const inViewOptions = { triggerOnce: true, rootMargin: '0px 0px -15% 0px' }
@@ -127,21 +127,18 @@ export const WhatZebulIs = () => {
                 </div>
 
                 <div className="mt-12 grid items-center gap-8 md:mt-18 md:grid-cols-2 md:gap-4 xl:mt-32 xl:grid-cols-[679fr_625fr] xl:gap-6">
-                    <img
+                    <div
                         ref={image.ref}
-                        src={illustration}
-                        alt="A property manager smiling at her laptop"
-                        width={1016}
-                        height={718}
-                        loading="lazy"
-                        className={`h-auto w-full ${enter} ${
+                        className={`${enter} ${
                             image.inView
                                 ? shown
                                 : hidden(
                                       'translate-y-6 md:translate-y-0 md:-translate-x-30',
                                   )
                         }`}
-                    />
+                    >
+                        <PaperPlaneIllustration play={image.inView} />
+                    </div>
 
                     <div>
                         {whatZebulIs.points.map((point, index) => (
