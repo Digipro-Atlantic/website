@@ -333,6 +333,12 @@
         outline-offset: 2px;
     }
 
+    /* Tailwind v4 dropped the pointer cursor on buttons; restore it site-wide. */
+    button:not(:disabled),
+    [role='button']:not(:disabled) {
+        cursor: pointer;
+    }
+
     /* Native date picker: hide the browser glyph so the Figma calendar icon shows. */
     input[type='date'] {
         position: relative;

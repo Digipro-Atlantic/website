@@ -1,3 +1,6 @@
+import dashboardAgency from '@/assets/home/hero-dashboard-agency.webp'
+import dashboardOwner from '@/assets/home/hero-dashboard-owner.webp'
+import dashboardTenant from '@/assets/home/hero-dashboard-tenant.webp'
 import logoAmazonStudios from '@/assets/home/logo-amazon-studios.png'
 import logoAp from '@/assets/home/logo-ap.png'
 import logoFramework from '@/assets/home/logo-framework.png'
@@ -12,10 +15,38 @@ import type { NavLink } from './types'
 import { isPreviewOnlyPath } from './visibility'
 
 export const hero = {
-    eyebrow: 'Property management, built for Nigeria, built for you',
-    title: 'Run every property, estate and rent payment from one place.',
+    // Split where Figma breaks the lines: the eyebrow wraps on mobile only, the title at every size.
+    eyebrow: ['Property management, built for Nigeria,', 'built for you'],
+    title: ['Run every property, estate and', 'rent payment from one place.'],
     emailPlaceholder: 'Your Email',
     cta: { label: 'Book a Demo', to: '/demo' },
+    // Figma "Main Hero Dashboards" (10592:33830), 2x exports cycled in the hero.
+    dashboardsLabel:
+        'Zebul dashboards for a tenant, a property owner and an agency',
+    dashboards: [
+        {
+            id: 'tenant',
+            src: dashboardTenant,
+            width: 2727,
+            height: 1992,
+            // Export includes the drop-shadow margin; crop to the 2656×1888 card at 35,4.
+            className: 'top-[-0.212%] left-[-1.318%] w-[102.673%]',
+        },
+        {
+            id: 'owner',
+            src: dashboardOwner,
+            width: 2656,
+            height: 1888,
+            className: 'top-0 left-0 w-full',
+        },
+        {
+            id: 'agency',
+            src: dashboardAgency,
+            width: 2656,
+            height: 1888,
+            className: 'top-0 left-0 w-full',
+        },
+    ],
 } as const
 
 // TODO(content): these are the placeholder brands from the Figma file.
