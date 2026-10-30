@@ -270,16 +270,19 @@ export const explore = {
 
 export const cta = {
     label: 'Get started with Zebul',
-    title: 'Put your properties, tenants and rent on one platform.',
-    description:
-        'Book a demo to see Zebul against your own portfolio, or start free as an owner today. Partner enquiries from financial institutions and estate associations are welcome.',
+    // Line breaks as set in Figma, at every breakpoint.
+    title: ['Put your properties, tenants and', 'rent on one platform.'],
+    description: [
+        'Book a demo to see Zebul against your own portfolio, or start free as an owner today.',
+        'Partner enquiries from financial institutions and estate associations are welcome.',
+    ],
     actions: {
         primary: { label: 'Book a Demo', to: '/demo' },
         secondary: { label: 'Become a Partner', to: '/partners' },
     },
 } as const satisfies {
     label: string
-    title: string
-    description: string
+    title: readonly string[]
+    description: readonly string[]
     actions: { primary: NavLink; secondary: NavLink }
 }
