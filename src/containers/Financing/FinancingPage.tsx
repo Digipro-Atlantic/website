@@ -21,10 +21,10 @@ export const FinancingPage = () => (
 
         <FinancingFlow />
 
-        <Container className="mt-20 md:mt-40 xl:mt-48">
+        <Container className="mt-20 md:mt-36 xl:mt-44">
             <section aria-labelledby="financing-boundaries">
-                <div className="mx-auto flex max-w-241 flex-col items-center gap-2 text-center md:gap-4">
-                    <p className="text-body-lg font-medium text-grey-900 md:text-h6 xl:text-h5">
+                <div className="mx-auto flex max-w-241 flex-col items-center gap-4 text-center">
+                    <p className="text-body-lg font-medium text-[#0c1017] md:text-h6 xl:text-h5">
                         {financingBoundaries.label}
                     </p>
                     <h2
@@ -35,23 +35,22 @@ export const FinancingPage = () => (
                     </h2>
                 </div>
 
-                <div className="mt-11 grid gap-6 md:mt-16 md:grid-cols-2 md:gap-4 xl:mt-22 xl:gap-6">
-                    <Card className="flex flex-col p-6 md:p-8 xl:p-12">
+                <div className="mt-12 grid gap-6 md:mt-18 md:grid-cols-2 md:gap-4 xl:mt-26 xl:gap-6">
+                    <Card raised className="flex flex-col p-6 md:p-8 xl:p-12">
                         <h3 className="text-h5 font-semibold text-grey-900 md:text-h6 xl:text-h3">
                             {role.title}
                         </h3>
                         <p className="mt-8 text-body-sm text-grey-600 md:mt-6 xl:text-body-lg">
                             {role.description}
                         </p>
-                        <hr className="mt-6 border-grey-300 xl:mt-5" />
-                        {/* Figma draws a green stripe down this note's left edge; shown as a tinted panel instead. */}
-                        <p className="mt-6 rounded-lg bg-primary-50 p-4 text-caption text-grey-600 xl:text-body">
+                        <hr className="mt-6 border-grey-300 md:mt-4 xl:mt-6" />
+                        <p className="mt-10 border-l-2 border-primary-400 pl-6 text-caption text-grey-600 md:mt-4 md:pl-4.5 xl:mt-6 xl:pl-6 xl:text-body">
                             {role.note}
                         </p>
                     </Card>
 
-                    <Card className="p-6 md:p-8 xl:p-12">
-                        <div className="flex flex-col items-start gap-3 md:flex-row md:justify-between">
+                    <Card raised className="p-6 md:p-8 xl:p-12">
+                        <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between">
                             <h3 className="text-h5 font-semibold text-grey-900 md:text-h6 xl:text-h3">
                                 {score.title}
                             </h3>
@@ -59,10 +58,10 @@ export const FinancingPage = () => (
                                 {score.badge}
                             </span>
                         </div>
-                        <p className="mt-6 text-display-sm font-medium text-primary-400 md:text-h2 xl:mt-5 xl:text-display-lg">
+                        <p className="mt-6 text-display-sm font-medium text-primary-400 md:mt-4 md:text-h2 xl:mt-6 xl:text-display-lg">
                             {score.value}
                         </p>
-                        <p className="mt-1.5 text-body text-grey-600 uppercase md:text-caption xl:text-body-lg">
+                        <p className="mt-4 text-body-sm text-grey-600 uppercase md:text-caption xl:text-body-lg">
                             {score.caption}
                         </p>
                         <p className="mt-6 text-body text-grey-600 md:mt-4 md:text-body-sm xl:mt-6 xl:text-body-lg">
