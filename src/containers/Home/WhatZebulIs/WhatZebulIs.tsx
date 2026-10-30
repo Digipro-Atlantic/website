@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
 import { useReducedMotion } from 'motion/react'
 import { useInView } from 'react-intersection-observer'
 import { Container } from '@/components/Container'
 import { SectionIntro } from '@/components/SectionIntro'
 import { whatZebulIs } from '@/data/home'
+import { useSequentialReveal } from '@/hooks/useSequentialReveal'
 import { PaperPlaneIllustration } from './PaperPlaneIllustration'
 
 // Fires once, when the element's top is 15% above the bottom of the viewport.
@@ -13,9 +13,6 @@ const pointInViewOptions = {
     triggerOnce: true,
     rootMargin: '0px 0px -33% 0px',
 }
-// Point 1 lets the illustration land first; later points never arrive closer together than this.
-const FIRST_POINT_DELAY_MS = 400
-const POINT_GAP_MS = 150
 
 const enter =
     'transition-[opacity,translate] duration-700 ease-out will-change-[opacity,translate]'
@@ -72,41 +69,8 @@ export const WhatZebulIs = () => {
     const intro = useInView(inViewOptions)
     const image = useInView(inViewOptions)
 
-    const [entered, setEntered] = useState<ReadonlySet<number>>(() => new Set())
-    const [revealed, setRevealed] = useState(0)
-    const imageShownAt = useRef<number | null>(null)
-    const lastRevealAt = useRef(0)
-
-    useEffect(() => {
-        if (image.inView && imageShownAt.current === null) {
-            imageShownAt.current = performance.now()
-        }
-    }, [image.inView])
-
-    // Queue: reveal the next point once it has scrolled into place and the one before it is out.
-    useEffect(() => {
-        const startedAt = imageShownAt.current
-        if (
-            revealed >= whatZebulIs.points.length ||
-            !entered.has(revealed) ||
-            startedAt === null
-        )
-            return
-
-        const now = performance.now()
-        const readyAt =
-            revealed === 0
-                ? startedAt + FIRST_POINT_DELAY_MS
-                : lastRevealAt.current + POINT_GAP_MS
-        const id = window.setTimeout(
-            () => {
-                lastRevealAt.current = performance.now()
-                setRevealed((count) => count + 1)
-            },
-            Math.max(0, readyAt - now),
-        )
-        return () => window.clearTimeout(id)
-    }, [entered, revealed, image.inView])
+    // Point 1 lets the illustration land first (400ms); then at least 150ms between points.
+    const points = useSequentialReveal(whatZebulIs.points.length, image.inView)
 
     const hidden = (motion: string) =>
         reduce ? 'opacity-0' : `opacity-0 ${motion}`
@@ -146,15 +110,11 @@ export const WhatZebulIs = () => {
                                 key={point.title}
                                 point={point}
                                 isLast={index === whatZebulIs.points.length - 1}
-                                revealed={index < revealed}
+                                revealed={index < points.revealed}
                                 hiddenClass={hidden(
                                     'translate-y-6 md:translate-y-0 md:translate-x-30',
                                 )}
-                                onEnter={() =>
-                                    setEntered((current) =>
-                                        new Set(current).add(index),
-                                    )
-                                }
+                                onEnter={() => points.markEntered(index)}
                             />
                         ))}
                     </div>
