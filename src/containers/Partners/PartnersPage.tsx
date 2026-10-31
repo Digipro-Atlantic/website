@@ -13,9 +13,10 @@ export const PartnersPage = () => (
             title={partners.hero.title}
             description={partners.hero.description}
             titleClassName="max-w-none"
+            descriptionClassName="mt-4 md:max-w-180 xl:max-w-[810px]"
         />
 
-        <Container className="mt-11 md:mt-17 xl:mt-23">
+        <Container className="mt-12 md:mt-18 xl:mt-24">
             <PartnerCards />
         </Container>
 

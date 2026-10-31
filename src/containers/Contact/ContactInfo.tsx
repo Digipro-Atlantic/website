@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 import { Link } from '@tanstack/react-router'
 
 export const infoLinkClass =
-    'inline-flex items-center gap-2 text-body text-grey-600 transition-colors duration-150 hover:text-primary-400'
+    'inline-flex items-center gap-2 text-body text-grey-600 transition-colors duration-150 hover:text-primary-400 md:text-body-sm xl:text-body'
 
 export const InfoGroup = ({
     title,
@@ -13,15 +13,19 @@ export const InfoGroup = ({
     children: ReactNode
 }) => (
     <div>
-        <h3 className="text-body font-semibold text-grey-900">{title}</h3>
-        <div className="mt-3 flex flex-col gap-2 xl:mt-4 xl:gap-3">
+        <h3 className="text-body font-semibold text-grey-900 md:text-body-sm xl:text-body">
+            {title}
+        </h3>
+        <div className="mt-2 flex flex-col gap-2 md:mt-3 xl:mt-4 xl:gap-3">
             {children}
         </div>
     </div>
 )
 
 export const InfoText = ({ children }: { children: ReactNode }) => (
-    <p className="text-body text-grey-600">{children}</p>
+    <p className="text-body text-grey-600 md:text-body-sm xl:text-body">
+        {children}
+    </p>
 )
 
 export const InfoMailto = ({ email }: { email: string }) => (

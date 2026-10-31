@@ -82,7 +82,7 @@ export const ContactForm = () => {
                 {contact.formTitle}
             </h2>
 
-            <div className="mt-6 flex flex-col gap-4 xl:mt-7">
+            <div className="mt-6 flex flex-col gap-4 md:mt-4 xl:mt-7">
                 <TextField
                     label="Full Name"
                     name="name"
@@ -134,7 +134,7 @@ export const ContactForm = () => {
                 />
             </div>
 
-            <div className="mt-4 flex flex-col gap-3">
+            <div className="mt-4 flex flex-col gap-3 md:mt-2 xl:mt-3">
                 <CheckboxField
                     name="privacy"
                     checked={privacy}
@@ -165,7 +165,10 @@ export const ContactForm = () => {
                 </p>
             )}
 
-            <SubmitButton className="mt-8" pending={sending}>
+            <SubmitButton
+                className="mt-6 h-16 md:h-12 xl:mt-8 xl:h-16"
+                pending={sending}
+            >
                 {sending ? 'Sending…' : contact.submitLabel}
             </SubmitButton>
         </form>

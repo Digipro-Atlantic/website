@@ -6,10 +6,11 @@ import { ChevronDown } from 'lucide-react'
  * Figma fields are placeholder-labelled, so the visible label is the
  * placeholder and a screen-reader label carries the same text.
  * Field: 64px tall, 8px corners, #E4E7EC stroke, 24px inset, 16px text (14px on mobile).
+ * Tablet: Figma shrinks these to ~70%; we stop at 48px fields and 14px text.
  */
 
 const fieldClass =
-    'w-full rounded-lg border border-grey-200 bg-white px-6 text-body-sm text-grey-900 transition-[border-color,box-shadow] duration-150 ease-out placeholder:text-grey-600 hover:border-grey-300 focus:border-primary-400 focus:ring-2 focus:ring-primary-400/15 focus:outline-none aria-invalid:border-error-400 sm:text-body'
+    'w-full rounded-lg border border-grey-200 bg-white px-6 text-body-sm text-grey-900 transition-[border-color,box-shadow] duration-150 ease-out placeholder:text-grey-600 hover:border-grey-300 focus:border-primary-400 focus:ring-2 focus:ring-primary-400/15 focus:outline-none aria-invalid:border-error-400 sm:text-body md:text-body-sm xl:text-body'
 
 type BaseFieldProps = {
     label: string
@@ -62,7 +63,7 @@ export const TextField = ({
                 autoComplete={autoComplete}
                 aria-invalid={error ? true : undefined}
                 aria-describedby={error ? `${id}-error` : undefined}
-                className={`${fieldClass} h-16`}
+                className={`${fieldClass} h-16 md:h-12 xl:h-16`}
             />
             <FieldError id={`${id}-error`} error={error} />
         </div>
@@ -108,12 +109,12 @@ export const TextAreaField = ({
                 maxLength={maxLength}
                 aria-invalid={error ? true : undefined}
                 aria-describedby={describedBy}
-                className={`${fieldClass} block h-42 resize-y py-5`}
+                className={`${fieldClass} block h-45 resize-y py-5 md:h-30 md:py-3.5 xl:h-42 xl:py-5`}
             />
             {hint && (
                 <p
                     id={`${id}-hint`}
-                    className="mt-3 text-body-sm text-grey-600 sm:text-body"
+                    className="mt-2 text-body-sm text-grey-600 sm:text-body md:text-body-sm xl:text-body"
                 >
                     {hint}
                 </p>
@@ -155,7 +156,7 @@ export const SelectField = ({
                     required={required}
                     aria-invalid={error ? true : undefined}
                     aria-describedby={error ? `${id}-error` : undefined}
-                    className={`${fieldClass} h-16 cursor-pointer appearance-none pr-14 ${value ? '' : 'text-grey-600'}`}
+                    className={`${fieldClass} h-16 cursor-pointer appearance-none pr-14 md:h-12 xl:h-16 ${value ? '' : 'text-grey-600'}`}
                 >
                     <option value="" disabled>
                         {label}
@@ -214,7 +215,7 @@ export const CheckboxField = ({
                 />
                 <label
                     htmlFor={id}
-                    className="cursor-pointer text-body-sm text-grey-600 sm:text-body"
+                    className="cursor-pointer text-body-sm text-grey-600 sm:text-body md:text-body-sm xl:text-body"
                 >
                     {children}
                 </label>
