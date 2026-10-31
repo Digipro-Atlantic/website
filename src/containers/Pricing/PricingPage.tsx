@@ -69,24 +69,25 @@ export const PricingPage = () => {
                     title={additionalFees.title}
                     description={additionalFees.description}
                 />
-                <div className="mt-11 xl:mt-16">
+                <div className="mt-12 md:mt-18 xl:mt-20">
                     <FeesTable />
                 </div>
-                <p className="mt-8 text-body text-grey-700 xl:text-body-lg">
+                <p className="mt-6 max-w-[1234px] text-body text-grey-700 xl:text-body-lg">
                     {additionalFees.vatNote}
                 </p>
             </Container>
 
-            <Container className="mt-16 text-center xl:mt-24">
+            {/* Figma: 100px under the VAT note, and 168px (not the usual 144) above the CTA banner on desktop. */}
+            <Container className="mt-16 text-center xl:mt-25 xl:pb-6">
                 <h2 className="text-h4 font-semibold text-balance text-primary-900 md:text-h1 xl:text-display-sm">
                     {institutionalBand.title}
                 </h2>
-                <p className="mx-auto mt-3 max-w-251 text-body text-grey-700 xl:text-body-lg">
+                <p className="mx-auto mt-4 max-w-100 text-body text-grey-700 md:max-w-193 xl:max-w-[935px] xl:text-body-lg">
                     {institutionalBand.description}
                 </p>
                 <Button
                     link={institutionalBand.cta}
-                    className="mt-8 w-55 xl:mt-10 xl:h-16 xl:w-62.5"
+                    className="mt-10 h-14 w-55 md:mt-6 md:w-62.5 xl:mt-4 xl:h-16"
                 />
             </Container>
 

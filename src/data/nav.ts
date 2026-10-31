@@ -22,7 +22,6 @@ export const footerNav = {
         { label: 'Estate Module', to: '/estates' },
         { label: 'Institutional Housing', to: '/institutions' },
         { label: 'Marketplace & API', to: '/platform' },
-        { label: 'Trust and Compliance', to: '/security' },
         { label: 'Pricing', to: '/pricing' },
     ],
     company: [

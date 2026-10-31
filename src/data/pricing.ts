@@ -270,9 +270,11 @@ export const additionalFees = {
     description:
         'Transparent charges that apply when you use specific Zebul services.',
     columns: ['Fee', 'Amount', 'Paid by'],
+    // `tall` rows wrap to two lines from tablet up (Figma 68px tablet / 96px desktop rows).
     rows: [
         {
             fee: 'Zebul platform fee',
+            tall: true,
             amount: '1.5% of the payment, minimum ₦500, maximum ₦9,500 per payment, plus VAT',
             paidBy: 'Whoever initiates the payment, usually the tenant',
         },
@@ -283,11 +285,13 @@ export const additionalFees = {
         },
         {
             fee: 'Re-verification of a payout or settlement account',
+            tall: true,
             amount: '₦1,000 each time (included on Enterprise)',
             paidBy: 'The person carrying it out',
         },
         {
             fee: 'Messages beyond the pooled allowance',
+            tall: true,
             amount: 'Pay as you go',
             paidBy: 'The owner or agency that sends them',
         },
