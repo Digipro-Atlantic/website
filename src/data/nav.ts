@@ -17,11 +17,9 @@ export const headerNav = [
 export const footerNav = {
     platform: [
         { label: 'Capabilities', to: '/platform' },
-        { label: 'Product Tour', to: '/tour' },
         { label: 'Rent Financing', to: '/financing' },
         { label: 'Estate Module', to: '/estates' },
         { label: 'Institutional Housing', to: '/institutions' },
-        { label: 'Marketplace & API', to: '/platform' },
         { label: 'Pricing', to: '/pricing' },
     ],
     company: [
@@ -39,16 +37,7 @@ export const footerNav = {
     legal: [
         { label: 'Terms of Service', to: '/terms' },
         { label: 'Privacy Policy', to: '/privacy' },
-        { label: 'Fees', to: 'https://zebul.ng/fees', external: true },
-        {
-            label: 'Payments',
-            to: 'https://zebul.ng/payments',
-            external: true,
-        },
-        {
-            label: 'Subscriptions',
-            to: 'https://zebul.ng/subscriptions',
-            external: true,
-        },
+        // The Additional Fees table on the Pricing page.
+        { label: 'Fees', to: '/pricing', hash: 'fees' },
     ],
 } as const satisfies Record<string, NavLink[]>

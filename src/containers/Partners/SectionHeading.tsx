@@ -2,6 +2,8 @@ type SectionHeadingProps = {
     label: string
     title: string
     description: string
+    /** Width cap for the lead; Figma wraps some leads narrower on phones. */
+    descriptionClassName?: string
     className?: string
 }
 
@@ -10,6 +12,7 @@ export const SectionHeading = ({
     label,
     title,
     description,
+    descriptionClassName = 'max-w-235',
     className = '',
 }: SectionHeadingProps) => (
     <div
@@ -21,7 +24,9 @@ export const SectionHeading = ({
         <h2 className="mt-4 text-h4 font-semibold text-balance text-primary-900 md:text-h1 xl:text-display-sm">
             {title}
         </h2>
-        <p className="mt-4 max-w-235 text-body text-balance text-grey-700 xl:mt-2 xl:text-body-lg">
+        <p
+            className={`mt-4 text-body text-balance text-grey-700 xl:text-body-lg ${descriptionClassName}`}
+        >
             {description}
         </p>
     </div>

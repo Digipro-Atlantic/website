@@ -79,12 +79,15 @@ export const LegalDocument = ({ doc }: { doc: LegalDoc }) => (
                 Last Updated {doc.lastUpdated}
             </p>
         </PageHero>
-        <Container className="pt-16 pb-24 xl:pt-22 xl:pb-36">
-            <div className="mx-auto max-w-220 text-body text-grey-600 xl:text-body-lg">
+        <Container className="pt-12 pb-24 md:pt-19 md:pb-36 xl:pt-23">
+            <div className="mx-auto max-w-220 text-body text-grey-600 md:max-w-176 xl:max-w-220 xl:text-body-lg">
                 <Blocks blocks={doc.intro} />
-                {doc.sections.map((section) => (
+                {doc.sections.map((section, index) => (
                     <section key={section.heading}>
-                        <h2 className="mt-6 text-h6 font-bold text-grey-900 xl:mt-8 xl:text-h4">
+                        {/* Figma sets the first section further from the intro than the rest. */}
+                        <h2
+                            className={`mt-6 text-h6 font-bold text-grey-900 xl:mt-8 xl:text-h4 ${index === 0 ? 'md:mt-10 xl:mt-15' : ''}`}
+                        >
                             {section.heading}
                         </h2>
                         <div className="mt-4">

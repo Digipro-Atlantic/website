@@ -1,16 +1,22 @@
-import { Coins } from 'lucide-react'
-import loanApplicant from '@/assets/partners/loan-applicant.webp'
-import paperPlane from '@/assets/partners/paper-plane.webp'
+import { useReducedMotion } from 'motion/react'
+import { useInView } from 'react-intersection-observer'
 import { Container } from '@/components/Container'
-import { Reveal } from '@/components/Reveal'
 import { partners } from '@/data/partners'
+import { LendingIllustration } from './LendingIllustration'
 import { SectionHeading } from './SectionHeading'
 
-const CheckCircle = () => (
+const CheckCircle = ({
+    className = '',
+    delayMs = 0,
+}: {
+    className?: string
+    delayMs?: number
+}) => (
     <svg
         aria-hidden="true"
+        style={{ transitionDelay: `${delayMs}ms` }}
         viewBox="0 0 24 24"
-        className="mt-0.5 size-5 shrink-0 text-primary-400"
+        className={`mt-0.5 size-5 shrink-0 text-primary-400 xl:mt-px xl:size-6 ${className}`}
         fill="currentColor"
     >
         <path d="M15.6754 10.7375C16.0827 10.3644 16.1105 9.73188 15.7375 9.3246C15.3644 8.91732 14.7319 8.88954 14.3246 9.26255L10.6325 12.644L9.6754 11.7674C9.26812 11.3944 8.63557 11.4221 8.26255 11.8294C7.88954 12.2367 7.91732 12.8693 8.3246 13.2423L9.95712 14.7374C10.3393 15.0875 10.9257 15.0875 11.3079 14.7374L15.6754 10.7375Z" />
@@ -24,74 +30,80 @@ const CheckCircle = () => (
 
 const { lending } = partners
 
-export const LendingSection = () => (
-    <Container className="mt-22 md:mt-25 xl:mt-37">
-        <SectionHeading
-            label={lending.label}
-            title={lending.title}
-            description={lending.description}
-        />
+const enter = 'transition-[opacity,translate] duration-700 ease-out'
+const settled = 'translate-x-0 translate-y-0 opacity-100'
 
-        <div className="mt-11 grid items-center gap-10 md:mt-22 md:grid-cols-2 xl:mt-30">
-            <Reveal className="relative aspect-[642/611] w-full max-w-160.5 xl:-ml-5">
-                <img
-                    src={paperPlane}
-                    alt=""
-                    aria-hidden="true"
-                    width={642}
-                    height={325}
-                    loading="lazy"
-                    className="absolute top-0 left-0 w-full"
+/**
+ * Figma "Parralax3": the heading drops in, the photo slides in from the left
+ * and draws its line (see LendingIllustration), the text arrives from the
+ * right a beat later and its ticks pop one by one. Reduced motion fades.
+ */
+export const LendingSection = () => {
+    const reduce = useReducedMotion()
+    const heading = useInView({
+        triggerOnce: true,
+        rootMargin: '0px 0px -15% 0px',
+    })
+    const body = useInView({
+        triggerOnce: true,
+        rootMargin: '0px 0px -20% 0px',
+    })
+    const from = (offset: string) =>
+        reduce ? 'opacity-0' : `opacity-0 ${offset}`
+
+    return (
+        <Container className="mt-20 overflow-x-clip md:mt-24 xl:mt-36">
+            <div
+                ref={heading.ref}
+                className={`${enter} ${heading.inView ? settled : from('-translate-y-10')}`}
+            >
+                <SectionHeading
+                    label={lending.label}
+                    title={lending.title}
+                    description={lending.description}
                 />
-                <img
-                    src={loanApplicant}
-                    alt=""
-                    aria-hidden="true"
-                    width={960}
-                    height={1110}
-                    loading="lazy"
-                    className="absolute bottom-0 left-0 w-[74.8%]"
-                />
+            </div>
+
+            <div
+                ref={body.ref}
+                className="mt-12 grid items-center gap-14 md:mt-18 md:grid-cols-2 md:gap-10 xl:mt-31.5"
+            >
                 <div
-                    aria-hidden="true"
-                    className="absolute top-[20.3%] right-[1.6%] flex items-center gap-2.5 rounded-2xl border border-[#E2FCF4] bg-white py-3 pr-4 pl-3 shadow-[0_4px_24px_rgb(16_25_40/0.08)] xl:gap-3.5 xl:py-5 xl:pr-6 xl:pl-5"
+                    className={`xl:-ml-5 ${enter} ${body.inView ? settled : from('-translate-x-10')}`}
                 >
-                    <span className="flex size-8 items-center justify-center rounded-lg bg-[#E2FCF4] text-primary-400 xl:size-10.5">
-                        <Coins
-                            className="size-5 xl:size-6"
-                            strokeWidth={1.75}
-                        />
-                    </span>
-                    <span className="flex flex-col whitespace-nowrap">
-                        <span className="text-caption text-grey-600 xl:text-body-sm">
-                            {lending.loanLabel}
-                        </span>
-                        <span className="text-body font-semibold text-black xl:text-h4 xl:tracking-[-0.02em]">
-                            {lending.loanAmount}
-                        </span>
-                    </span>
+                    <LendingIllustration play={body.inView} />
                 </div>
-            </Reveal>
 
-            <Reveal className="w-full max-w-145 md:justify-self-end">
-                <h3 className="px-2 text-body-lg font-semibold text-grey-900 md:px-0 xl:text-h6">
-                    {lending.blockTitle}
-                </h3>
-                <p className="mt-5 px-2 text-body text-grey-700 md:mt-4 md:px-0 md:text-body-sm xl:text-body-lg">
-                    {lending.blockText}
-                </p>
-                <ul className="mt-6 flex flex-col gap-4 px-2 md:px-0 xl:mt-8 xl:gap-5">
-                    {lending.checklist.map((item) => (
-                        <li
-                            key={item}
-                            className="flex items-start gap-4 text-body text-grey-700 md:gap-3 md:text-body-sm xl:text-body-lg"
-                        >
-                            <CheckCircle />
-                            {item}
-                        </li>
-                    ))}
-                </ul>
-            </Reveal>
-        </div>
-    </Container>
-)
+                <div
+                    className={`w-full max-w-145 delay-150 md:justify-self-end ${enter} ${body.inView ? settled : from('translate-x-10')}`}
+                >
+                    <h3 className="px-2 text-body-lg font-semibold text-grey-900 md:px-0 xl:text-h6">
+                        {lending.blockTitle}
+                    </h3>
+                    <p className="mt-6 px-2 text-body text-grey-700 md:px-0 md:text-body-sm xl:text-body-lg">
+                        {lending.blockText}
+                    </p>
+                    <ul className="mt-6 flex flex-col gap-4 px-2 md:px-0">
+                        {lending.checklist.map((item, index) => (
+                            <li
+                                key={item}
+                                className="flex items-start gap-4 text-body text-grey-700 md:gap-3 md:text-body-sm xl:gap-4 xl:text-body-lg"
+                            >
+                                {/* Ticks pop in turn once the text has arrived. */}
+                                <CheckCircle
+                                    delayMs={600 + index * 60}
+                                    className={`transition-[opacity,scale] duration-300 ease-out ${
+                                        body.inView || reduce
+                                            ? 'scale-100 opacity-100'
+                                            : `opacity-0 ${reduce ? '' : 'scale-60'}`
+                                    }`}
+                                />
+                                {item}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+        </Container>
+    )
+}

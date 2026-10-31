@@ -83,11 +83,12 @@ export const PartnerEnquiry = () => {
                 label={enquiry.label}
                 title={enquiry.title}
                 description={enquiry.description}
+                descriptionClassName="max-w-91 sm:max-w-235"
             />
 
             <FormCard
-                className="mx-auto mt-11 max-w-176 md:mt-17 xl:mt-23 xl:max-w-220"
-                innerClassName="p-4 sm:p-8 xl:p-14"
+                className="mx-auto mt-12 max-w-176 md:mt-17 xl:mt-24 xl:max-w-220"
+                innerClassName="p-4 sm:p-8 md:px-12.5 xl:p-14"
             >
                 {sent ? (
                     <FormSuccess title={enquiry.successTitle}>
@@ -165,7 +166,7 @@ export const PartnerEnquiry = () => {
                         </div>
 
                         <CheckboxField
-                            className="mt-4 xl:mt-5"
+                            className="mt-4"
                             name="consent"
                             required
                             checked={consent}
@@ -193,12 +194,12 @@ export const PartnerEnquiry = () => {
                         )}
 
                         <SubmitButton
-                            className="mt-8 xl:mt-10"
+                            className="mt-8 h-16 md:h-12 xl:mt-10 xl:h-16"
                             pending={sending}
                         >
                             {sending ? 'Sending…' : enquiry.submitLabel}
                         </SubmitButton>
-                        <p className="mt-4 text-center text-body-sm text-grey-600 sm:text-body xl:mt-7">
+                        <p className="mt-4 text-center text-body text-grey-600 md:text-body-sm xl:mt-6 xl:text-body">
                             {enquiry.fineprint}
                         </p>
                     </form>

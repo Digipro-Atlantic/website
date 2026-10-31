@@ -9,7 +9,6 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TourRouteImport } from './routes/tour'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
@@ -23,11 +22,6 @@ import { Route as DemoRouteImport } from './routes/demo'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 
-const TourRoute = TourRouteImport.update({
-    id: '/tour',
-    path: '/tour',
-    getParentRoute: () => rootRouteImport,
-} as any)
 const TermsRoute = TermsRouteImport.update({
     id: '/terms',
     path: '/terms',
@@ -102,7 +96,6 @@ export interface FileRoutesByFullPath {
     '/pricing': typeof PricingRoute
     '/privacy': typeof PrivacyRoute
     '/terms': typeof TermsRoute
-    '/tour': typeof TourRoute
 }
 export interface FileRoutesByTo {
     '/': typeof IndexRoute
@@ -117,7 +110,6 @@ export interface FileRoutesByTo {
     '/pricing': typeof PricingRoute
     '/privacy': typeof PrivacyRoute
     '/terms': typeof TermsRoute
-    '/tour': typeof TourRoute
 }
 export interface FileRoutesById {
     __root__: typeof rootRouteImport
@@ -133,7 +125,6 @@ export interface FileRoutesById {
     '/pricing': typeof PricingRoute
     '/privacy': typeof PrivacyRoute
     '/terms': typeof TermsRoute
-    '/tour': typeof TourRoute
 }
 export interface FileRouteTypes {
     fileRoutesByFullPath: FileRoutesByFullPath
@@ -150,7 +141,6 @@ export interface FileRouteTypes {
         | '/pricing'
         | '/privacy'
         | '/terms'
-        | '/tour'
     fileRoutesByTo: FileRoutesByTo
     to:
         | '/'
@@ -165,7 +155,6 @@ export interface FileRouteTypes {
         | '/pricing'
         | '/privacy'
         | '/terms'
-        | '/tour'
     id:
         | '__root__'
         | '/'
@@ -180,7 +169,6 @@ export interface FileRouteTypes {
         | '/pricing'
         | '/privacy'
         | '/terms'
-        | '/tour'
     fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -196,18 +184,10 @@ export interface RootRouteChildren {
     PricingRoute: typeof PricingRoute
     PrivacyRoute: typeof PrivacyRoute
     TermsRoute: typeof TermsRoute
-    TourRoute: typeof TourRoute
 }
 
 declare module '@tanstack/react-router' {
     interface FileRoutesByPath {
-        '/tour': {
-            id: '/tour'
-            path: '/tour'
-            fullPath: '/tour'
-            preLoaderRoute: typeof TourRouteImport
-            parentRoute: typeof rootRouteImport
-        }
         '/terms': {
             id: '/terms'
             path: '/terms'
@@ -308,7 +288,6 @@ const rootRouteChildren: RootRouteChildren = {
     PricingRoute: PricingRoute,
     PrivacyRoute: PrivacyRoute,
     TermsRoute: TermsRoute,
-    TourRoute: TourRoute,
 }
 export const routeTree = rootRouteImport
     ._addFileChildren(rootRouteChildren)

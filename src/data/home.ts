@@ -222,12 +222,6 @@ const exploreCards: ExploreCard[] = [
         link: { label: 'See capabilities', to: '/platform' },
     },
     {
-        title: 'See it in action',
-        description:
-            'A visual tour of the dashboards, the tenant app and the estate ledger.',
-        link: { label: 'Take the tour', to: '/tour' },
-    },
-    {
         title: 'Rent financing',
         description:
             "How tenants spread yearly rent while landlords are paid in full, and where Zebul's role ends.",

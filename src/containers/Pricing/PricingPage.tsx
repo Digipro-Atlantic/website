@@ -65,16 +65,19 @@ export const PricingPage = () => {
             </Container>
 
             <Container className={sectionGap}>
-                <SectionHeading
-                    title={additionalFees.title}
-                    description={additionalFees.description}
-                />
-                <div className="mt-12 md:mt-18 xl:mt-20">
-                    <FeesTable />
-                </div>
-                <p className="mt-6 max-w-[1234px] text-body text-grey-700 xl:text-body-lg">
-                    {additionalFees.vatNote}
-                </p>
+                {/* Footer "Fees" link target; lands below the sticky header. */}
+                <section id="fees" className="scroll-mt-32 md:scroll-mt-46">
+                    <SectionHeading
+                        title={additionalFees.title}
+                        description={additionalFees.description}
+                    />
+                    <div className="mt-12 md:mt-18 xl:mt-20">
+                        <FeesTable />
+                    </div>
+                    <p className="mt-6 max-w-[1234px] text-body text-grey-700 xl:text-body-lg">
+                        {additionalFees.vatNote}
+                    </p>
+                </section>
             </Container>
 
             {/* Figma: 100px under the VAT note, and 168px (not the usual 144) above the CTA banner on desktop. */}
