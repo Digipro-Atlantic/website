@@ -385,11 +385,11 @@ export const termsDoc: LegalDoc = {
             blocks: [
                 {
                     type: 'p',
-                    text: 'These Terms are governed by the laws of [Jurisdiction], without regard to its conflict-of-law rules.',
+                    text: 'These Terms are governed by the laws of the Federal Republic of Nigeria, without regard to its conflict-of-law rules.',
                 },
                 {
                     type: 'p',
-                    text: 'Any disputes will be subject to the courts of [Jurisdiction], unless applicable law requires otherwise.',
+                    text: 'Any disputes will be subject to the courts of the Federal Republic of Nigeria, unless applicable law requires otherwise.',
                 },
             ],
         },
