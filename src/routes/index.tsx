@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { pageHead } from '@/data/seo'
 import { CtaBanner } from '@/components/CtaBanner'
 import {
     Explore,
@@ -9,6 +10,7 @@ import {
 } from '@/containers/Home'
 
 export const Route = createFileRoute('/')({
+    head: () => pageHead('/'),
     component: () => <HomePage />,
 })
 

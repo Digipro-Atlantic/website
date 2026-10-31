@@ -1,29 +1,20 @@
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
-import { RouterProvider, createRouter } from '@tanstack/react-router'
-import { NotFoundPage } from '@/containers/NotFound'
-import { routeTree } from './routeTree.gen'
+import { RouterProvider } from '@tanstack/react-router'
+import { createAppRouter } from './router'
 import './index.css'
 
-const router = createRouter({
-    routeTree,
-    defaultPreload: 'intent',
-    defaultNotFoundComponent: NotFoundPage,
-} as any)
+const router = createAppRouter()
 
-declare module '@tanstack/react-router' {
-    interface Register {
-        router: typeof router
-    }
-}
+// The prerendered head tags are replaced by the router's (HeadContent), which keep them current on navigation.
+document.head
+    .querySelectorAll('[data-prerender]')
+    .forEach((element) => element.remove())
 
-// Render the app
-const rootElement = document.getElementById('root')!
-if (!rootElement.innerHTML) {
-    const root = ReactDOM.createRoot(rootElement)
-    root.render(
-        <StrictMode>
-            <RouterProvider router={router} />
-        </StrictMode>,
-    )
-}
+// Built pages arrive prerendered (scripts/prerender.mjs) so crawlers and link
+// previews see content; the app then renders fresh over that markup.
+ReactDOM.createRoot(document.getElementById('root')!).render(
+    <StrictMode>
+        <RouterProvider router={router} />
+    </StrictMode>,
+)

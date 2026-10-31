@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { animate, useReducedMotion } from 'motion/react'
 import { formatNaira } from '@/data/pricing'
 
@@ -17,6 +17,9 @@ export const AnimatedPrice = ({
     label: string
 }) => {
     const ref = useRef<HTMLSpanElement>(null)
+    // The first figure is rendered as text so prerendered pages (and crawlers) show
+    // a price; React never changes it afterwards, the effect below owns the text.
+    const [initialLabel] = useState(label)
     const shown = useRef<number | null>(null)
     const reduce = useReducedMotion()
 
@@ -45,7 +48,7 @@ export const AnimatedPrice = ({
         return () => count.stop()
     }, [value, label, reduce])
 
-    return <span ref={ref} className="tabular-nums" />
+    return <span ref={ref}>{initialLabel}</span>
 }
 
 // Swapped lines (/month → /year, billing note) remount on the period and rise in.

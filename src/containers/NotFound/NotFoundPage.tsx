@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useRouterState } from '@tanstack/react-router'
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
@@ -9,16 +8,11 @@ import { site } from '@/data/site'
 export const NotFoundPage = () => {
     const pathname = useRouterState({ select: (s) => s.location.pathname })
 
-    useEffect(() => {
-        const previous = document.title
-        document.title = `Page not found | ${site.name}`
-        return () => {
-            document.title = previous
-        }
-    }, [])
-
     return (
         <Page>
+            {/* React 19 hoists these into <head>; noindex keeps missing pages out of search. */}
+            <title>{`Page not found | ${site.name}`}</title>
+            <meta name="robots" content="noindex" />
             <Container className="flex flex-col items-center pt-16 pb-24 text-center md:pt-18 xl:pt-36 xl:pb-36">
                 <p
                     aria-hidden="true"
