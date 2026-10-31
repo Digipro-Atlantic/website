@@ -2,6 +2,38 @@ import { ChevronRight } from 'lucide-react'
 import { Container } from '@/components/Container'
 import { faqIntro, faqSections } from '@/data/faq'
 
+// "You are here": once the scroll settles, the section title washes pale
+// green and fades out. Colour only, so it also runs with reduced motion.
+const flashTitle = (section: HTMLElement) => {
+    const title = section.querySelector<HTMLElement>('[data-flash]')
+    // Easing sits on the fade segment only, so the first 30% is a true hold.
+    title?.animate(
+        [
+            { backgroundColor: 'rgb(226 252 244 / 1)', easing: 'linear' }, // primary-50
+            {
+                backgroundColor: 'rgb(226 252 244 / 1)',
+                offset: 0.3,
+                easing: 'cubic-bezier(0.77, 0, 0.175, 1)', // --ease-in-out
+            },
+            { backgroundColor: 'rgb(226 252 244 / 0)' },
+        ],
+        { duration: 1400 },
+    )
+}
+
+/** Runs `callback` once the page stops scrolling (or after a fallback, if it never moved). */
+const afterScroll = (callback: () => void) => {
+    let done = false
+    const run = () => {
+        if (done) return
+        done = true
+        window.removeEventListener('scrollend', run)
+        callback()
+    }
+    window.addEventListener('scrollend', run, { once: true })
+    window.setTimeout(run, 1000)
+}
+
 const scrollToSection = (id: string) => (event: React.MouseEvent) => {
     const target = document.getElementById(id)
     if (!target) return
@@ -12,6 +44,7 @@ const scrollToSection = (id: string) => (event: React.MouseEvent) => {
         block: 'start',
     })
     window.history.replaceState(null, '', `#${id}`)
+    afterScroll(() => flashTitle(target))
 }
 
 export const FaqContents = () => (
@@ -33,14 +66,14 @@ export const FaqContents = () => (
                         >
                             <span
                                 aria-hidden="true"
-                                className="flex size-6 shrink-0 items-center justify-center rounded-full bg-grey-900 text-white xl:size-8"
+                                className="flex size-6 shrink-0 items-center justify-center rounded-full bg-grey-900 text-white transition-[translate,background-color] duration-150 ease-out group-hover:translate-x-0.5 group-hover:bg-primary-400 motion-reduce:group-hover:translate-x-0 xl:size-8"
                             >
                                 <ChevronRight
                                     className="size-4 xl:size-5"
                                     strokeWidth={2.5}
                                 />
                             </span>
-                            <span className="underline underline-offset-4 decoration-1 group-hover:text-primary-400">
+                            <span className="underline decoration-1 underline-offset-4 transition-colors duration-150 ease-[ease] group-hover:text-primary-400">
                                 {section.contentsLabel}
                             </span>
                         </a>
