@@ -1,15 +1,9 @@
-import {
-    type CSSProperties,
-    useEffect,
-    useId,
-    useRef,
-    useState,
-    useSyncExternalStore,
-} from 'react'
+import { type CSSProperties, useEffect, useId, useRef, useState } from 'react'
 import { animate, cubicBezier, useReducedMotion } from 'motion/react'
 import { useInView } from 'react-intersection-observer'
 import { Container } from '@/components/Container'
 import { financingFlow } from '@/data/financing'
+import { useMedia } from '@/hooks/useMedia'
 import { desktopCurve, tabletCurve } from './curves'
 
 type Curve = typeof desktopCurve
@@ -30,18 +24,6 @@ const ARRIVE_FROM = [
     'md:translate-y-10',
     'md:translate-y-10',
 ] as const
-
-const subscribeMedia = (query: string) => (onChange: () => void) => {
-    const list = window.matchMedia(query)
-    list.addEventListener('change', onChange)
-    return () => list.removeEventListener('change', onChange)
-}
-const useMedia = (query: string) =>
-    useSyncExternalStore(
-        subscribeMedia(query),
-        () => window.matchMedia(query).matches,
-        () => false,
-    )
 
 /** Seconds after the draw starts at which the wipe passes `y` (curve space). */
 const reachesAt = (curve: Curve, y: number) => {

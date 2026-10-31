@@ -3,7 +3,7 @@ import { site } from '@/data/site'
 export const isEmail = (value: string) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())
 
-const isFormspreeConfigured = () =>
+export const isFormspreeConfigured = () =>
     !site.subscribe.formspreeAction.includes('REPLACE_WITH_YOUR_FORM_ID')
 
 type SendFormOptions = {
