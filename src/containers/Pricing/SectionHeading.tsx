@@ -17,12 +17,12 @@ export const SectionHeading = ({
             </p>
         )}
         <h2
-            className={`text-h4 font-semibold text-balance text-primary-900 md:text-h1 xl:text-display-sm ${label ? 'mt-3 xl:mt-4' : ''}`}
+            className={`text-h4 font-semibold text-balance text-primary-900 md:text-h1 xl:text-display-sm ${label ? 'mt-4' : ''}`}
         >
             {title}
         </h2>
         {description && (
-            <p className="mt-3 text-body text-balance text-grey-700 xl:text-body-lg">
+            <p className="mt-4 text-body text-balance text-grey-700 xl:text-body-lg">
                 {description}
             </p>
         )}

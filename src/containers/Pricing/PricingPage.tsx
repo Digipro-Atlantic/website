@@ -29,11 +29,14 @@ export const PricingPage = () => {
                 label={pricingHero.label}
                 title={pricingHero.title}
                 description={pricingHero.description}
+                // Figma: 24px gaps on desktop; the lead wraps naturally at 396px (phone), 856px (tablet), 935px (desktop).
+                titleClassName="max-w-99 sm:max-w-none xl:mt-6"
+                descriptionClassName="mt-4 max-w-99 sm:max-w-235 md:max-w-214 xl:mt-6 xl:max-w-[935px]"
             >
                 <BillingToggle
                     value={period}
                     onChange={setPeriod}
-                    className="mt-7 md:mt-10 xl:mt-9"
+                    className="mt-8 md:mt-12 xl:mt-10"
                 />
             </PageHero>
 
@@ -47,14 +50,14 @@ export const PricingPage = () => {
                     title={comparison.title}
                     description={comparison.description}
                 />
-                <div className="mt-11 xl:mt-18">
+                <div className="mt-12 xl:mt-20">
                     <ComparisonTable
                         period={period}
                         onPeriodChange={setPeriod}
                     />
                 </div>
 
-                <ul className="mt-9 list-disc pl-8 text-body-sm text-grey-700 md:pl-6 md:text-body xl:pl-7 xl:text-body-lg">
+                <ul className="mt-8 max-w-[1234px] list-disc pl-8 text-body-sm text-grey-700 md:pl-6 md:text-body xl:pl-7 xl:text-body-lg">
                     {pricingNotes.map((note) => (
                         <li key={note}>{note}</li>
                     ))}

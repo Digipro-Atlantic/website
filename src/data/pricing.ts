@@ -97,11 +97,14 @@ export const pricingTiers: readonly PricingTier[] = [
 /** Yearly billing is ten times the monthly price ("two months free"). */
 const ANNUAL_MULTIPLIER = 10
 
-const formatNaira = (amount: number) => `₦${amount.toLocaleString('en-US')}`
+export const formatNaira = (amount: number) =>
+    `₦${amount.toLocaleString('en-US')}`
 
 export type TierPrice = {
     /** Big figure, e.g. "₦6,000" or "Free". */
     amount: string
+    /** The figure as a number, for animating between periods. 0 for the free tier. */
+    value: number
     /** Suffix after the figure, e.g. "/month". Empty for the free tier. */
     unit: string
     /** First billing note under the price. */
@@ -121,6 +124,7 @@ export const getTierPrice = (
     if (tier.monthly === 0) {
         return {
             amount: 'Free',
+            value: 0,
             unit: '',
             billed: 'Free forever',
             note: 'No card required',
@@ -130,13 +134,13 @@ export const getTierPrice = (
     }
 
     const annual = period === 'annual'
-    const amount = formatNaira(
-        annual ? tier.monthly * ANNUAL_MULTIPLIER : tier.monthly,
-    )
+    const value = annual ? tier.monthly * ANNUAL_MULTIPLIER : tier.monthly
+    const amount = formatNaira(value)
     const unit = annual ? '/year' : '/month'
 
     return {
         amount,
+        value,
         unit,
         billed: annual ? 'Billed yearly, two months free' : 'Billed monthly',
         note: 'Excluding VAT, added at checkout',
@@ -159,6 +163,8 @@ export type ComparisonRow = {
     values: readonly [string, string, string, string]
     /** Plain-weight values ("Pay as you go", "₦1,000 each time") vs medium-weight status words. */
     detail?: boolean
+    /** Wraps to two lines from tablet up; Figma gives these rows 68px (tablet) and 96px (desktop). */
+    tall?: boolean
 }
 
 const yes = ['Yes', 'Yes', 'Yes', 'Yes'] as const
@@ -168,11 +174,13 @@ export const comparisonRows: readonly ComparisonRow[] = [
     { feature: 'Everything needed to run tenancies', values: yes },
     {
         feature: 'Pooled 30 SMS and 30 WhatsApp per property a year',
+        tall: true,
         values: yes,
     },
     { feature: 'Identity verification on every tenant', values: yes },
     {
         feature: 'Identity verification for owners and managers',
+        tall: true,
         values: ['Free', 'Free', 'Free', 'Free'],
     },
     { feature: 'All safety and security features', values: yes },
@@ -186,6 +194,7 @@ export const comparisonRows: readonly ComparisonRow[] = [
     },
     {
         feature: 'Documents with version history',
+        tall: true,
         values: [
             '250 MB per property,\nminimum 2 GB',
             '1 GB per property,\nminimum 15 GB',
@@ -194,8 +203,16 @@ export const comparisonRows: readonly ComparisonRow[] = [
         ],
     },
     { feature: 'Saved and scheduled reports', values: proUp },
-    { feature: 'Portfolio comparison and executive view', values: proUp },
-    { feature: 'Bulk export and accounting integration', values: proUp },
+    {
+        feature: 'Portfolio comparison and executive view',
+        tall: true,
+        values: proUp,
+    },
+    {
+        feature: 'Bulk export and accounting integration',
+        tall: true,
+        values: proUp,
+    },
     { feature: 'White-labelling and client branding', values: proUp },
     {
         feature: 'Extra messaging allowance',
@@ -204,10 +221,12 @@ export const comparisonRows: readonly ComparisonRow[] = [
     },
     {
         feature: "Owner's logo on invoices and receipts",
+        tall: true,
         values: ['Not included', 'Yes', 'Yes', 'Yes'],
     },
     {
         feature: 'Re-verification of a payout or settlement account',
+        tall: true,
         values: [
             '₦1,000 each time',
             '₦1,000 each time',
