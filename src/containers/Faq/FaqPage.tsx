@@ -12,8 +12,10 @@ export const FaqPage = () => (
             label={faqIntro.label}
             title={faqIntro.title}
             description={faqIntro.description}
-            // Figma breaks the title as 3 lines on mobile and 2 on tablet/desktop.
-            titleClassName="max-w-85 md:max-w-none xl:max-w-230"
+            // Figma breaks the title as 3 lines on mobile and 2 on tablet/desktop,
+            // with 24px gaps on phones and desktop (16px on tablet).
+            titleClassName="mt-6 max-w-85 md:mt-4 md:max-w-none xl:mt-6 xl:max-w-230"
+            descriptionClassName="mt-6 max-w-98 md:mt-4 md:max-w-none xl:mt-6 xl:max-w-[946px]"
         />
         <FaqContents />
         <FaqSections />

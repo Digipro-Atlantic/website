@@ -23,20 +23,20 @@ export const FaqContents = () => (
             >
                 {faqIntro.contentsTitle}
             </h2>
-            <ol className="mt-10 grid justify-start gap-x-14 gap-y-5.5 pl-6 md:mt-12 md:grid-cols-[auto_auto] md:justify-center md:pl-0 xl:mt-13 xl:gap-x-20 xl:gap-y-7">
+            <ol className="mt-10 grid justify-start gap-y-6 pl-2 md:mt-12 md:grid-cols-[auto_auto] md:justify-center md:gap-x-10 md:pl-0 xl:mt-16 xl:gap-x-20">
                 {faqSections.map((section) => (
                     <li key={section.id}>
                         <a
                             href={`#${section.id}`}
                             onClick={scrollToSection(section.id)}
-                            className="group flex items-center gap-2.5 text-body-lg font-medium text-black xl:gap-5 xl:text-h6"
+                            className="group flex items-center gap-4 text-body-lg font-medium text-black xl:text-h6"
                         >
                             <span
                                 aria-hidden="true"
-                                className="flex size-5.5 shrink-0 items-center justify-center rounded-full bg-grey-900 text-white xl:size-7"
+                                className="flex size-6 shrink-0 items-center justify-center rounded-full bg-grey-900 text-white xl:size-8"
                             >
                                 <ChevronRight
-                                    className="size-3.5"
+                                    className="size-4 xl:size-5"
                                     strokeWidth={2.5}
                                 />
                             </span>
