@@ -403,7 +403,7 @@ export const termsDoc: LegalDoc = {
                 { type: 'p', text: '**Zebul**', tight: false },
                 {
                     type: 'p',
-                    text: 'Email: [legal@zebul.com](mailto:legal@zebul.com)',
+                    text: 'Email: [info@zebul.ng](mailto:info@zebul.ng)',
                     tight: true,
                 },
                 {
@@ -446,7 +446,7 @@ export const privacyDoc: LegalDoc = {
                 },
                 {
                     type: 'p',
-                    text: '**Email**: [privacy@zebul.com](mailto:privacy@zebul.com)',
+                    text: '**Email**: [info@zebul.ng](mailto:info@zebul.ng)',
                     tight: true,
                 },
             ],
@@ -787,7 +787,7 @@ export const privacyDoc: LegalDoc = {
                 { type: 'p', text: 'To exercise your rights, contact us at:' },
                 {
                     type: 'p',
-                    text: '[**privacy@zebul.com**](mailto:privacy@zebul.com)',
+                    text: '[**info@zebul.ng**](mailto:info@zebul.ng)',
                 },
                 {
                     type: 'p',
@@ -870,12 +870,7 @@ export const privacyDoc: LegalDoc = {
                 },
                 {
                     type: 'p',
-                    text: '**Privacy**: [privacy@zebul.com](mailto:privacy@zebul.com)',
-                    tight: true,
-                },
-                {
-                    type: 'p',
-                    text: '**General**: [support@zebul.com](mailto:support@zebul.com)',
+                    text: '**Email**: [info@zebul.ng](mailto:info@zebul.ng)',
                     tight: true,
                 },
             ],
