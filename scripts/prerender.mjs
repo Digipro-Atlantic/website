@@ -1,7 +1,7 @@
 // Writes a static HTML file for every public page after `vite build`, so
 // search engines and link previews (WhatsApp, LinkedIn, X) get each page's
 // content and head tags without running JavaScript. Also writes 404.html and
-// a sitemap generated from the same page list.
+// a sitemap and /llms.txt generated from the same page list.
 //
 // Expects the client build in dist/ and the server build in dist/server/.
 
@@ -13,9 +13,8 @@ const dist = path.resolve('dist')
 const serverDir = path.join(dist, 'server')
 const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf8')
 
-const { render, pageSeo, pageHead, siteHead, site } = await import(
-    pathToFileURL(path.join(serverDir, 'entry-server.js')).href
-)
+const { render, pageSeo, pageHead, siteHead, site, pageJsonLd, llmsTxt } =
+    await import(pathToFileURL(path.join(serverDir, 'entry-server.js')).href)
 
 const escape = (value) =>
     String(value)
@@ -43,24 +42,6 @@ const headTags = ({ meta, links = [] }) =>
         .map((line) => `        ${line}`)
         .join('\n')
 
-const organisation = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: site.name,
-    legalName: site.legalName,
-    url: site.url,
-    logo: `${site.url}/favicon.png`,
-    email: site.contact.email,
-    telephone: site.contact.phone,
-    address: {
-        '@type': 'PostalAddress',
-        streetAddress: '6 Asabi Cole Street, Alausa Central Business District',
-        addressLocality: 'Ikeja',
-        addressRegion: 'Lagos',
-        addressCountry: 'NG',
-    },
-}
-
 // React 19 renders the router's <title>/<meta>/<link> inline; they are baked into <head> instead.
 const stripHeadTags = (html) =>
     html
@@ -85,10 +66,11 @@ const paths = Object.keys(pageSeo)
 for (const url of paths) {
     const head = pageHead(url)
     const merged = { meta: [...siteHead.meta, ...head.meta], links: head.links }
-    const jsonLd =
-        url === '/'
-            ? `        <script type="application/ld+json">${JSON.stringify(organisation)}</script>\n`
-            : ''
+    // schema.org facts (organisation, product and plans) for search and answer engines.
+    const data = pageJsonLd(url)
+    const jsonLd = data
+        ? `        <script type="application/ld+json">${JSON.stringify(data).replaceAll('<', '\\u003c')}</script>\n`
+        : ''
     const body = stripHeadTags(await render(url))
     const file =
         url === '/'
@@ -129,5 +111,9 @@ ${paths
 `
 fs.writeFileSync(path.join(dist, 'sitemap.xml'), sitemap)
 console.log(`sitemap.xml: ${paths.length} pages`)
+
+// A plain-language summary and page map for AI tools (llmstxt.org).
+fs.writeFileSync(path.join(dist, 'llms.txt'), llmsTxt())
+console.log('llms.txt')
 
 fs.rmSync(serverDir, { recursive: true, force: true })

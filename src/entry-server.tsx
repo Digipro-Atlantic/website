@@ -13,3 +13,4 @@ export const render = async (url: string) => {
 
 export { pageSeo, shareImage, siteHead, pageHead } from './data/seo'
 export { site } from './data/site'
+export { llmsTxt, pageJsonLd } from './data/structuredData'
