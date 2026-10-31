@@ -1,896 +1,371 @@
 @import 'tailwindcss';
 
 @theme {
-    --color-teal-950: #08241b;
-    --color-teal-900: #0a2f23;
-    --color-teal-800: #0f4636;
-    --color-teal-700: #155a45;
-    --color-teal-600: #1c6b54;
-    --color-teal-500: #2a7d63;
-    --color-teal-400: #3e9277;
-    --color-teal-100: #f1f7f4;
+    /* ── Typeface ─────────────────────────────────────────────── */
+    /* 'Inter' = Google Fonts name; 'Inter Variable' = @fontsource name. */
+    /* Both listed so either loading strategy resolves.                 */
+    --font-sans:
+        'Inter', 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
 
-    --color-gold: #b4862b;
-    --color-gold-soft: #d4a94a;
+    /* ── Primary — deep green (brand) ─────────────────────────── */
+    --color-primary-50: #e2fcf4;
+    --color-primary-75: #daf3ec;
+    --color-primary-100: #c6e8df;
+    --color-primary-200: #9dcfc1;
+    --color-primary-300: #539585;
+    --color-primary-400: #005b4c;
+    --color-primary-500: #00493b;
+    --color-primary-600: #00372b;
+    --color-primary-700: #00261d;
+    --color-primary-800: #001610;
+    --color-primary-900: #000805;
 
-    --color-cream: #faf7ef;
-    --color-paper: #ffffff;
+    /* ── Secondary — warm terracotta (accent only, see §1) ────── */
+    --color-secondary-50: #fdf8f5;
+    --color-secondary-75: #faf0ea;
+    --color-secondary-100: #f4e0d4;
+    --color-secondary-200: #e8c2af;
+    --color-secondary-300: #dda286;
+    --color-secondary-400: #d17a5e;
+    --color-secondary-500: #bd5d3d;
+    --color-secondary-600: #9d492e;
+    --color-secondary-700: #7b3520;
+    --color-secondary-800: #542113;
+    --color-secondary-900: #311108;
 
-    --color-ink: #13251e;
-    --color-ink-soft: #3c4f47;
+    /* ── Success ──────────────────────────────────────────────── */
+    --color-success-50: #e7f6ec;
+    --color-success-75: #b5e3c4;
+    --color-success-100: #91d6a8;
+    --color-success-200: #5fc381;
+    --color-success-300: #40b869;
+    --color-success-400: #0f973d;
+    --color-success-500: #099137;
+    --color-success-600: #04802e;
+    --color-success-700: #036b26;
+    --color-success-800: #015b20;
+    --color-success-900: #004617;
 
-    --color-line: #dce7e1;
+    /* ── Warning ──────────────────────────────────────────────── */
+    --color-warning-50: #fef6e7;
+    --color-warning-75: #fbe2b7;
+    --color-warning-100: #f7d394;
+    --color-warning-200: #f7c164;
+    --color-warning-300: #f5b546;
+    --color-warning-400: #f3a218;
+    --color-warning-500: #dd900d;
+    --color-warning-600: #ad6f07;
+    --color-warning-700: #865503;
+    --color-warning-800: #664101;
+    --color-warning-900: #523300;
 
-    --font-display: 'Fraunces', Georgia, serif;
-    --font-body: 'IBM Plex Sans', system-ui, sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
+    /* ── Error ────────────────────────────────────────────────── */
+    --color-error-50: #fbeae9;
+    --color-error-75: #f2bcba;
+    --color-error-100: #eb9b98;
+    --color-error-200: #e26e6a;
+    --color-error-300: #dd524d;
+    --color-error-400: #d42620;
+    --color-error-500: #cb1a14;
+    --color-error-600: #ba110b;
+    --color-error-700: #9e0a05;
+    --color-error-800: #800501;
+    --color-error-900: #591000;
 
-    --max-width-wrap: 1180px;
+    /* ── Info — alert/information state (Figma alert component) ─ */
+    --color-info-50: #e3effc;
+    --color-info-75: #c6ddf7;
+    --color-info-500: #0d5eba;
+    --color-info-600: #0a4a94;
+
+    /* ── Grey — primary UI neutral ────────────────────────────── */
+    --color-grey-50: #f9fafb;
+    --color-grey-75: #f7f9fc;
+    --color-grey-100: #f0f2f5;
+    --color-grey-200: #e4e7ec;
+    --color-grey-300: #d0d5dd;
+    --color-grey-400: #98a2b3;
+    --color-grey-500: #667185;
+    --color-grey-600: #475367;
+    --color-grey-700: #344054;
+    --color-grey-800: #1d2739;
+    --color-grey-900: #101928;
+
+    /* Occupancy chart accents — Figma Accents/orange + Accents/yellow (node 7464:18473) */
+    --color-accent-orange: #ff8d28;
+    --color-accent-yellow: #fc0;
+
+    /* ── Brown — warm neutral ─────────────────────────────────── */
+    --color-brown-50: #fbf1f1;
+    --color-brown-75: #f0e6e6;
+    --color-brown-100: #e4dbdb;
+    --color-brown-200: #cdc4c4;
+    --color-brown-300: #b7afaf;
+    --color-brown-400: #a29999;
+    --color-brown-500: #8d8484;
+    --color-brown-600: #787070;
+    --color-brown-700: #645d5d;
+    --color-brown-800: #514a4a;
+    --color-brown-900: #3e3838;
+
+    /*
+     * ── Semantic aliases ──────────────────────────────────────
+     * PREFER THESE over raw ramp steps in components: bg-surface,
+     * text-foreground-muted, border-border. Ramp steps are the
+     * palette; these are the API.
+     *
+     */
+    --color-background: var(--color-white);
+    --color-surface: var(--color-white);
+    --color-surface-muted: #f9fafb; /* grey-50 */
+    --color-border: #e4e7ec; /* grey-200 */
+    --color-border-strong: #d0d5dd; /* grey-300 */
+    --color-foreground: #101928; /* grey-900 */
+    --color-foreground-muted: #475367; /* grey-600 */
+    --color-foreground-subtle: #667185; /* grey-500 */
+    --color-foreground-disabled: #98a2b3; /* grey-400 — NEVER body text */
+    --color-primary: #00493b; /* primary-500 */
+    --color-primary-hover: #00372b; /* primary-600 */
+    --color-primary-subtle: #e2fcf4; /* primary-50 */
+    --color-ring: #005b4c; /* primary-400 */
+
+    /*
+     * ── Breakpoints ───────────────────────────────────────────
+     * From the Figma layout grid. The default scale is CLEARED so
+     * that `md:` / `xl:` fail loudly rather than silently applying
+     * widths (768 / 1280) that sit inside the design's ranges.
+     *
+     *   sm  600px  — 6/8 col, 32px margin, 20px gutter
+     *   md 1024px  — website tablet frame (full nav appears here)
+     *   lg 1136px  — 12 col, 112px margin, 32px gutter
+     *   xl 1440px  — website desktop scale (designed at 1728px)
+     * Below 600px: 4/6 col, 16px margin, 12px gutter.
+     */
+    --breakpoint-*: initial;
+    --breakpoint-sm: 600px;
+    --breakpoint-md: 1024px;
+    --breakpoint-lg: 1136px;
+    --breakpoint-xl: 1440px;
+
+    /* Website content column — 1328px inside the 1728px desktop frame. */
+    --container-page: 83rem;
+
+    /*
+     * ── Motion ────────────────────────────────────────────────
+     * Override Tailwind's weak defaults so `ease-out` / `ease-in-out`
+     * utilities use these curves. Never use ease-in on UI.
+     */
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+    --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+    /* Logo strip: the track holds the list twice and slides one copy's width. */
+    --animate-marquee: marquee 40s linear infinite;
+
+    @keyframes marquee {
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
+    /* Who it serves: the active tab's underline fills while it waits to auto-advance. */
+    --animate-tab-progress: tab-progress 6s linear both;
+
+    @keyframes tab-progress {
+        from {
+            transform: scaleX(0);
+        }
+        to {
+            transform: scaleX(1);
+        }
+    }
+
+    --max-width-onboarding: 43.5rem; /* 696px — Figma Property Owner forms 153:653 / 154:546 / 174:392 */
+    --max-width-search: 30.9375rem; /* 495px — Figma Dashboard search 7430:16822, cap not lock */
+    --max-width-modal-dialog: 35rem; /* 560px — Figma centered dialog 7772:66399 (MCP rate-limited; inferred) */
+    --width-modal-split: 60vw; /* user-confirmed 60% of screen */
+    --width-modal-aside: 22.5rem; /* 360px — split left rail 7858:89849 (inferred) */
+    /* Main column shell when split has no aside (grey mat + padded white main). */
+    --width-modal-split-main: calc(
+        var(--width-modal-split) - var(--width-modal-aside) - 1.5rem
+    );
+    --max-height-modal: 90vh; /* cap so overlay padding still fits the viewport */
+    --border-width-button: 1.5px; /* outline / primaryOutline stroke */
+    --width-sidebar: 17rem; /* 272px — Figma Sidebar 7495:27758 */
+    --width-sidebar-collapsed: 5rem; /* icon rail — no collapsed frame in Figma */
+    --width-detail-panel: 24.375rem; /* 390px — Figma commercialUnitPanel 7866:95791 */
+    --width-modal-drawer: 30vw; /* overlay inspector — user-confirmed 30% of screen */
+    --height-header: 7.5rem; /* 120px — Figma Page title 7409:17865 */
+
+    /* Overlay at 50; portalled Select/DropdownMenu above so they stay usable. */
+    --z-index-modal: 50;
+    --z-index-popover: 60;
+
+    /* ── Elevation ────────────────────────────────────────────── */
+    /* Tinted with grey-900, never pure black. Names inferred from */
+    /* order — the Figma frames are unlabelled (design-system.md §5). */
+    --shadow-xs: 0 1.5px 4px -1px rgb(16 25 40 / 0.07);
+    --shadow-sm:
+        0 2px 4px -1px rgb(16 25 40 / 0.02),
+        0 5px 13px -5px rgb(16 25 40 / 0.05);
+    --shadow-md: 0 10px 18px -2px rgb(16 25 40 / 0.07);
+    --shadow-lg:
+        0 0 3px -1px rgb(16 25 40 / 0.04), 0 14px 22px -9px rgb(16 25 40 / 0.14);
+    --shadow-xl:
+        0 4px 6px -2px rgb(16 25 40 / 0.03),
+        0 16px 24px -4px rgb(16 25 40 / 0.08);
+    --shadow-2xl:
+        0 8px 8px -4px rgb(16 25 40 / 0.03),
+        0 24px 32px -4px rgb(16 25 40 / 0.08);
+    --shadow-3xl: 0 32px 54px -12px rgb(16 25 40 / 0.18);
+    --shadow-4xl: 0 40px 72px -12px rgb(16 25 40 / 0.14);
+
+    /* Ring variants — hairline border baked in, for dropdowns,   */
+    /* popovers and menus sitting on white.                       */
+    --shadow-ring-sm:
+        0 0 0 1px rgb(16 25 40 / 0.05), 0 2px 7px 0 rgb(16 25 40 / 0.05),
+        0 2px 5px -2px rgb(16 25 40 / 0.06);
+    --shadow-ring-md:
+        0 0 0 1px rgb(16 25 40 / 0.05), 0 2px 2px -1px rgb(16 25 40 / 0.04),
+        0 2px 12px -1px rgb(16 25 40 / 0.1);
+    --shadow-ring-lg:
+        0 0 0 1px rgb(16 25 40 / 0.05), 0 6px 16px 0 rgb(16 25 40 / 0.08);
+    --shadow-ring-xl:
+        0 0 0 1px rgb(16 25 40 / 0.05), 0 0 3px -1px rgb(16 25 40 / 0.04),
+        0 16px 24px -6px rgb(16 25 40 / 0.08);
+
+    /* ── Backdrop blur ────────────────────────────────────────── */
+    --blur-xsmall: 2px;
+    --blur-small: 8px;
+    --blur-medium: 12px;
+
+    /*
+     * ── Type scale ────────────────────────────────────────────
+     * Two systems — do not mix:
+     *   headings  120% line-height, NEGATIVE tracking
+     *   body      145% line-height, ZERO tracking
+     *   labels    120% line-height, POSITIVE tracking
+     */
+    --text-display-lg: 3.5rem;
+    --text-display-lg--line-height: 1;
+    --text-display-lg--letter-spacing: -0.04em;
+    --text-display-sm: 3rem;
+    --text-display-sm--line-height: 1;
+    --text-display-sm--letter-spacing: -0.04em;
+
+    --text-h1: 2.5rem;
+    --text-h1--line-height: 1.2;
+    --text-h1--letter-spacing: -0.04em;
+    --text-h2: 2.25rem;
+    --text-h2--line-height: 1.2;
+    --text-h2--letter-spacing: -0.04em;
+    --text-h3: 2rem;
+    --text-h3--line-height: 1.2;
+    --text-h3--letter-spacing: -0.02em;
+    --text-h4: 1.75rem;
+    --text-h4--line-height: 1.2;
+    --text-h4--letter-spacing: -0.02em;
+    --text-h5: 1.5rem;
+    --text-h5--line-height: 1.2;
+    --text-h5--letter-spacing: -0.02em;
+    --text-h6: 1.25rem;
+    --text-h6--line-height: 1.2;
+    --text-h6--letter-spacing: -0.02em;
+
+    --text-body-lg: 1.125rem;
+    --text-body-lg--line-height: 1.45;
+    --text-body: 1rem;
+    --text-body--line-height: 1.45;
+    --text-body-sm: 0.875rem;
+    --text-body-sm--line-height: 1.45;
+    --text-caption: 0.75rem;
+    --text-caption--line-height: 1.67;
+
+    --text-label-lg: 0.875rem;
+    --text-label-lg--line-height: 1.2;
+    --text-label-lg--letter-spacing: 0.12em;
+    --text-label: 0.75rem;
+    --text-label--line-height: 1.2;
+    --text-label--letter-spacing: 0.12em;
+    --text-label-sm: 0.625rem;
+    --text-label-sm--line-height: 1.2;
+    --text-label-sm--letter-spacing: 0.16em;
 }
 
-:root {
-    --teal-950: #08241b;
-    --teal-900: #0a2f23;
-    --teal-800: #0f4636;
-    --teal-700: #155a45;
-    --teal-600: #1c6b54;
-    --teal-500: #2a7d63;
-    --teal-400: #3e9277;
-    --teal-100: #f1f7f4;
-
-    --gold: #b4862b;
-    --gold-soft: #d4a94a;
-
-    --cream: #faf7ef;
-    --paper: #ffffff;
-
-    --ink: #13251e;
-    --ink-soft: #3c4f47;
-
-    --line: #dce7e1;
-
-    --maxw: 1180px;
-    --display: var(--font-display);
-    --body: var(--font-body);
-    --mono: var(--font-mono);
-
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+@utility border-stroke-button {
+    border-width: var(--border-width-button);
 }
+/*
+ * NOTE — border radius is intentionally NOT defined.
+ * The Figma file has no radius foundation (design-system.md §6).
+ * Tailwind's default `rounded-*` scale therefore still applies as a
+ * stopgap. Do not add a custom scale here until one is agreed with
+ * the designer.
+ *
+ * NOTE — no dark theme.
+ * The design file defines light values only. `color-scheme` is pinned
+ * to `light` below so the browser does not render form controls and
+ * scrollbars dark against a light palette. Adding dark mode means
+ * getting a dark ramp from design first.
+ */
 
 /* style scrollbar */
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
+    height: 8px;
 }
-
 ::-webkit-scrollbar-track {
-    background: var(--color-teal-700);
+    background: #f1f1f1;
 }
-
 ::-webkit-scrollbar-thumb {
-    background: var(--color-gold-soft);
-    border-radius: 8px;
+    background: #00261d;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    margin: 0;
-    font-family: var(--body);
-    color: var(--ink);
-    background: var(--paper);
-    line-height: 1.6;
-    overflow-x: hidden;
-}
-
-img {
-    max-width: 100%;
-    display: block;
-}
-
-h1,
-h2,
-h3,
-h4 {
-    font-family: var(--display);
-    font-weight: 600;
-    line-height: 1.08;
-    letter-spacing: -0.01em;
-}
-
-code {
-    font-family: var(--mono);
-    font-size: 0.9em;
-    padding: 0.15em 0.4em;
-    border-radius: 4px;
-    color: var(--ink);
-    background: var(--teal-100);
-}
-
-@layer components {
-    .wrap {
-        max-width: var(--maxw);
-        margin-inline: auto;
-        padding-inline: 28px;
+@layer base {
+    :root {
+        color-scheme: light;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 
-    .btn {
-        font-family: var(--body);
-        font-weight: 600;
-        font-size: 14.5px;
-        padding: 11px 22px;
-        border-radius: 7px;
-        border: 1px solid transparent;
+    body {
+        margin: 0;
+        background-color: var(--color-background);
+        color: var(--color-foreground);
+        font-family: var(--font-sans);
+        font-size: var(--text-body);
+        line-height: 1.45;
+    }
+
+    /* Focus ring — every interactive element, no exceptions. */
+    :focus-visible {
+        outline: 2px solid var(--color-ring);
+        outline-offset: 2px;
+    }
+
+    /* Tailwind v4 dropped the pointer cursor on buttons; restore it site-wide. */
+    button:not(:disabled),
+    [role='button']:not(:disabled) {
         cursor: pointer;
-        transition: all 0.2s;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        white-space: nowrap;
     }
 
-    .btn-gold {
-        background: var(--gold);
-        color: var(--teal-950);
-    }
-
-    .btn-gold:hover {
-        background: var(--gold-soft);
-        transform: translateY(-1px);
-    }
-
-    .btn-ghost {
-        background: transparent;
-        color: #fff;
-        border-color: rgba(255, 255, 255, 0.28);
-    }
-
-    .btn-ghost:hover {
-        border-color: var(--gold-soft);
-        color: var(--gold-soft);
-    }
-
-    .btn-dark {
-        background: var(--teal-800);
-        color: #fff;
-    }
-
-    .btn-dark:hover {
-        background: var(--teal-600);
-    }
-
-    .btn-outline {
-        background: transparent;
-        color: var(--teal-800);
-        border-color: var(--line);
-    }
-
-    .btn-outline:hover {
-        border-color: var(--teal-600);
-        color: var(--teal-600);
-    }
-
-    .hero {
+    /* Native date picker: hide the browser glyph so the Figma calendar icon shows. */
+    input[type='date'] {
         position: relative;
-        background:
-            radial-gradient(
-                1100px 600px at 78% -10%,
-                rgba(180, 134, 43, 0.16),
-                transparent 60%
-            ),
-            radial-gradient(
-                900px 700px at 8% 110%,
-                rgba(28, 107, 84, 0.42),
-                transparent 55%
-            ),
-            linear-gradient(
-                165deg,
-                var(--teal-950) 0%,
-                var(--teal-900) 48%,
-                var(--teal-800) 100%
-            );
-        color: #fff;
-        overflow: hidden;
     }
 
-    .chip {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        font-family: var(--mono);
-        font-size: 12.5px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.8);
-    }
-
-    .chip::before {
-        content: '';
-        width: 7px;
-        height: 7px;
-        border-radius: 2px;
-        background: var(--gold);
-    }
-
-    .hero-grid {
-        position: absolute;
+    input[type='date']::-webkit-calendar-picker-indicator {
+        cursor: pointer;
         inset: 0;
-        background-image:
-            linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-            linear-gradient(
-                90deg,
-                rgba(255, 255, 255, 0.04) 1px,
-                transparent 1px
-            );
-        background-size: 56px 56px;
-        -webkit-mask-image: radial-gradient(
-            900px 500px at 70% 30%,
-            #000,
-            transparent 75%
-        );
-        mask-image: radial-gradient(
-            900px 500px at 70% 30%,
-            #000,
-            transparent 75%
-        );
-        pointer-events: none;
-    }
-
-    .hero-gradient-dark {
-        background: linear-gradient(165deg, var(--teal-900), var(--teal-800));
-    }
-
-    .hero-gradient-mid {
-        background: linear-gradient(160deg, var(--teal-800), var(--teal-600));
-    }
-
-    .hero-gradient-deep {
-        background:
-            radial-gradient(
-                800px 500px at 80% 0%,
-                rgba(180, 134, 43, 0.12),
-                transparent 60%
-            ),
-            linear-gradient(160deg, var(--teal-950), var(--teal-800));
-    }
-
-    .logo-img {
-        height: 40px;
+        opacity: 0;
+        position: absolute;
         width: auto;
-        display: block;
+        height: auto;
     }
+}
 
-    footer .logo-img,
-    .logo-img--footer {
-        height: 44px;
-    }
-
-    .ui-logo {
-        height: 22px;
-        width: auto;
-        display: block;
-    }
-
-    header {
-        position: sticky;
-        top: 0;
-        z-index: 60;
-        background: rgba(8, 36, 27, 0.86);
-        backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        color: #fff;
-        width: 100%;
-    }
-
-    .nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 72px;
-    }
-
-    .nav .logo {
-        color: #fff;
-    }
-
-    .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 30px;
-    }
-
-    .nav-links a {
-        font-size: 14.5px;
-        font-weight: 500;
-        color: rgba(255, 255, 255, 0.82);
-        transition: color 0.2s;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-        color: var(--gold-soft);
-    }
-
-    .nav-links button {
-        font-family: var(--body);
-        font-size: 14.5px;
-        font-weight: 500;
-        color: rgba(255, 255, 255, 0.82);
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 0;
-        display: inline-flex;
-        align-items: center;
-        transition: color 0.2s;
-    }
-
-    .nav-links button.is-open {
-        color: var(--gold-soft);
-    }
-
-    .nav-cta {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-    }
-
-    footer {
-        background: var(--teal-950);
-        color: rgba(255, 255, 255, 0.66);
-        padding: 72px 0 36px;
-        /* position: fixed;
-        bottom: 0;
-        width: 100%; */
-    }
-
-    .foot-top {
-        display: grid;
-        grid-template-columns: 1.5fr 1fr 1fr 1fr;
-        gap: 40px;
-        padding-bottom: 48px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    footer .logo {
-        color: #fff;
-        margin-bottom: 18px;
-    }
-
-    .foot-blurb {
-        font-size: 13.5px;
-        max-width: 300px;
-        color: rgba(255, 255, 255, 0.6);
-    }
-
-    .foot-col h5 {
-        font-family: var(--mono);
-        font-size: 11px;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--gold-soft);
-        margin-bottom: 16px;
-        font-weight: 600;
-    }
-
-    .foot-col a {
-        display: block;
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.7);
-        margin-bottom: 11px;
-        transition: color 0.2s;
-    }
-
-    .foot-col a:hover {
-        color: #fff;
-    }
-
-    .foot-contact {
-        font-style: normal;
-        margin-top: 16px;
-        font-size: 13.5px;
-        line-height: 1.85;
-        color: rgba(255, 255, 255, 0.6);
-        max-width: 300px;
-    }
-
-    .foot-contact a {
-        color: rgba(255, 255, 255, 0.82);
-    }
-
-    .foot-bottom {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 14px;
-        padding-top: 30px;
-        font-size: 12.5px;
-        color: rgba(255, 255, 255, 0.5);
-    }
-
-    .foot-bottom .rc {
-        font-family: var(--mono);
-    }
-
-    .eco {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 18px;
-    }
-
-    .eco-card {
-        display: block;
-        background: var(--paper);
-        border: 1px solid var(--line);
-        border-radius: 10px;
-        padding: 24px 22px 20px;
-        transition:
-            border-color 0.2s,
-            transform 0.2s;
-    }
-
-    .eco-card:hover {
-        border-color: var(--teal-400);
-        transform: translateY(-2px);
-    }
-
-    .eco-card h4 {
-        font-size: 18px;
-        margin-bottom: 8px;
-        color: var(--teal-800);
-    }
-
-    .eco-card p {
-        font-size: 14px;
-        color: var(--ink-soft);
-        margin-bottom: 14px;
-    }
-
-    .eco-card .go {
-        font-family: var(--mono);
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: var(--gold);
-    }
-
-    .model-card {
-        position: relative;
-        overflow: hidden;
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        background: var(--paper);
-        padding: 30px;
-        transition:
-            transform 0.25s,
-            box-shadow 0.25s,
-            border-color 0.25s;
-    }
-
-    .model-card:hover {
-        transform: translateY(-3px);
-        border-color: var(--teal-400);
-        box-shadow: 0 18px 40px -24px rgba(15, 70, 54, 0.4);
-    }
-
-    .model-card--wide {
-        border-color: transparent;
-        background: linear-gradient(160deg, var(--teal-800), var(--teal-600));
-        color: #fff;
-    }
-
-    .model-card__tag {
-        font-family: var(--mono);
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--teal-600);
-    }
-
-    .model-card__roof {
-        position: absolute;
-        top: 18px;
-        right: 20px;
-        width: 40px;
-        height: 34px;
-        color: var(--teal-800);
-        opacity: 0.16;
-    }
-
-    .marked-li {
-        position: relative;
-        padding-left: 20px;
-        font-size: 14.5px;
-    }
-
-    .marked-li::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 9px;
-        width: 9px;
-        height: 9px;
-        border: 1.5px solid var(--gold);
-        border-radius: 2px;
-    }
-
-    .marked-li--light::before {
-        border-color: var(--gold-soft);
-    }
-
-    .cta {
-        background:
-            radial-gradient(
-                800px 500px at 80% 0%,
-                rgba(180, 134, 43, 0.18),
-                transparent 60%
-            ),
-            linear-gradient(160deg, var(--teal-950), var(--teal-800));
-    }
-
-    .price-toggle {
-        display: inline-flex;
-        background: var(--teal-100);
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        padding: 4px;
-        gap: 4px;
-    }
-
-    .price-toggle button {
-        font-family: var(--body);
-        font-size: 14px;
-        font-weight: 600;
-        padding: 8px 18px;
-        border: none;
-        border-radius: 6px;
-        background: transparent;
-        color: var(--ink-soft);
-        cursor: pointer;
-    }
-
-    .price-toggle button.on {
-        background: var(--paper);
-        color: var(--teal-800);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    }
-
-    .plans {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 16px;
-        margin-top: 32px;
-    }
-
-    .plan {
-        background: var(--paper);
-        border: 1px solid var(--line);
-        border-radius: 10px;
-        padding: 24px 20px;
-        text-align: left;
-    }
-
-    .plan.feat {
-        border-color: var(--gold);
-        position: relative;
-    }
-
-    .plan .amt {
-        font-family: var(--display);
-        font-size: 32px;
-        color: var(--teal-800);
-        margin: 12px 0 4px;
-    }
-
-    .plan .amt small {
-        font-family: var(--body);
-        font-size: 14px;
-        color: var(--ink-soft);
-    }
-
-    .plan .annual {
-        font-size: 13px;
-        color: var(--ink-soft);
-        min-height: 1.2em;
-        margin-bottom: 8px;
-    }
-
-    .plan .units {
-        font-size: 13px;
-        color: var(--teal-600);
-        margin-bottom: 16px;
-    }
-
-    .plan ul {
-        list-style: none;
-        padding: 0;
-        margin: 0 0 20px;
-        font-size: 14px;
-        color: var(--ink-soft);
-    }
-
-    .plan li {
-        padding: 6px 0;
-        border-bottom: 1px solid var(--line);
-    }
-
-    .plan li:last-child {
-        border-bottom: none;
-    }
-
-    .faq-cat {
-        font-family: var(--mono);
-        font-size: 12px;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--gold);
-        margin-bottom: 12px;
-    }
-
-    details.faq {
-        border-bottom: 1px solid var(--line);
-    }
-
-    details.faq summary {
-        cursor: pointer;
-        padding: 16px 0;
-        font-weight: 600;
-        color: var(--ink);
-        list-style: none;
-    }
-
-    details.faq summary::-webkit-details-marker {
-        display: none;
-    }
-
-    details.faq .faq-a {
-        padding-bottom: 16px;
-        color: var(--ink-soft);
-        font-size: 15px;
-        line-height: 1.65;
-    }
-
-    .demo-hero {
-        position: relative;
-        background:
-            radial-gradient(
-                900px 500px at 85% 0%,
-                rgba(180, 134, 43, 0.16),
-                transparent 60%
-            ),
-            linear-gradient(
-                160deg,
-                var(--teal-950) 0%,
-                var(--teal-900) 48%,
-                var(--teal-800) 100%
-            );
-        color: #fff;
-        padding-block: 72px;
-    }
-
-    .demo-grid {
-        display: grid;
-        gap: 48px;
-        align-items: start;
-    }
-
-    @media (min-width: 981px) {
-        .demo-grid {
-            grid-template-columns: 1.05fr 0.95fr;
-            gap: 56px;
-        }
-    }
-
-    .demo-list {
-        margin: 28px 0 0;
-        padding: 0;
-        list-style: none;
-        display: grid;
-        gap: 14px;
-    }
-
-    .demo-list li {
-        position: relative;
-        padding-left: 18px;
-        color: rgba(255, 255, 255, 0.78);
-        font-size: 15.5px;
-        line-height: 1.55;
-    }
-
-    .demo-list li::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0.55em;
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: var(--gold-soft);
-    }
-
-    .demo-list b {
-        color: #fff;
-        font-weight: 600;
-    }
-
-    .demo-alt {
-        margin-top: 28px;
-        max-width: 480px;
-        color: rgba(255, 255, 255, 0.62);
-        font-size: 14.5px;
-        line-height: 1.55;
-    }
-
-    .demo-alt a {
-        color: var(--gold-soft);
-        text-decoration: underline;
-        text-underline-offset: 2px;
-    }
-
-    .demo-form-wrap {
-        background: var(--paper);
-        color: var(--ink);
-        border-radius: 16px;
-        padding: 28px;
-        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
-    }
-
-    .demo-form h2,
-    .demo-success h2 {
-        font-family: var(--display);
-        font-size: 1.65rem;
-        font-weight: 600;
-        letter-spacing: -0.01em;
-        margin: 0 0 20px;
-    }
-
-    .demo-frow {
-        display: grid;
-        gap: 14px;
-        margin-bottom: 14px;
-    }
-
-    @media (min-width: 640px) {
-        .demo-frow {
-            grid-template-columns: 1fr 1fr;
-        }
-    }
-
-    .demo-field {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        margin-bottom: 14px;
-    }
-
-    .demo-frow .demo-field {
-        margin-bottom: 0;
-    }
-
-    .demo-field label {
-        font-size: 13.5px;
-        font-weight: 600;
-        color: var(--ink-soft);
-    }
-
-    .demo-field input,
-    .demo-field select,
-    .demo-field textarea {
-        width: 100%;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: var(--cream);
-        color: var(--ink);
-        font-family: var(--body);
-        font-size: 15px;
-        padding: 11px 12px;
-        outline: none;
-    }
-
-    .demo-field input:focus,
-    .demo-field select:focus,
-    .demo-field textarea:focus {
-        border-color: var(--teal-500);
-        box-shadow: 0 0 0 3px rgba(42, 125, 99, 0.15);
-    }
-
-    .demo-consent {
-        display: flex;
-        gap: 10px;
-        align-items: flex-start;
-        margin: 4px 0 16px;
-        font-size: 13.5px;
-        line-height: 1.5;
-        color: var(--ink-soft);
-    }
-
-    .demo-consent input {
-        margin-top: 3px;
-        accent-color: var(--teal-600);
-    }
-
-    .demo-consent a {
-        color: var(--teal-700);
-        text-decoration: underline;
-        text-underline-offset: 2px;
-    }
-
-    .demo-submit {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .demo-submit:disabled {
-        opacity: 0.7;
-        cursor: wait;
-    }
-
-    .demo-fineprint {
-        margin: 14px 0 0;
-        font-size: 13px;
-        line-height: 1.5;
-        color: var(--ink-soft);
-    }
-
-    .demo-error {
-        margin: 0 0 12px;
-        font-size: 14px;
-        color: #9b2c2c;
-    }
-
-    .demo-success {
-        text-align: center;
-        padding: 24px 8px;
-    }
-
-    .demo-tick {
-        width: 52px;
-        height: 52px;
-        margin: 0 auto 16px;
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
-        background: var(--teal-100);
-        color: var(--teal-700);
-    }
-
-    .demo-tick svg {
-        width: 26px;
-        height: 26px;
-    }
-
-    .demo-success p {
-        color: var(--ink-soft);
-        font-size: 15.5px;
-        line-height: 1.6;
-    }
-
-    @media (max-width: 980px) {
-        .nav-links {
-            display: none;
-        }
-
-        .foot-top {
-            grid-template-columns: 1fr 1fr;
-        }
-
-        .eco {
-            grid-template-columns: 1fr;
-        }
-
-        .plans {
-            grid-template-columns: 1fr;
-        }
-
-        .demo-hero {
-            padding-block: 48px;
-        }
-    }
+#root {
+    min-height: 100svh;
 }

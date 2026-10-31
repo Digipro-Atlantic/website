@@ -1,1 +1,1 @@
-export * from './InstitutionsSection'
+export * from './InstitutionsPage'

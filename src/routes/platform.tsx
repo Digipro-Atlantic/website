@@ -1,17 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Cta } from '@/containers/Home'
-import { Capabilities, Ecosystem } from '@/containers/Platform'
+import { pageHead } from '@/data/seo'
+import { PlatformPage } from '@/containers/Platform'
 
 export const Route = createFileRoute('/platform')({
+    head: () => pageHead('/platform'),
     component: PlatformPage,
 })
-
-function PlatformPage() {
-    return (
-        <main>
-            <Capabilities />
-            <Ecosystem />
-            <Cta />
-        </main>
-    )
-}

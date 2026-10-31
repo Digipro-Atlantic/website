@@ -1,56 +1,44 @@
-import type { FeeRow, PricingTier, TierPricing } from './types'
+import type { NavLink } from './types'
 
-export const tierPricing: Record<string, TierPricing> = {
-    freemium: {
-        monthly: '₦0',
-        annual: '₦0',
-        unitM: '/forever',
-        unitA: '/forever',
-        noteM: 'No card required',
-        noteA: 'No card required',
-        units: 'Unlimited units',
-    },
-    essential: {
-        monthly: '₦2,500',
-        annual: '₦25,000',
-        unitM: '/month',
-        unitA: '/year',
-        noteM: '₦25,000 billed yearly',
-        noteA: 'Equivalent to ₦2,083/month',
-        units: 'Up to 25 units',
-    },
-    professional: {
-        monthly: '₦6,250',
-        annual: '₦62,500',
-        unitM: '/month',
-        unitA: '/year',
-        noteM: '₦62,500 billed yearly',
-        noteA: 'Equivalent to ₦5,208/month',
-        units: 'Up to 100 units',
-    },
-    enterprise: {
-        monthly: '₦15,000',
-        annual: '₦150,000',
-        unitM: '/month',
-        unitA: '/year',
-        noteM: '₦150,000 billed yearly',
-        noteA: 'Equivalent to ₦12,500/month',
-        units: 'Unlimited units',
-    },
+export type BillingPeriod = 'monthly' | 'annual'
+
+export type PricingTierId = 'free' | 'essential' | 'pro' | 'enterprise'
+
+export type PricingTier = {
+    id: PricingTierId
+    name: string
+    description: string
+    /** Monthly price in naira; 0 means free forever. */
+    monthly: number
+    featured?: boolean
+    cta: NavLink
+    /** Label of the CTA inside the comparison table header (Figma casing differs). */
+    tableCtaLabel: string
+    limit: string
+    features: readonly string[]
 }
 
-export const fees = {
-    transaction: '1.5%',
-    assessment: '₦500 to ₦2,000',
-    vat: '7.5%',
+export const pricingHero = {
+    label: 'Pricing',
+    title: 'Clear tiers for owners, agencies and institutions.',
+    description:
+        'Owners can start free forever. Subscription tiers add capacity and capability as a portfolio grows. Tenants are never charged a subscription. Tenant rent financing facilitation is included on every tier, including Freemium. All figures are in Naira and exclude VAT, which applies to Zebul fees only.',
 } as const
 
-export const pricingTiers: PricingTier[] = [
+export const billingOptions = [
+    { id: 'monthly', label: 'Monthly' },
+    { id: 'annual', label: 'Annual', chip: '+ 2 Month' },
+] as const
+
+export const pricingTiers: readonly PricingTier[] = [
     {
-        id: 'freemium',
-        name: 'Freemium',
+        id: 'free',
+        name: 'Free',
         description: 'For individual landlords getting started.',
-        cta: { label: 'Start free', to: '/demo', variant: 'outline' },
+        monthly: 0,
+        cta: { label: 'Start Free', to: '/demo' },
+        tableCtaLabel: 'Start free',
+        limit: 'Unlimited units',
         features: [
             'Rent collection and receipts',
             'Maintenance tracking',
@@ -63,7 +51,10 @@ export const pricingTiers: PricingTier[] = [
         id: 'essential',
         name: 'Essential',
         description: 'For small portfolios that need reporting.',
-        cta: { label: 'Choose Essential', to: '/demo', variant: 'outline' },
+        monthly: 6000,
+        cta: { label: 'Choose Essential', to: '/demo' },
+        tableCtaLabel: 'Choose Essential',
+        limit: 'Up to 25 units',
         features: [
             'Everything in Freemium',
             'Basic financial reporting',
@@ -72,11 +63,14 @@ export const pricingTiers: PricingTier[] = [
         ],
     },
     {
-        id: 'professional',
-        name: 'Professional',
+        id: 'pro',
+        name: 'Pro',
         description: 'For growing owners and small agencies.',
+        monthly: 16000,
         featured: true,
-        cta: { label: 'Choose Professional', to: '/demo', variant: 'dark' },
+        cta: { label: 'Choose Pro', to: '/demo' },
+        tableCtaLabel: 'Choose Pro',
+        limit: 'Up to 100 units',
         features: [
             'Everything in Essential',
             'Advanced reporting and analytics',
@@ -87,7 +81,10 @@ export const pricingTiers: PricingTier[] = [
         id: 'enterprise',
         name: 'Enterprise',
         description: 'For agencies managing at scale.',
-        cta: { label: 'Talk to sales', to: '/demo', variant: 'outline' },
+        monthly: 45000,
+        cta: { label: 'Talk to sales', to: '/contact' },
+        tableCtaLabel: 'Talk to sales',
+        limit: 'Unlimited units',
         features: [
             'Everything in Professional',
             'Custom workflows',
@@ -97,35 +94,215 @@ export const pricingTiers: PricingTier[] = [
     },
 ]
 
+/** Yearly billing is ten times the monthly price ("two months free"). */
+const ANNUAL_MULTIPLIER = 10
+
+export const formatNaira = (amount: number) =>
+    `₦${amount.toLocaleString('en-US')}`
+
+export type TierPrice = {
+    /** Big figure, e.g. "₦6,000" or "Free". */
+    amount: string
+    /** The figure as a number, for animating between periods. 0 for the free tier. */
+    value: number
+    /** Suffix after the figure, e.g. "/month". Empty for the free tier. */
+    unit: string
+    /** First billing note under the price. */
+    billed: string
+    /** Second, smaller billing note. */
+    note: string
+    /** Compact "price/unit" line used in the comparison table header. */
+    tableLine: string
+    /** Small line under the price in the comparison table header. */
+    tableNote: string
+}
+
+export const getTierPrice = (
+    tier: PricingTier,
+    period: BillingPeriod,
+): TierPrice => {
+    if (tier.monthly === 0) {
+        return {
+            amount: 'Free',
+            value: 0,
+            unit: '',
+            billed: 'Free forever',
+            note: 'No card required',
+            tableLine: '₦0/Forever',
+            tableNote: 'No card required',
+        }
+    }
+
+    const annual = period === 'annual'
+    const value = annual ? tier.monthly * ANNUAL_MULTIPLIER : tier.monthly
+    const amount = formatNaira(value)
+    const unit = annual ? '/year' : '/month'
+
+    return {
+        amount,
+        value,
+        unit,
+        billed: annual ? 'Billed yearly, two months free' : 'Billed monthly',
+        note: 'Excluding VAT, added at checkout',
+        tableLine: `${amount}${unit}`,
+        tableNote: 'Excluding VAT',
+    }
+}
+
+export const comparison = {
+    label: 'Plan comparison',
+    title: 'Compare all features.',
+    description: 'Every plan and what it includes, side by side.',
+    tableTitle: 'Compare plans',
+    tableDescription: "Complete feature list and what's included in each tier.",
+} as const
+
+export type ComparisonRow = {
+    feature: string
+    /** One value per tier, in the order of `pricingTiers`. "\n" forces a line break. */
+    values: readonly [string, string, string, string]
+    /** Plain-weight values ("Pay as you go", "₦1,000 each time") vs medium-weight status words. */
+    detail?: boolean
+    /** Wraps to two lines from tablet up; Figma gives these rows 68px (tablet) and 96px (desktop). */
+    tall?: boolean
+}
+
+const yes = ['Yes', 'Yes', 'Yes', 'Yes'] as const
+const proUp = ['Not included', 'Not included', 'Yes', 'Yes'] as const
+
+export const comparisonRows: readonly ComparisonRow[] = [
+    { feature: 'Everything needed to run tenancies', values: yes },
+    {
+        feature: 'Pooled 30 SMS and 30 WhatsApp per property a year',
+        tall: true,
+        values: yes,
+    },
+    { feature: 'Identity verification on every tenant', values: yes },
+    {
+        feature: 'Identity verification for owners and managers',
+        tall: true,
+        values: ['Free', 'Free', 'Free', 'Free'],
+    },
+    { feature: 'All safety and security features', values: yes },
+    {
+        feature: 'Reports and analytics',
+        values: ['Not included', 'Basic', 'Full', 'Full'],
+    },
+    {
+        feature: 'Year-end pack for the accountant',
+        values: ['Not included', 'Not included', 'Yes', 'Yes'],
+    },
+    {
+        feature: 'Documents with version history',
+        tall: true,
+        values: [
+            '250 MB per property,\nminimum 2 GB',
+            '1 GB per property,\nminimum 15 GB',
+            '2 GB per property,\nminimum 50 GB',
+            'Negotiated',
+        ],
+    },
+    { feature: 'Saved and scheduled reports', values: proUp },
+    {
+        feature: 'Portfolio comparison and executive view',
+        tall: true,
+        values: proUp,
+    },
+    {
+        feature: 'Bulk export and accounting integration',
+        tall: true,
+        values: proUp,
+    },
+    { feature: 'White-labelling and client branding', values: proUp },
+    {
+        feature: 'Extra messaging allowance',
+        values: ['Pay as you go', '1.5× pooled', '2× pooled', '4× pooled'],
+        detail: true,
+    },
+    {
+        feature: "Owner's logo on invoices and receipts",
+        tall: true,
+        values: ['Not included', 'Yes', 'Yes', 'Yes'],
+    },
+    {
+        feature: 'Re-verification of a payout or settlement account',
+        tall: true,
+        values: [
+            '₦1,000 each time',
+            '₦1,000 each time',
+            '₦1,000 each time',
+            'Included',
+        ],
+        detail: true,
+    },
+    {
+        feature: 'API and webhook access',
+        values: ['Not included', 'Not included', 'Not included', 'Yes'],
+    },
+    { feature: 'Migration from an old system', values: proUp },
+    { feature: 'Multiple entities under one account', values: proUp },
+    {
+        feature: "Export of a single property's records",
+        values: ['Not included', 'Yes', 'Yes', 'Yes'],
+    },
+    {
+        feature: 'Dedicated support contact',
+        values: ['Not included', 'Not included', 'Not included', 'Yes'],
+    },
+]
+
+export const pricingNotes = [
+    'Prices exclude VAT. Yearly billing is ten times the monthly price, so a year paid up front carries two months free.',
+    'No charge per user, per unit or per client on any plan.',
+    'The Free plan is free for life. It is not a trial and it does not expire. Premium features and additional services are optional. Safety and security features are included on every plan.',
+    'Messages beyond the pooled allowance are charged to the owner or agency that sends them.',
+    'Document storage is pooled across all properties on the account, and every saved version counts. When the allowance is reached, new uploads pause; documents already stored remain viewable and downloadable, and nothing is deleted.',
+    'Identity and account checks are carried out by third-party services, so they carry a fee. Verification for property owners and managers is free.',
+    'Tenants pay ₦1,000 for their own identity verification when they complete their KYC.',
+    'Each re-verification of a payout or settlement account costs ₦1,000, paid by the person carrying it out, and is included on Enterprise.',
+    "Payments made through Zebul carry a Zebul platform fee, paid by whoever initiates the payment. VAT applies to Zebul's fees, not to rent.",
+    'Estate management committees use Zebul at no direct cost.',
+    'Pricing for government and institutional housing bodies is discussed and agreed separately.',
+] as const
+
+export const additionalFees = {
+    title: 'Additional Fees',
+    description:
+        'Transparent charges that apply when you use specific Zebul services.',
+    columns: ['Fee', 'Amount', 'Paid by'],
+    // `tall` rows wrap to two lines from tablet up (Figma 68px tablet / 96px desktop rows).
+    rows: [
+        {
+            fee: 'Zebul platform fee',
+            tall: true,
+            amount: '1.5% of the payment, minimum ₦500, maximum ₦9,500 per payment, plus VAT',
+            paidBy: 'Whoever initiates the payment, usually the tenant',
+        },
+        {
+            fee: 'Tenant identity verification',
+            amount: '₦1,000',
+            paidBy: 'The tenant, at KYC',
+        },
+        {
+            fee: 'Re-verification of a payout or settlement account',
+            tall: true,
+            amount: '₦1,000 each time (included on Enterprise)',
+            paidBy: 'The person carrying it out',
+        },
+        {
+            fee: 'Messages beyond the pooled allowance',
+            tall: true,
+            amount: 'Pay as you go',
+            paidBy: 'The owner or agency that sends them',
+        },
+    ],
+    vatNote:
+        'Value Added Tax at 7.5% applies to Zebul fees only, not to the rent or principal amount. Full fee terms are published at zebul.ng/fees.',
+} as const
+
 export const institutionalBand = {
     title: 'Government and institutional clients',
     description:
         'Government housing agencies, military and paramilitary quarters, universities and hospitals, corporate and embassy housing, and market administrators run on a fixed annual licence with allocation workflows and compliance reporting, rather than per-unit pricing.',
-    cta: { label: 'Request a licence', to: '/demo' },
-}
-
-export const feeRows: FeeRow[] = [
-    {
-        name: 'Transaction fee',
-        rateKey: 'transaction',
-        appliedTo: 'Each rent payment processed through Zebul',
-    },
-    {
-        name: 'Loan assessment fee',
-        rateKey: 'assessment',
-        appliedTo: 'Each tenant rent financing application, non-refundable',
-    },
-    {
-        name: 'Service charge',
-        rate: 'Set by the owner or EMC',
-        appliedTo: 'Tenant invoices, where applied',
-    },
-    {
-        name: 'Feature charge',
-        rate: 'Per feature',
-        appliedTo: 'One-time activation of a premium feature',
-    },
-]
-
-export const feesNote =
-    'Value Added Tax at {vat} applies to Zebul fees only, not to the rent or principal amount. Full fee terms are published at zebul.ng/fees.'
+    cta: { label: 'Request a License', to: '/contact' },
+} as const

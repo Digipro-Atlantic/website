@@ -1,38 +1,32 @@
 import { Link } from '@tanstack/react-router'
+import logo from '@/assets/brand/zebul-logo.svg'
 import logoWhite from '@/assets/brand/zebul-logo-white.png'
-import logoOnGreen from '@/assets/brand/zebul-logo-ongreen.png'
-import logoColor from '@/assets/brand/zebul-logo.png'
 
 const logos = {
+    color: logo,
+    // Legacy PNG — only the old Tour mocks use it. Replace when Tour is rebuilt.
     white: logoWhite,
-    ongreen: logoOnGreen,
-    color: logoColor,
-} as const
-
-const sizes = {
-    nav: 'logo-img',
-    footer: 'logo-img logo-img--footer',
-    ui: 'ui-logo',
 } as const
 
 type LogoProps = {
     variant?: keyof typeof logos
-    size?: keyof typeof sizes
+    /** Size with a height class, e.g. `h-10`; width follows the aspect ratio. */
     className?: string
     to?: string | false
+    onClick?: () => void
 }
 
 export const Logo = ({
-    variant = 'white',
-    size = 'nav',
-    className = '',
+    variant = 'color',
+    className = 'h-8',
     to = '/',
+    onClick,
 }: LogoProps) => {
     const img = (
         <img
             src={logos[variant]}
             alt="Zebul"
-            className={`${sizes[size]} ${className}`.trim()}
+            className={`block w-auto ${className}`}
         />
     )
 
@@ -41,8 +35,9 @@ export const Logo = ({
     return (
         <Link
             to={to}
-            className="logo inline-flex items-center"
+            className="inline-flex shrink-0 items-center"
             aria-label="Zebul home"
+            onClick={onClick}
         >
             {img}
         </Link>

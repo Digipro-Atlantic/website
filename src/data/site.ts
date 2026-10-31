@@ -28,7 +28,7 @@ export const site = {
     subscribe: {
         title: 'Stay in the loop',
         description:
-            'Product updates and news from Zebul. No spam, and you can unsubscribe at any time.',
+            'Be the first to receive all the recent updates, articles, and valuable materials.',
         formspreeAction: 'https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID',
     },
 

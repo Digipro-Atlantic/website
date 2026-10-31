@@ -1,18 +1,13 @@
-import type { EstateFeature } from './types'
-
-export const estatesSection = {
-    eyebrow: 'Community-Governed Estate Module',
+// The hero lead is the Figma copy as designed (a placeholder shared with the
+// Institutions page). Pending client copy.
+export const estatesHero = {
+    label: 'Community-Governed Estate Module',
     title: 'Governance infrastructure for gated and planned estates.',
     description:
-        'Thousands of Nigerian estates are run by volunteer Estate Management Committees billing dues by hand and tracking funds in personal notebooks. Zebul gives them a proper ledger, automated billing and a record every resident can trust.',
+        'Most Nigerian landlords and agencies still run on spreadsheets, paper receipts and a busy WhatsApp group. Zebul puts all of it in one place: every property, tenancy, payment and document, reachable on any phone, even on a slow connection.',
 } as const
 
-export const estatesZeroBanner = {
-    bold: 'Zero direct cost',
-    text: 'to the committee or unit owners. Zebul earns only from transaction activity, not committee fees.',
-} as const
-
-export const estateFeatures: readonly EstateFeature[] = [
+export const estateFeatures = [
     {
         id: 'multi-fund',
         title: 'Multi-fund dues billing',
@@ -49,4 +44,10 @@ export const estateFeatures: readonly EstateFeature[] = [
         description:
             'Invite absentee landlords by SMS, WhatsApp or email and merge their record on self-registration.',
     },
-]
+    {
+        id: 'zero-cost',
+        title: 'Zero direct cost',
+        description:
+            'Zero direct cost to the committee or unit owners. Zebul earns only from transaction activity, not committee fees.',
+    },
+] as const

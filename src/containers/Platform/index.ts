@@ -1,2 +1,2 @@
-export * from './Capabilities'
-export * from './Ecosystem'
+export * from './PlatformPage'
+export * from './FeatureGrid'

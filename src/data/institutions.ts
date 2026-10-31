@@ -1,53 +1,54 @@
-import type { SecGridItem } from './types'
-
-export const institutionsSection = {
-    eyebrow: 'Bulk and institutional housing',
+// The hero lead and card copy are the Figma copy as designed. The lead is a
+// placeholder shared with the Estates page and the card titles and bodies
+// repeat the Platform cards. Pending client copy.
+export const institutionsHero = {
+    label: 'Bulk and institutional housing',
     title: 'For organisations that house people at scale.',
     description:
-        'Some bodies do not let property, they allocate it. Government and military quarters, university and hospital accommodation, corporate and embassy housing, traditional markets. Billing runs by allocation and by session rather than by ordinary lease, and Zebul handles all of it on a fixed annual licence.',
+        'Most Nigerian landlords and agencies still run on spreadsheets, paper receipts and a busy WhatsApp group. Zebul puts all of it in one place: every property, tenancy, payment and document, reachable on any phone, even on a slow connection.',
 } as const
 
-export const institutionItems: readonly SecGridItem[] = [
+export const institutionItems = [
     {
-        id: 'allocation',
-        tag: 'Allocation',
-        title: 'Allocation workflows',
+        id: 'allocations',
+        category: 'Allocations',
+        title: 'Rent collection',
         description:
-            'Allocate and reallocate staff quarters, student rooms or market stalls through configurable approval chains, with full occupancy tracking.',
+            'Process rent through Paystack, Flutterwave, Remita and Monnify. Receipts and payment history are generated for every transaction.',
     },
     {
         id: 'student-housing',
-        tag: 'Student housing',
-        title: 'Academic-calendar billing',
+        category: 'Student housing',
+        title: 'Lease management',
         description:
-            "Hostels bill by semester or session. Zebul holds each institution's academic calendar and prompts students before resumption, not after they arrive.",
+            'Create leases from templates, capture digital signatures with OTP verification, and handle renewals with side-by-side term comparison.',
     },
     {
         id: 'multi-institution',
-        tag: 'Multi-institution',
-        title: 'Several institutions, one hostel',
+        category: 'Multi - Institution',
+        title: 'Maintenance tracking',
         description:
-            'A private hostel near a university cluster can house students from several institutions, each billed to its own academic calendar.',
+            'Tenants raise requests, owners approve, work orders run to completion. Every job and its cost is recorded against the unit.',
     },
     {
-        id: 'guardian',
-        tag: 'Guardian access',
-        title: 'Guardian portal',
+        id: 'guardian-access',
+        category: 'Guardian access',
+        title: 'Document vault',
         description:
-            "Parents and guardians see a student's accommodation status and payment record, and receive notices, on read-only access only.",
+            'Leases, receipts and inspection reports stored with version control, retention policies and access controls aligned to NDPR.',
     },
     {
         id: 'markets',
-        tag: 'Markets',
-        title: 'Stalls and plazas',
+        category: 'Markets',
+        title: 'Financial reporting',
         description:
-            'Market administrators track stall allocation and rotation, run daily and weekly collection patterns, and move traders from cash to digital.',
+            'Income against expenditure, occupancy-based analysis, owner disbursement tracking and period comparison, exportable on demand.',
     },
     {
         id: 'compliance',
-        tag: 'Compliance',
-        title: 'Audit and transparency',
+        category: 'Compliance',
+        title: 'Communications',
         description:
-            'Public asset transparency dashboards and audit-ready records for government, military, corporate and international housing portfolios.',
+            'Reach tenants and residents on WhatsApp and SMS, both treated as primary channels, with in-app messages and bulk announcements when you need them.',
     },
-]
+] as const

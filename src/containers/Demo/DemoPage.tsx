@@ -1,46 +1,26 @@
-import { Reveal } from '@/components/Reveal'
+import { Container } from '@/components/Container'
+import { Page } from '@/components/Page'
+import { PageHero } from '@/components/PageHero'
 import { demo } from '@/data/demo'
-import { site } from '@/data/site'
-import { DemoForm } from './DemoForm'
+import { BookingFlow } from './BookingFlow'
 
 type DemoPageProps = {
     intent?: 'partner'
+    email?: string
 }
 
-export const DemoPage = ({ intent }: DemoPageProps) => (
-    <main className="demo-hero">
-        <div className="wrap">
-            <div className="demo-grid">
-                <Reveal immediate className="demo-copy">
-                    <span className="inline-block font-mono text-[15px] font-semibold tracking-[0.12em] text-gold uppercase">
-                        {demo.eyebrow}
-                    </span>
-                    <h1 className="font-display mt-4 text-[clamp(2rem,4.5vw,3.25rem)] leading-[1.08] font-semibold tracking-tight text-white">
-                        {demo.title}
-                    </h1>
-                    <p className="mt-5 max-w-[520px] text-[17px] text-white/78">
-                        {demo.lead}
-                    </p>
-                    <ul className="demo-list">
-                        {demo.points.map((point) => (
-                            <li key={point.title}>
-                                <b>{point.title}</b> {point.text}
-                            </li>
-                        ))}
-                    </ul>
-                    <p className="demo-alt">
-                        {demo.alt}{' '}
-                        <a href={`mailto:${site.contact.email}`}>
-                            {site.contact.email}
-                        </a>
-                        .
-                    </p>
-                </Reveal>
+// Figma drops the CTA banner here: the booking card is the page's call to action.
+export const DemoPage = ({ intent, email }: DemoPageProps) => (
+    <Page>
+        <PageHero
+            label={demo.eyebrow}
+            title={demo.title}
+            description={demo.lead}
+            descriptionClassName="mt-4 md:max-w-[836px]"
+        />
 
-                <Reveal immediate className="demo-form-wrap">
-                    <DemoForm intent={intent} />
-                </Reveal>
-            </div>
-        </div>
-    </main>
+        <Container className="mt-10 mb-24 md:mt-16 xl:mt-24 xl:mb-36">
+            <BookingFlow intent={intent} email={email} />
+        </Container>
+    </Page>
 )

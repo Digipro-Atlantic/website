@@ -1,10 +1,17 @@
-import { Outlet, createRootRoute, useRouterState } from '@tanstack/react-router'
+import {
+    HeadContent,
+    Outlet,
+    createRootRoute,
+    useRouterState,
+} from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { Footer, Header } from '@/components'
 import { NotFoundPage } from '@/containers/NotFound'
+import { siteHead } from '@/data/seo'
 
 export const Route = createRootRoute({
+    head: () => siteHead,
     component: RootComponent,
     notFoundComponent: NotFoundPage,
 })
@@ -15,6 +22,8 @@ function RootComponent() {
 
     return (
         <>
+            {/* Per-page title, description, canonical and preview tags (React 19 hoists them into <head>). */}
+            <HeadContent />
             <Header />
             <AnimatePresence
                 mode="wait"

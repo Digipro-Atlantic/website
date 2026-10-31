@@ -13,12 +13,10 @@ export const RevealItem = ({ children, className }: RevealItemProps) => {
         return <div className={className}>{children}</div>
     }
 
+    // No `initial` here: a variant label on the child would make it control
+    // its own variants and ignore RevealGroup, leaving it hidden forever.
     return (
-        <motion.div
-            className={className}
-            initial="hidden"
-            variants={revealItemVariants}
-        >
+        <motion.div className={className} variants={revealItemVariants}>
             {children}
         </motion.div>
     )

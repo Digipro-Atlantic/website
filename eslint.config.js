@@ -41,13 +41,13 @@ export default defineConfig([
             ],
             '@typescript-eslint/no-explicit-any': 'warn',
             'jsx-quotes': ['error', 'prefer-double'],
-            'react/jsx-no-target-blank': [
-                'error',
-                { enforceDynamicLinks: true },
-            ],
-            'react/jsx-key': 'error',
-            'react/self-closing-comp': 'off',
-            'react/no-danger': 'warn',
+        },
+    },
+    {
+        // TanStack route files export `Route` next to their page component.
+        files: ['src/routes/**/*.tsx'],
+        rules: {
+            'react-refresh/only-export-components': 'off',
         },
     },
 ])

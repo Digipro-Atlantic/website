@@ -5,10 +5,9 @@
  *
  * Related soft-launch behaviour (not path-blocked here):
  * - /signin is hidden from CTAs until the product app is live
- * - /partners redirects to /demo?intent=partner
  * - /demo is early-interest / conversation capture (not a product demo yet)
  */
-export const previewOnlyPaths = ['/estates', '/pricing', '/financing'] as const
+export const previewOnlyPaths = [] as const
 
 export type PreviewOnlyPath = (typeof previewOnlyPaths)[number]
 

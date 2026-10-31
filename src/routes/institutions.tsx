@@ -1,16 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Cta } from '@/containers/Home'
-import { InstitutionsSection } from '@/containers/Institutions'
+import { pageHead } from '@/data/seo'
+import { InstitutionsPage } from '@/containers/Institutions'
 
 export const Route = createFileRoute('/institutions')({
+    head: () => pageHead('/institutions'),
     component: InstitutionsPage,
 })
-
-function InstitutionsPage() {
-    return (
-        <main>
-            <InstitutionsSection />
-            <Cta />
-        </main>
-    )
-}

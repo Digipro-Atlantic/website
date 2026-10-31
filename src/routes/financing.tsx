@@ -1,20 +1,8 @@
-import { createFileRoute, notFound } from '@tanstack/react-router'
-import { Cta } from '@/containers/Home'
-import { FinancingSection } from '@/containers/Financing'
+import { createFileRoute } from '@tanstack/react-router'
+import { pageHead } from '@/data/seo'
+import { FinancingPage } from '@/containers/Financing'
 
 export const Route = createFileRoute('/financing')({
-    // Soft-launch: blocked until product is ready
-    beforeLoad: () => {
-        throw notFound()
-    },
+    head: () => pageHead('/financing'),
     component: FinancingPage,
 })
-
-function FinancingPage() {
-    return (
-        <main>
-            <FinancingSection />
-            <Cta />
-        </main>
-    )
-}
